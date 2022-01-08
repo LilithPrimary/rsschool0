@@ -96,10 +96,14 @@
     font-weight: 400;
 }
 .menu-link:hover {
-    color: #bdae82 ;
+    color: #bdae82;
 }
-.langSwitch {
-
+.lang{
+    transition: 0.3s;
+    cursor: pointer;
+}
+.lang:hover {
+    color: #bdae82;
 }
 
 /*--------------MAIN--------------------------------------------------------------------*/
@@ -145,10 +149,109 @@
     justify-content: center;
     color: #000000;
     cursor: pointer;
+    transition: 0.3s;
 }
+.button:hover {
+    background-color: transparent;
+    border: #bdae82 solid 2px;
+    color: #bdae82;
+}
+
 .section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
 }
+.sectionTop {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sectionBot {
+    display: flex;
+}
+
 .section-title {
+    position: absolute;
+    height: 80px;
+    padding: 0 20px;
+    background-color: #000000;
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 200%;
+    text-align: center;
+    color: #BDAE82;
+}
+.line {
+    height: 2px;
+    width: 700px;
+    background-color: #bdae82;
+}
+
+.sectionBott{
+    display: flex;
+    justify-content: space-between;
+}
+.skillBox {
+    padding-top: 99px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 339px;
+}
+.skillsIcon{
+    transition: 0.3s;
+    display: block;
+    height: 50px;
+    cursor: pointer;
+    fill: #bdae82;
+}
+.skillsIcon:hover {
+    fill: #ffffff;
+}
+.skillsH {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 200%;
+    text-align: center;
+}
+.skillsDisc{
+    width: 280px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 200%;
+    text-align: center;
+}
+
+.pButtons {
+    display: flex;
+    width: 895px;
+    justify-content: space-between;
+    padding-top: 99px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+.photoCont {
+    width: 1400px;
+    height: 1145px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.pPhoto{
+    width: 450px;
+    object-fit: cover;
 }
 
 /*--------------FOOTER--------------------------------------------------------------------*/
