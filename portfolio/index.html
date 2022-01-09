@@ -27,9 +27,15 @@
                         </ul>
                     </nav>
                     <div class="langSwitch">
-                        <span class="lang">en</span>
+                        <div>
+                            <input type="radio" class="langRadio" name="langChoice" id="en" checked>
+                            <label for="en">en</label>
+                        </div>
                         <span style="padding: 0 9px;">/</span>
-                        <span class="lang">ru</span>
+                        <div>
+                            <input type="radio" class="langRadio" name="langChoice" id="ru">
+                            <label for="ru">ru</label>
+                        </div>
                     </div>      
                 </div>      
             </div>
@@ -41,7 +47,7 @@
                     <p class="textUnderName">Save sincere emotions, romantic feelings and
                        happy moments of life together with professional
                        photographer Alexa Rise</p>
-                    <div class="button"><span>Hire me</span></div>
+                    <button class="button active">Hire me</button>
                 </div>
             </section>
 
@@ -90,13 +96,13 @@
                         <div class="line"></div>
                         <h2 class="section-title">Portfolio</h2>
                     </div>
-                    <div class="pButtons">
-                        <div class="button"><span>Winter</span></div>
-                        <div class="button"><span>Spring</span></div>
-                        <div class="button"><span>Summer</span></div>
-                        <div class="button"><span>Autumn</span></div>
+                    <div class="pButtons" id="pfBtns">
+                        <button class="button" onclick="filterSelection('winter')">Winter</button>
+                        <button class="button" onclick="filterSelection('spring')">Spring</button>
+                        <button class="button" onclick="filterSelection('summer')">Summer</button>
+                        <button class="button active" onclick="filterSelection('autumn')">Autumn</button>
                     </div>
-                    <div class="photoCont">
+                    <div class="photoCont autumn">
                         <img src="assets/img/portfolio-img.jpg" alt="photo1" class="pPhoto">
                         <img src="assets/img/portfolio-img-1.jpg" alt="photo2" class="pPhoto">
                         <img src="assets/img/portfolio-img-2.jpg" alt="photo3" class="pPhoto">

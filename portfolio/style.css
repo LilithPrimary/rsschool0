@@ -98,18 +98,27 @@
 .menu-link:hover {
     color: #bdae82;
 }
-.lang{
-    transition: 0.3s;
-    cursor: pointer;
+
+.langSwitch {
+    display: flex;
 }
-.lang:hover {
+
+input[type=radio] {
+    display: none;
+  }
+
+.langRadio ~ label {
+    cursor: pointer;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.langRadio:checked ~ label {
     color: #bdae82;
 }
 
 /*--------------MAIN--------------------------------------------------------------------*/
 
-.main {
-}
 .hero-container {
     height: 820px;
     background-image: url('./assets/img/bg.png');
@@ -143,18 +152,20 @@
 .button {
     width: 220px;
     height: 55px;
-    background-color: #bdae82;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000000;
     cursor: pointer;
     transition: 0.3s;
-}
-.button:hover {
+    font-size: 20px;
     background-color: transparent;
     border: #bdae82 solid 2px;
     color: #bdae82;
+}
+.button.active {
+    background-color: #bdae82;
+    border: none;
+    color: #000000;
 }
 
 .section {
@@ -247,11 +258,16 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
+    /* display: none; */
 }
 
 .pPhoto{
+    transition: 0.5s;
     width: 450px;
     object-fit: cover;
+}
+.pPhoto:hover {
+    transform: scale(1.1);
 }
 
 /*--------------FOOTER--------------------------------------------------------------------*/
