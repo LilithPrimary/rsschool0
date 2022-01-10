@@ -80,7 +80,7 @@
     transition: 0.3s;
 }
 
-  .logo:hover {
+.logo:hover {
     filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
       contrast(87%);
   }
@@ -105,6 +105,11 @@
 .menu-link:hover {
     color: var(--color-gold);
 }
+.langSep{
+    padding-left: 10px;
+    padding-right: 9px;
+    font-weight: 600;
+}
 
 .langSwitch {
     display: flex;
@@ -115,6 +120,7 @@ input[type=radio] {
   }
 
 .langRadio ~ label {
+    font-weight: 600;
     cursor: pointer;
     color: #ffffff;
     transition: 0.3s;
@@ -197,19 +203,16 @@ button.hero {
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 0 20px;
+    padding: 100px 20px 0px 20px;
 }
 .section.end {
     margin-bottom: 100px;
 }
 .sectionTop {
-    padding-top: 100px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.sectionBot {
-    display: flex;
 }
 
 .section-title {
@@ -228,9 +231,9 @@ button.hero {
 .section-title.ctcs {
     text-align: left;
     padding-left: 0;
-    position: static;
+    position: relative;
     background-color: transparent;
-    padding-bottom: 40px;
+    padding-bottom: 120px;
 }
 .line {
     height: 2px;
@@ -243,12 +246,13 @@ button.hero {
     justify-content: space-between;
 }
 .skillBox {
-    padding-top: 99px;
+    padding-top: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 339px;
+    /* justify-content: space-between; */
+    height: 300px;
+    width: 320px;
 }
 .skillsIcon{
     transition: 0.3s;
@@ -264,6 +268,8 @@ button.hero {
     font-size: 20px;
     line-height: 200%;
     text-align: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 .skillsDisc{
     width: 280px;
@@ -279,7 +285,7 @@ button.hero {
     display: flex;
     width: 895px;
     justify-content: space-between;
-    padding-top: 99px;
+    padding-top: 60px;
     margin: 0 auto;
     padding-bottom: 60px;
 }
@@ -305,7 +311,7 @@ button.hero {
 
 .video-player{
     width: 1400px;
-    padding-top: 99px;
+    padding-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -334,12 +340,13 @@ button.hero {
 }
 
 .priceBlcs {
+    padding-top: 60px;
     display: flex;
     justify-content: space-between;
     width: 1400px;
 }
 .priceBlcs div {
-    margin-top: 99px;
+    /* margin-top: 60px; */
     height: 505px ;
     width: 450px;
     border: var(--color-gold) solid 3px;
@@ -460,6 +467,7 @@ button.hero {
 }
 .date{
     width: 188px;
+    display: flex;
 }
 .dateSpan {
     display: inline-block;
