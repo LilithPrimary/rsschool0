@@ -12,7 +12,11 @@
     box-sizing: border-box;
   }
   a {
-    text-decoration: none;
+    color: inherit;
+    text-decoration: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
   }
   ul,
   ol,
@@ -55,7 +59,7 @@
 /*-------------HEADER---------------------------------------------------------------------*/
 
 .header-container {
-    background: url('assets/img/bg.png');
+    background: url('assets/img/bg.jpg');
     background-repeat: no-repeat;
     background-position: center 0;
   }
@@ -128,7 +132,7 @@ input[type=radio] {
 
 .hero-container {
     height: 820px;
-    background-image: url('./assets/img/bg.png');
+    background-image: url('./assets/img/bg.jpg');
     background-position: center -90px;
     background-repeat: no-repeat;
     padding-left: 80px;
@@ -382,7 +386,7 @@ button.hero {
 .contacts-container{
     height: 700px;
     width: 1440px;
-    background-image: url(assets/img/contacts.png);
+    background-image: url(assets/img/contacts.jpg);
     background-repeat: no-repeat;
     background-size: contain;
     padding-top: 60px;
