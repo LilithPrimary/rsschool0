@@ -1,6 +1,9 @@
 /*----VARs------------------------------------------------------------------------------*/
 :root {
     --color-gold: #bdae82;
+    --font-size-name: 60px;
+    --font-weight-name: bold;
+    --font-size-h2: 40px;
   }
 /*----NORMALIZE------------------------------------------------------------------------------*/
 
@@ -44,7 +47,7 @@
     max-width: 1440px;
     line-height: normal;
     color: #ffffff;
-    font-weight: regular;
+    font-weight: normal;
     font-style: normal;
     font-size: 20px;
     font-family: Inter;
@@ -152,7 +155,6 @@ input[type=radio] {
 }
 .heroPic {
     position: relative;
-    /* height: 910px; */
     width: 100%;
     min-height: 590px;
     margin: 0 auto;
@@ -172,16 +174,12 @@ input[type=radio] {
 .h1class{
     font-family: Merriweather;
     font-style: normal;
-    font-weight: bold;
-    font-size: 60px;
-    line-height: 120px;
+    font-weight: var(--font-weight-name);
+    font-size: var(--font-size-name);
+    line-height: 200%;
     padding-bottom: 10px;
 }
 .textUnderName{
-    font-family: Inter;
-    font-style: normal;
-    font-weight: regular;
-    font-size: 20px;
     line-height: 200%;
     padding-bottom: 25px;
 
@@ -191,7 +189,7 @@ input[type=radio] {
     height: 55px;
     cursor: pointer;
     transition: 0.3s;
-    font-size: 20px;
+    font-size: inherit;
     background-color: transparent;
     border: var(--color-gold) solid 2px;
     color: var(--color-gold);
@@ -233,6 +231,7 @@ button.hero {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 60px;
 }
 
 .section-title {
@@ -243,7 +242,7 @@ button.hero {
     font-family: Merriweather;
     font-style: normal;
     font-weight: bold;
-    font-size: 40px;
+    font-size: var(--font-size-h2);
     line-height: 200%;
     text-align: center;
     color: var(--color-gold);
@@ -256,11 +255,10 @@ button.hero {
 }
 
 .sectionBott{
-    padding-top: 60px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 60px;
     max-height: 580px;
     margin: 0 auto;
     min-width: 728px; ;
@@ -269,26 +267,23 @@ button.hero {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
     max-height: 240px;
     max-width: 320px;
 }
 .skillBoxSec {
     display: flex;
-    gap: 40px;
+    gap: 44px;
 }
 .skillsIcon{
     transition: 0.3s;
     display: block;
     height: 50px;
+    width: 50px;
     fill: var(--color-gold);
 }
 
 .skillsH {
-    font-family: Inter;
-    font-style: normal;
     font-weight: bold;
-    font-size: 20px;
     line-height: 200%;
     text-align: center;
     padding-top: 50px;
@@ -296,9 +291,6 @@ button.hero {
 }
 .skillsDisc{
     max-width: 280px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 200%;
     text-align: center;
@@ -313,7 +305,6 @@ button.hero {
     max-width: 895px;
     min-width: 445px;
     justify-content: center;
-    padding-top: 60px;
     margin: 0 auto;
     padding-bottom: 60px;
 }
@@ -344,9 +335,6 @@ button.hero {
 /*----VIDEO------------------------------------------------------------------------------*/
 
 .video-player{
-    /* max-width: 1400px;
-    max-height: 765px; */
-    padding-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -379,7 +367,6 @@ button.hero {
 
 
 .priceBlcs {
-    padding-top: 60px;
     display: flex;
     justify-content: center;
     gap: 25px;
@@ -387,7 +374,6 @@ button.hero {
     max-width: 1400px;
 }
 .priceBlcs div {
-    /* margin-top: 60px; */
     height: 505px ;
     width: 450px;
     border: var(--color-gold) solid 3px;
@@ -420,9 +406,6 @@ button.hero {
 }
 
 .prcDisc {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 200%;
     text-align: center;
@@ -451,20 +434,19 @@ button.hero {
     padding-top: 60px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     padding-bottom: 195px;
-    max-width: 445px;
-
+    width: 450px;
 }
 .section-title.ctcs {
-    text-align: left;
-    padding: 0 0 120px 0;
+    padding: 0;
+    margin-bottom: 40px;
     position: static;
     background-color: transparent;
 }
 .contBlock input {
     height: 50px;
-    width: inherit;
-    display: block;
+    width: 100%;
     margin-bottom: 20px;
     background: rgba(0, 0, 0, 0.5);
     border: var(--color-gold) solid 2px;
@@ -508,7 +490,8 @@ button.hero {
     line-height: 200%;    
     color: var(--color-gold);    
   }
-/*--------------FOOTER--------------------------------------------------------------------*/
+
+/*----FOOTER------------------------------------------------------------------------------*/
 
 .footer {
     width: inherit;
@@ -539,6 +522,10 @@ button.hero {
 .spanHref:hover{
     color: var(--color-gold);
 }
+.spanHref.rs {
+    display: block;
+    padding: 20px 0;
+}
 .snCont{
     height: 32px;
     width: 188px;
@@ -554,4 +541,66 @@ button.hero {
 }
 .snIcons:hover {
     fill: var(--color-gold);
+}
+
+/*----MEDIA------------------------------------------------------------------------------*/
+
+@media (max-width: 796px) {
+    :root {
+        --font-size-name: 32px;
+        --font-size-h2: 32px;
+        --font-weight-name: normal;
+    }
+.logo{
+    margin-left: 40px;
+}
+.textUnderName{
+    line-height: 24px;
+    padding-bottom: 60px;
+}
+.heroPic{
+    width: 768px;
+    height: 590px;
+    background-position: center;
+    padding-left: 60px;
+    padding-top: 168px;
+    padding-bottom: 152px;
+    background-image: url('./assets/img/hero.jpg');
+    max-height: 600px;
+    max-width: 768px;
+    background-position: center;
+    background-size: cover;
+}
+.name {
+    max-width: 390px;
+}
+.skillsH {
+    padding-top: 30px;
+}
+.sectionTop {
+    margin-bottom: 50px;
+}
+.section{
+    padding-top: 80px;
+}
+.priceBlcs {
+    gap: 50px;
+}
+.contBlock {
+    padding-right: 0;
+    align-items: center;
+    padding-bottom: 111px;
+}
+.contacts-container{
+    justify-content: center;
+    background-image: url(assets/img/contacts768.jpg);
+}
+.footer-container{
+    flex-direction: column;
+    justify-content: center;
+}
+.footer {
+    height: 190px;
+}
+
 }
