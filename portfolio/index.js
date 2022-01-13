@@ -2,16 +2,13 @@ const hamburger = document.querySelector(".hamburger");
 const nav = document.querySelector(".nav");
 const main = document.querySelector(".main");
 const menuLinks = document.querySelectorAll(".menu-link");
-const blockInstedBurger = document.querySelector(".instedBurger");
 function toggleMenu() {
   hamburger.classList.toggle("open");
   nav.classList.toggle("open");
-  blockInstedBurger.classList.toggle("open");
 }
 function closeMenu() {
   nav.classList.remove("open");
   hamburger.classList.remove("open");
-  blockInstedBurger.classList.remove("open");
 }
 hamburger.addEventListener("click", toggleMenu);
 menuLinks.forEach(el => el.addEventListener("click", closeMenu));
