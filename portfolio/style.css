@@ -105,6 +105,7 @@
     padding-right: 30px;
     color: #ffffff ;
     font-weight: 400;
+    text-align: 200%;
 }
 .menu-link:hover {
     color: var(--color-gold);
@@ -136,6 +137,46 @@ input[type=radio] {
 }
 .langRadio:hover ~ label {
     color: var(--color-gold);
+}
+.hamburger {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    z-index: 2000;
+    gap: 9.33px;
+    margin-left: 20px;
+}
+
+.instedBurger{
+    display: none;
+    height: 50px;
+    width: 50px;
+    background-color: transparent;
+    margin-left: 20px;
+}
+.burgLine {
+    width: 50px;
+    height: 3px;
+    background:#ffffff;
+    z-index: 2500;
+    transition: all 0.3s ease-in-out;
+}
+.hamburger.open .line1 {
+    transform: rotate(-45deg)
+    translate(-8px, 9.3px);
+}
+  
+.hamburger.open .line2 {
+    opacity: 0;
+}
+  
+.hamburger.open .line3 {
+    transform: rotate(45deg)
+    translate(-8px, -9.3px);
 }
 
 /*----MAIN------------------------------------------------------------------------------*/
@@ -258,21 +299,24 @@ button.hero {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
     gap: 60px;
-    max-height: 580px;
+    /* max-height: 580px; */
     margin: 0 auto;
-    min-width: 728px; ;
+    /* min-width: 728px; ; */
 }
 .skillBox {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-height: 240px;
     max-width: 320px;
 }
 .skillBoxSec {
     display: flex;
+    flex-wrap: wrap;
     gap: 44px;
+    align-items: center;
+    justify-content: center;
 }
 .skillsIcon{
     transition: 0.3s;
@@ -554,6 +598,36 @@ button.hero {
 .logo{
     margin-left: 40px;
 }
+.nav {
+    position: fixed;
+    height: 100vh;
+    width: 80.6%;
+    background-color: #000000;
+    z-index: 1500;
+    top: 0;
+    right: -100vw;
+    transition: 0.5s
+}
+.nav.open {
+    right: 0;
+}
+.hamburger.open{
+    position: fixed;
+    right: 20px;
+    top: 31.17px;
+}
+.instedBurger.open {
+    display: inline-block;
+}
+.hamburger{
+    display: flex;
+}
+.menu {
+    flex-direction: column;
+    padding-left: 127px;
+    padding-top: 134px;
+    gap: 50px;
+}
 .textUnderName{
     line-height: 24px;
     padding-bottom: 60px;
@@ -574,6 +648,7 @@ button.hero {
 .name {
     max-width: 390px;
 }
+
 .skillsH {
     padding-top: 30px;
 }
@@ -582,6 +657,10 @@ button.hero {
 }
 .section{
     padding-top: 80px;
+}
+.vSection{
+    padding-left: 0;
+    padding-right: 0;
 }
 .priceBlcs {
     gap: 50px;
