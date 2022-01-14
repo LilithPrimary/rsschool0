@@ -96,16 +96,15 @@
 }
 
 .nav {
-    padding-right: 1px;
+    margin-right: 31px;
 }
 .menu {
     display: flex;
+    gap: 30px;
 }
 .menu-link {
     transition: 0.3s;
-    padding-right: 30px;
     color: #ffffff ;
-    font-weight: 400;
     text-align: 200%;
 }
 .menu-link:hover {
@@ -141,7 +140,7 @@ input[type=radio] {
 }
 .hamburger {
     position: fixed;
-    right: 20px;
+    right: 60px;
     top: 31.17px;
     width: 50px;
     cursor: pointer;
@@ -266,13 +265,6 @@ input[type=radio] {
     }
   }
 
-.burgLine {
-    width: 50px;
-    height: 3px;
-    background:#ffffff;
-    z-index: 2500;
-    transition: all 0.3s ease-in-out;
-}
 .hamburger.open .line1 {
     transform: rotate(-45deg)
     translate(-8px, 9.3px);
@@ -372,8 +364,8 @@ button.hero {
     flex-direction: column;
     padding: 100px 20px 0px 20px;
 }
-.section.end {
-    margin-bottom: 100px;
+.section:last-child {
+    padding-bottom: 100px;
 }
 .sectionTop {
     height: 80px;
@@ -407,21 +399,20 @@ button.hero {
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    gap: 60px;
-    /* max-height: 580px; */
+    gap: 40px;
     margin: 0 auto;
-    /* min-width: 728px; ; */
+    padding-bottom: 10px;
 }
 .skillBox {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 320px;
+    width: 320px;
 }
 .skillBoxSec {
     display: flex;
     flex-wrap: wrap;
-    gap: 44px;
+    gap: 40px;
     align-items: center;
     justify-content: center;
 }
@@ -429,7 +420,6 @@ button.hero {
     transition: 0.3s;
     display: block;
     height: 50px;
-    width: 50px;
     fill: var(--color-gold);
 }
 
@@ -486,17 +476,21 @@ button.hero {
 /*----VIDEO------------------------------------------------------------------------------*/
 
 .video-player{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: none;
 }
-.videoPic {
-    position: relative;
-    max-width: 100%;
-    max-height: 705px;
-    margin: 0 auto;
-    object-fit: cover;
+.video-player div {
+    background-image: url("assets/img/video-player.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    padding-top: 50.358%;
 }
+
 .videoBtn {
     cursor: pointer;
     transition: 0.3s;
@@ -581,7 +575,7 @@ button.hero {
     background-size: cover;
 }
 .contBlock {
-    padding-right: 20px;
+    margin-right: 20px;
     padding-top: 60px;
     display: flex;
     flex-direction: column;
@@ -652,7 +646,6 @@ button.hero {
     max-width: 1400px;
     height: inherit;
     margin: 0 auto;
-    padding: 0 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -662,9 +655,9 @@ button.hero {
     width: 188px;
     display: flex;
 }
-.dateSpan {
+.date span:nth-child(2) {
     display: inline-block;
-    padding: 0 20px;
+    padding: 0 20px 0 22px;
 }
 .spanHref{
     cursor: pointer;
@@ -673,10 +666,7 @@ button.hero {
 .spanHref:hover{
     color: var(--color-gold);
 }
-.spanHref.rs {
-    display: block;
-    padding: 20px 0;
-}
+
 .snCont{
     height: 32px;
     width: 188px;
@@ -697,45 +687,50 @@ button.hero {
 /*----MEDIA------------------------------------------------------------------------------*/
 
 @media (max-width: 796px) {
-    :root {
-        --font-size-name: 32px;
-        --font-size-h2: 32px;
-        --font-weight-name: normal;
-    }
+
+:root {
+    --font-size-name: 32px;
+    --font-size-h2: 32px;
+    --font-weight-name: normal;
+}
+
 .logo{
     margin-left: 40px;
 }
 .nav {
     position: fixed;
+    display: flex;
+    justify-content: right;
+    margin: 0;
     height: 100vh;
-    width: 80.6%;
+    width: 620px;
     background-color: #000000;
     z-index: 1500;
     top: 0;
-    right: -100vw;
+    right: -200vw;
     transition: 0.5s
 }
 .nav.open {
     box-shadow: calc(-20vw) 0 rgba(0, 0, 0, 0.5);
     right: 0;
 }
-
+.menu {
+    flex-direction: column;
+    padding-right: 43.7643vw;
+    padding-top: 134px;
+    gap: 16px;
+}
+.menu-link{
+    font-size: 34.8235px;
+    line-height: 73px;
+}
 .langSwitch {
-    margin-right: 70px;
+    margin-right: 114px;
 }
 .hamburger{
     display: flex;
 }
-.menu {
-    flex-direction: column;
-    padding-left: 127px;
-    padding-top: 134px;
-    gap: 50px;
-}
-.textUnderName{
-    line-height: 24px;
-    padding-bottom: 60px;
-}
+
 .heroPic{
     width: 768px;
     height: 590px;
@@ -749,28 +744,63 @@ button.hero {
     background-position: center;
     background-size: cover;
 }
-.name {
+.h1class {
+    padding-bottom: 20px;
+}
+.textUnderName{
+    line-height: 24px;
+    padding-bottom: 60px;
     max-width: 390px;
 }
 
-.skillsH {
-    padding-top: 30px;
-}
-.sectionTop {
-    margin-bottom: 50px;
-}
 .section{
     padding-top: 80px;
 }
+
+.sectionTop {
+    margin-bottom: 50px;
+}
+.sectionBott {
+    gap: 76px;
+    padding-bottom: 80px;
+}
+.skillBoxSec{
+    gap: 44px;
+}
+.skillBox{
+    width: 300px;
+}
+.skillsH {
+    padding-top: 30px;
+}
+.skillsDisc{
+    line-height: 22px;
+}
+
 .vSection{
     padding-left: 0;
     padding-right: 0;
 }
+.video-player div{
+    padding-top: 54.4273%;
+    background-image: url(assets/img/video-player-tablet.jpg);
+}
+.vBtnImg {
+    width: 8.4%;
+}
+
+.section:last-child{
+    padding-bottom: 80px;
+}
 .priceBlcs {
     gap: 50px;
 }
+.priceBlcs div {
+    width: 420px;
+
+}
 .contBlock {
-    padding-right: 0;
+    margin-right: 0;
     align-items: center;
     padding-bottom: 111px;
 }
@@ -785,5 +815,11 @@ button.hero {
 .footer {
     height: 190px;
 }
-
+.date{
+    justify-content: center;
+}
+.spanHref.rs {
+    display: block;
+    margin: 16px 0 29px;
+}
 }
