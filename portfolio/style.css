@@ -43,6 +43,7 @@
   html,
   body {
     scroll-behavior: smooth;
+    overflow-x:hidden;
     background-color: #000000;
     min-height: 100vh;
     max-width: 1440px;
@@ -281,11 +282,6 @@ input[type=radio] {
 
 /*----MAIN------------------------------------------------------------------------------*/
 
-.wrapper {
-    min-height: 100%;
-    overflow: hidden;
-  }
-
 /*----HERO------------------------------------------------------------------------------*/
 
 .hero-container {
@@ -444,13 +440,14 @@ button.hero {
     flex-wrap: wrap;
     gap: 5px;
     max-width: 895px;
-    min-width: 445px;
     justify-content: center;
     margin: 0 auto;
     padding-bottom: 60px;
 }
 .pButtonsSec {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 5px;
 }
 
