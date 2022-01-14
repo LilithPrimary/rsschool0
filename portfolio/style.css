@@ -641,6 +641,7 @@ button.hero {
 .footer {
     width: inherit;
     height: 150px;
+    padding: 0 20px;;
 }
 .footer-container{
     max-width: 1400px;
