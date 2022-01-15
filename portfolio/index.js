@@ -1,22 +1,16 @@
+// WORK WITH BURGER MENU
 const hamburger = document.querySelector(".hamburger");
 const nav = document.querySelector(".nav");
 const menuLinks = document.querySelectorAll(".menu-link");
 const shadow = document.querySelector(".shadow");
-function toggleMenu() {
-  hamburger.classList.toggle("open");
-  nav.classList.toggle("open");
-  shadow.classList.toggle("open");
-}
-function closeMenu() {
-  nav.classList.remove("open");
-  hamburger.classList.remove("open");
-  shadow.classList.remove("open");
-}
-hamburger.addEventListener("click", toggleMenu);
-menuLinks.forEach(el => el.addEventListener("click", closeMenu));
-shadow.addEventListener("click", closeMenu);
+const burgSpans = hamburger.querySelectorAll("span");
+const toggleMenu = () => [hamburger, nav, shadow].forEach(el => el.classList.toggle("open"));
+const changeSpansColor = () => burgSpans.forEach(el => el.style.background = el.style.background === "var(--color-gold)" ? "#ffffff" : "var(--color-gold)" );
+[...menuLinks, hamburger, shadow].forEach(el => el.addEventListener("click", toggleMenu));
+hamburger.addEventListener("mouseover", changeSpansColor);
+hamburger.addEventListener("mouseout", changeSpansColor);
 
-
+// WORK WITH SECTION PORTFOLIO BUTTONs
 let btnContainer = document.getElementById("pfBtns");
 let btns = btnContainer.getElementsByClassName("button");
 for (let i = 0; i < btns.length; i++) {

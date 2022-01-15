@@ -5,6 +5,8 @@
     --font-weight-name: bold;
     --font-size-h2: 40px;
     ---center-burger: 12.3px;
+    ---filter-black: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
   }
 /*----NORMALIZE------------------------------------------------------------------------------*/
 
@@ -61,9 +63,6 @@
     margin: 0 auto;
   }
 
-/* .shadow {
-    display: none;
-} */
 /*----HEADER------------------------------------------------------------------------------*/
 
 .header-container {
@@ -90,8 +89,7 @@
 }
 
 .logo:hover {
-    filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
-      contrast(87%);
+    filter: var(---filter-black);
   }
 
 .headerRightEl{
@@ -134,7 +132,6 @@ input[type=radio] {
     color: #ffffff;
     transition: 0.3s;
 }
-
 .langRadio:checked ~ label {
     color: var(--color-gold);
     cursor: default;
@@ -142,6 +139,7 @@ input[type=radio] {
 .langRadio:hover ~ label {
     color: var(--color-gold);
 }
+
 .hamburger {
     position: fixed;
     right: 60px;
@@ -155,39 +153,34 @@ input[type=radio] {
     gap: 9.33px;
     z-index: 2000;
     margin-left: 20px;
+    transition: 1s;
 }
 .hamburger span {
     display: block;
     width: 100%;
     height: 3px;
     background: #FFFFFF;
-    transition: all .3s;
     position: relative;
+    transition: 0.3s;
 }
 .hamburger.open span:nth-child(1) {
     animation: top .7s ease forwards;
-  }
-  
+}  
 .hamburger span:nth-child(1) {
     animation: top-2 .7s ease forwards;
-  }
-  
+}  
 .hamburger.open span:nth-child(2) {
     animation: scaled .7s ease forwards;
-  }
-  
+}  
 .hamburger span:nth-child(2) {
     animation: scaled-2 .7s ease forwards;
-  }
-  
+}  
 .hamburger.open span:nth-child(3) {
     animation: bottom .7s ease forwards;
-  }
-  
+}  
 .hamburger span:nth-child(3) {
     animation: bottom-2 .7s ease forwards;
-  }
-  
+}  
 @keyframes top {
     0% {
       top: 0;
@@ -201,9 +194,8 @@ input[type=radio] {
       top: var(---center-burger);
       transform: rotate(45deg);
     }
-}
-  
-  @keyframes top-2 {
+}  
+@keyframes top-2 {
     0% {
       top: var(---center-burger);
       transform: rotate(45deg);
@@ -216,9 +208,9 @@ input[type=radio] {
       top: 0;
       transform: rotate(0deg);
     }
-  }
+}
   
-  @keyframes bottom {
+@keyframes bottom {
     0% {
       bottom: 0;
       transform: rotate(0);
@@ -231,9 +223,8 @@ input[type=radio] {
       bottom: var(---center-burger);
       transform: rotate(-45deg);
     }
-  }
-  
-  @keyframes bottom-2 {
+}  
+@keyframes bottom-2 {
     0% {
       bottom: var(---center-burger);
       transform: rotate(-45deg);
@@ -246,18 +237,20 @@ input[type=radio] {
       bottom: 0;
       transform: rotate(0);
     }
-  }
+}
   
-  @keyframes scaled {
+@keyframes scaled {
+    0% {
+        transform: scale(1);
+      }  
     50% {
       transform: scale(0);
     }
     100% {
       transform: scale(0);
     }
-  }
-  
-  @keyframes scaled-2 {
+}  
+@keyframes scaled-2 {
     0% {
       transform: scale(0);
     }
@@ -267,20 +260,6 @@ input[type=radio] {
     100% {
       transform: scale(1);
     }
-  }
-
-.hamburger.open .line1 {
-    transform: rotate(-45deg)
-    translate(-8px, 9.3px);
-}
-  
-.hamburger.open .line2 {
-    opacity: 0;
-}
-  
-.hamburger.open .line3 {
-    transform: rotate(45deg)
-    translate(-8px, -9.3px);
 }
 
 /*----MAIN------------------------------------------------------------------------------*/
@@ -322,7 +301,6 @@ input[type=radio] {
 .textUnderName{
     line-height: 200%;
     padding-bottom: 25px;
-
 }
 .button {
     width: 220px;
@@ -343,7 +321,6 @@ button:hover {
     color: #000000;
     cursor: default;
 }
-
 button.hero {
     background-color: var(--color-gold);
     border: none;
@@ -373,7 +350,6 @@ button.hero {
     align-items: center;
     margin-bottom: 60px;
 }
-
 .section-title {
     position: absolute;
     padding: 0 20px;
@@ -504,8 +480,7 @@ button.hero {
     object-fit: cover;
 }
 .videoBtn:hover {
-    filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
-    contrast(87%);
+    filter: var(---filter-black);
 }
 
 /*----PRICE------------------------------------------------------------------------------*/
@@ -734,7 +709,7 @@ button.hero {
     0.0001% {
         height: 100vh;
         width: 100vw;
-        background-color: rgba(0, 0, 0, 0.0001);
+        background-color: none;
     }
     100% {     
         height: 100vh;
@@ -752,7 +727,7 @@ button.hero {
     99.999999% {
         height: 100vh;
         width: 100vw;
-        background-color: rgba(0, 0, 0, 0.0001);
+        background-color: none;
     }
     100% {
         height: 0;
