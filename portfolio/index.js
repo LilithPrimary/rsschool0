@@ -1,3 +1,4 @@
+import i18Obj from './translate.js'
 // WORK WITH BURGER MENU
 const hamburger = document.querySelector(".hamburger");
 const nav = document.querySelector(".nav");
@@ -31,12 +32,57 @@ const btns = btnContainer.querySelectorAll("button");
 const lines = document.querySelectorAll(".line");
 const secTitles = document.querySelectorAll(".section-title");
 const htmlTage = document.querySelector("html");
+const elsForSwitchTheme = [htmlTage, document.body, ...btns, ...lines, ...secTitles];
+let theme = "dark";
 sunMoon.addEventListener("click", () => {
-  [htmlTage, document.body, ...btns, ...lines, ...secTitles].forEach(el => el.classList.toggle("white"));
   let sunOrMoon = sunMoon.firstElementChild.href.baseVal;
-  sunMoon.firstElementChild.href.baseVal = (sunOrMoon === "./assets/svg/sprite.svg#sun") ? "./assets/svg/sprite.svg#moon" : "./assets/svg/sprite.svg#sun";
-})
+  let thm = (sunOrMoon === "./assets/svg/sprite.svg#sun") ? "light" : "dark";
+  setTheme(thm);
+  });
+const setTheme = (thm) => {
+  if (thm === "light") {
+    elsForSwitchTheme.forEach(el => el.classList.add("white"));
+    sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#moon";
+    theme = "light";
+  } else {
+    elsForSwitchTheme.forEach(el => el.classList.remove("white"));
+    sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#sun";
+    theme = "dark";
+  }
+} 
 
+// WORK WITH LANGUAGE
+
+const textForTransl = document.querySelectorAll("[data-i18n]");
+const langs = document.querySelectorAll(".langRadio");
+let lang = "en";
+langs.forEach(el => el.addEventListener("click", (e) => {
+  if (e.target.id !== lang) {
+    setLang(e.target.id);
+  }
+}))
+const setLang = (lg) => {
+  textForTransl.forEach(el => el.textContent = i18Obj[lg][el.dataset.i18n])
+  lang = lg;
+}
+
+function getLocalStorage() {
+  if(localStorage.getItem('theme')) {
+    const theme = localStorage.getItem('theme');
+    setTheme(theme);
+  }
+  if(localStorage.getItem('lang')) {
+    const lang = localStorage.getItem('lang');
+    setLang(lang);
+  }
+}
+window.addEventListener('load', getLocalStorage)
+
+function setLocalStorage() {
+  localStorage.setItem('theme', theme);
+  localStorage.setItem('lang', lang);
+}
+window.addEventListener('beforeunload', setLocalStorage);
 
 
 
