@@ -5,10 +5,7 @@ const menuLinks = document.querySelectorAll(".menu-link");
 const shadow = document.querySelector(".shadow");
 const burgSpans = hamburger.querySelectorAll("span");
 const toggleMenu = () => [hamburger, nav, shadow].forEach(el => el.classList.toggle("open"));
-const changeSpansColor = () => burgSpans.forEach(el => el.style.background = el.style.background === "var(--color-gold)" ? "#ffffff" : "var(--color-gold)" );
 [...menuLinks, hamburger, shadow].forEach(el => el.addEventListener("click", toggleMenu));
-hamburger.addEventListener("mouseover", changeSpansColor);
-hamburger.addEventListener("mouseout", changeSpansColor);
 
 // WORK WITH SECTION PORTFOLIO BUTTONs
 let btnContainer = document.getElementById("pfBtns");

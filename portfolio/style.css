@@ -163,6 +163,9 @@ input[type=radio] {
     position: relative;
     transition: 0.3s;
 }
+.hamburger:hover span {
+    background: var(--color-gold);
+}
 .hamburger.open span:nth-child(1) {
     animation: top .7s ease forwards;
 }  
