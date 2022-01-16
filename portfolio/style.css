@@ -57,6 +57,10 @@
     font-family: Inter;
     margin: 0 auto;
   }
+html.white, body.white {
+    color: #000000;
+    background-color: #FFFFFF;
+}
 
 .container {
     max-width: 1440px;
@@ -72,6 +76,7 @@
     width: 100%;
   }
 .header {
+    color: #ffffff;
     max-width: 1440px;
     padding: 0 20px;
     height: 90px;
@@ -95,10 +100,10 @@
 .headerRightEl{
     display: flex;
     align-items: center;
+    gap: 30px
 }
-
-.nav {
-    margin-right: 31px;
+.shadow {
+    display: none;
 }
 .menu {
     display: flex;
@@ -138,6 +143,17 @@ input[type=radio] {
 }
 .langRadio:hover ~ label {
     color: var(--color-gold);
+}
+
+.sun-moon {
+    fill: #ffffff;
+    width: 45px;
+    height: 45px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.sun-moon:hover {
+    fill: var(--color-gold);
 }
 
 .hamburger {
@@ -270,6 +286,7 @@ input[type=radio] {
 /*----HERO------------------------------------------------------------------------------*/
 
 .hero-container {
+    color: white;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -319,7 +336,20 @@ input[type=radio] {
 button:hover {
     color: #ffffff;
 }
+button.white {
+    color: #000000;
+}
+button.white:hover{
+    color: #ffffff;
+    background-color: var(--color-gold);
+}
 .button.active {
+    background-color: var(--color-gold);
+    border: none;
+    color: #000000;
+    cursor: default;
+}
+.button.active.white {
     background-color: var(--color-gold);
     border: none;
     color: #000000;
@@ -366,11 +396,18 @@ button.hero {
     text-align: center;
     color: var(--color-gold);
 }
+.section-title.white {
+    background-color: #ffffff;
+    color: #000000;
+}
 
 .line {
     height: 2px;
     width: 50%;
     background-color: var(--color-gold);
+}
+.line.white{
+    background: #000;
 }
 
 .sectionBott{
@@ -496,6 +533,7 @@ button.hero {
     gap: 25px;
     flex-wrap: wrap;
     max-width: 1400px;
+
 }
 .priceBlcs div {
     height: 505px ;
@@ -513,7 +551,6 @@ button.hero {
     font-size: 28px;
     line-height: 200%;
     text-align: center;
-    color: #FFFFFF;
     padding-top: 43px;
     padding-bottom: 20px;
 }
@@ -533,7 +570,6 @@ button.hero {
     font-size: 18px;
     line-height: 200%;
     text-align: center;
-    color: #FFFFFF;
 }
 .prcDisc.end {
     padding-bottom: 40px;
@@ -562,11 +598,16 @@ button.hero {
     padding-bottom: 195px;
     width: 450px;
 }
-.section-title.ctcs {
-    padding: 0;
+.ctcs-title {
     margin-bottom: 40px;
-    position: static;
     background-color: transparent;
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--font-size-h2);
+    line-height: 200%;
+    text-align: center;
+    color: var(--color-gold);
 }
 .contBlock input {
     height: 50px;
@@ -620,7 +661,9 @@ button.hero {
 .footer {
     width: inherit;
     height: 150px;
-    padding: 0 20px;;
+    padding: 0 20px;
+    background: #000000;
+    color: #ffffff;
 }
 .footer-container{
     max-width: 1400px;
@@ -677,6 +720,9 @@ button.hero {
 .logo{
     margin-left: 40px;
 }
+.headerRightEl{
+    margin-right: 124px;
+}
 .nav {
     position: fixed;
     display: flex;
@@ -696,6 +742,7 @@ button.hero {
 
 .shadow {
     position: fixed;
+    display: block;
     top: 0;
     left: 0;
     z-index: 1400;
@@ -755,9 +802,7 @@ button.hero {
     font-size: 34.8235px;
     line-height: 73px;
 }
-.langSwitch {
-    margin-right: 114px;
-}
+
 .hamburger{
     display: flex;
 }

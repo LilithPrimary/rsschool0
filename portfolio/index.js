@@ -25,6 +25,18 @@ btnContainer.addEventListener("click", (e) => {
   }
 });
 
+// WORK WITH LIGHT THEME
+const sunMoon = document.querySelector(".sun-moon");
+const btns = btnContainer.querySelectorAll("button");
+const lines = document.querySelectorAll(".line");
+const secTitles = document.querySelectorAll(".section-title");
+const htmlTage = document.querySelector("html");
+sunMoon.addEventListener("click", () => {
+  [htmlTage, document.body, ...btns, ...lines, ...secTitles].forEach(el => el.classList.toggle("white"));
+  let sunOrMoon = sunMoon.firstElementChild.href.baseVal;
+  sunMoon.firstElementChild.href.baseVal = (sunOrMoon === "./assets/svg/sprite.svg#sun") ? "./assets/svg/sprite.svg#moon" : "./assets/svg/sprite.svg#sun";
+})
+
 
 
 
