@@ -702,6 +702,10 @@ button.hero {
     animation: disappear 0.5s linear forwards;
 }
 .shadow.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1400;
     animation: appear 0.5s linear forwards;
 }
 @keyframes appear {
