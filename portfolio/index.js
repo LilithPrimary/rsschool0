@@ -1,3 +1,13 @@
+// WORK WITH BURGER MENU
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector(".nav");
+const menuLinks = document.querySelectorAll(".menu-link");
+const shadow = document.querySelector(".shadow");
+const burgSpans = hamburger.querySelectorAll("span");
+const toggleMenu = () => [hamburger, nav, shadow].forEach(el => el.classList.toggle("open"));
+[...menuLinks, hamburger, shadow].forEach(el => el.addEventListener("click", toggleMenu));
+
+// WORK WITH SECTION PORTFOLIO BUTTONs
 let btnContainer = document.getElementById("pfBtns");
 let btns = btnContainer.getElementsByClassName("button");
 for (let i = 0; i < btns.length; i++) {
@@ -7,6 +17,21 @@ for (let i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 console.log (`
 [+]  1. Вёрстка валидная +10
