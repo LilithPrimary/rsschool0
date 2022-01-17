@@ -172,7 +172,6 @@ input[type=radio] {
     align-items: center;
     gap: 9.33px;
     z-index: 2000;
-    margin-left: 20px;
     transition: 1s;
 }
 .hamburger span {
@@ -314,7 +313,7 @@ input[type=radio] {
 }
 
 .name {
-    height: 330px;
+    max-height: 330px;
     max-width: 470px;
 }
 .h1class{
@@ -818,17 +817,12 @@ nav.white {
 }
 
 .heroPic{
-    width: 768px;
-    height: 590px;
-    background-position: center;
+    background-position: -12px -34px;
     padding-left: 60px;
     padding-top: 168px;
     padding-bottom: 152px;
-    background-image: url('./assets/img/hero.jpg');
-    max-height: 600px;
-    max-width: 768px;
-    background-position: center;
-    background-size: cover;
+    height: 590 px;
+    background-size: 992px;
 }
 .h1class {
     padding-bottom: 20px;
@@ -892,7 +886,7 @@ nav.white {
 }
 .contacts-container{
     justify-content: center;
-    background-image: url(assets/img/contacts768.jpg);
+    background-position: center;
 }
 .footer-container{
     flex-direction: column;
@@ -909,12 +903,13 @@ nav.white {
     margin: 16px 0 29px;
 }
 }
+
 @media (max-width: 620px) {
     .nav {
         width: 100vw;
     }
     .menu {
-        padding-right: 0;
+        padding-left: 0;
         margin: 0 auto;
     }
     .sectionBott{
