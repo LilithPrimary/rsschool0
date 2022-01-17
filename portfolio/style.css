@@ -89,6 +89,7 @@ html.white, body.white {
     width: 50px;
     background-image: url('./assets/svg/logo.svg');
     background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;  
     transition: 0.3s;
 }
@@ -732,7 +733,7 @@ button.hero {
 .nav {
     position: fixed;
     display: flex;
-    justify-content: right;
+    justify-content: left;
     margin: 0;
     height: 100vh;
     width: 620px;
@@ -804,7 +805,7 @@ nav.white {
 
 .menu {
     flex-direction: column;
-    padding-right: 43.7643vw;
+    padding-left: 127px;
     padding-top: 134px;
     gap: 16px;
 }
@@ -908,4 +909,19 @@ nav.white {
     display: block;
     margin: 16px 0 29px;
 }
+}
+@media (max-width: 620px) {
+    .nav {
+        width: 100vw;
+    }
+    .menu {
+        padding-right: 0;
+        margin: 0 auto;
+    }
+    .sectionBott{
+        padding: 0;
+    }
+    .header{
+        gap: 20px;
+    }
 }
