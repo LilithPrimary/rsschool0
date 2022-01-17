@@ -32,7 +32,7 @@ const btns = btnContainer.querySelectorAll("button");
 const lines = document.querySelectorAll(".line");
 const secTitles = document.querySelectorAll(".section-title");
 const htmlTage = document.querySelector("html");
-const elsForSwitchTheme = [htmlTage, document.body, ...btns, ...lines, ...secTitles];
+const elsForSwitchTheme = [sunMoon, hamburger, nav, htmlTage, document.body, ...btns, ...lines, ...secTitles];
 let theme = "dark";
 sunMoon.addEventListener("click", () => {
   let sunOrMoon = sunMoon.firstElementChild.href.baseVal;
@@ -64,6 +64,9 @@ langs.forEach(el => el.addEventListener("click", (e) => {
 const setLang = (lg) => {
   textForTransl.forEach(el => el.textContent = i18Obj[lg][el.dataset.i18n])
   lang = lg;
+  langs.forEach(el => {
+    if (el.id === lg) el.checked = true;
+  })
 }
 
 function getLocalStorage() {
