@@ -111,7 +111,7 @@ html.white, body.white {
 }
 .menu-link {
     transition: 0.3s;
-    color: #ffffff ;
+    color: inherit;
     text-align: 200%;
 }
 .menu-link:hover {
@@ -149,11 +149,14 @@ input[type=radio] {
     fill: #ffffff;
     width: 45px;
     height: 45px;
-    transition: 0.3s;
+    transition: 0.5s;
     cursor: pointer;
 }
-.sun-moon:hover {
+.sun-moon.white:hover, .sun-moon:hover {
     fill: var(--color-gold);
+}
+.sun-moon.white{
+    padding: 0 7.5px;
 }
 
 .hamburger {
@@ -179,7 +182,10 @@ input[type=radio] {
     position: relative;
     transition: 0.3s;
 }
-.hamburger:hover span {
+.hamburger.white.open span {
+    background: #000000;
+}
+.hamburger.white:hover span, .hamburger:hover span {
     background: var(--color-gold);
 }
 .hamburger.open span:nth-child(1) {
@@ -734,6 +740,10 @@ button.hero {
     top: 0;
     right: -200vw;
     transition: 0.5s
+}
+nav.white {
+    color: #000000;
+    background-color: #FFFFFF;
 }
 .nav.open {
     right: 0;
