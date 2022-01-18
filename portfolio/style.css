@@ -334,6 +334,7 @@ input[type=radio] {
     cursor: pointer;
     transition: 0.3s;
     font-size: inherit;
+    font-family: inherit;
     background-color: transparent;
     border: var(--color-gold) solid 2px;
     color: var(--color-gold);
