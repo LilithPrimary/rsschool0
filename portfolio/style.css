@@ -147,6 +147,7 @@ input[type=radio] {
 }
 
 .sun-moon {
+    padding: 0 7.5px;
     fill: #ffffff;
     width: 45px;
     height: 45px;
@@ -157,7 +158,7 @@ input[type=radio] {
     fill: var(--color-gold);
 }
 .sun-moon.white{
-    padding: 0 7.5px;
+    padding: 0;
 }
 
 .hamburger {
@@ -505,6 +506,9 @@ button.hero {
     align-items: center;
     background-color: none;
 }
+.video-player.hide {
+    display: none;
+}
 .video-player div {
     background-image: url("assets/img/video-player.jpg");
     background-repeat: no-repeat;
@@ -528,6 +532,13 @@ button.hero {
 }
 .videoBtn:hover {
     filter: var(---filter-black);
+}
+.real-video {
+    display: block;
+    width: 100%;
+}
+.real-video.hide {
+    display: none;
 }
 
 /*----PRICE------------------------------------------------------------------------------*/

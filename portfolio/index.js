@@ -1,5 +1,7 @@
 import i18Obj from './translate.js'
+
 // WORK WITH BURGER MENU
+
 const hamburger = document.querySelector(".hamburger");
 const nav = document.querySelector(".nav");
 const menuLinks = document.querySelectorAll(".menu-link");
@@ -9,6 +11,7 @@ const toggleMenu = () => [hamburger, nav, shadow].forEach(el => el.classList.tog
 [...menuLinks, hamburger, shadow].forEach(el => el.addEventListener("click", toggleMenu));
 
 // WORK WITH SECTION PORTFOLIO BUTTONs
+
 ["winter", "summer", "spring", "autumn"].forEach(el => {
   for(let i = 0; i < 6; i++) {
     const img = new Image();
@@ -27,6 +30,7 @@ btnContainer.addEventListener("click", (e) => {
 });
 
 // WORK WITH LIGHT THEME
+
 const sunMoon = document.querySelector(".sun-moon");
 const btns = btnContainer.querySelectorAll("button");
 const lines = document.querySelectorAll(".line");
@@ -36,17 +40,17 @@ const elsForSwitchTheme = [sunMoon, hamburger, nav, htmlTage, document.body, ...
 let theme = "dark";
 sunMoon.addEventListener("click", () => {
   let sunOrMoon = sunMoon.firstElementChild.href.baseVal;
-  let thm = (sunOrMoon === "./assets/svg/sprite.svg#sun") ? "light" : "dark";
+  let thm = (sunOrMoon === "./assets/svg/sprite.svg#moon") ? "light" : "dark";
   setTheme(thm);
   });
 const setTheme = (thm) => {
   if (thm === "light") {
     elsForSwitchTheme.forEach(el => el.classList.add("white"));
-    sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#moon";
+    sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#sun";
     theme = "light";
   } else {
     elsForSwitchTheme.forEach(el => el.classList.remove("white"));
-    sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#sun";
+    sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#moon";
     theme = "dark";
   }
 } 
@@ -69,6 +73,20 @@ const setLang = (lg) => {
   })
 }
 
+// WORK WITH VIDEO
+
+const play = document.querySelector(".videoBtn");
+const picture = document.querySelector(".video-player");
+const video = document.querySelector(".real-video");
+play.addEventListener("click", ()=>{
+  picture.classList.add("hide");
+  video.classList.remove("hide");
+  video.play();
+}
+)
+
+// WORK WITH LOCALSTORAGE
+
 function getLocalStorage() {
   if(localStorage.getItem('theme')) {
     const theme = localStorage.getItem('theme');
@@ -79,12 +97,14 @@ function getLocalStorage() {
     setLang(lang);
   }
 }
+
 window.addEventListener('load', getLocalStorage)
 
 function setLocalStorage() {
   localStorage.setItem('theme', theme);
   localStorage.setItem('lang', lang);
 }
+
 window.addEventListener('beforeunload', setLocalStorage);
 
 
