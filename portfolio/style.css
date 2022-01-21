@@ -682,7 +682,7 @@ button.hero {
 .nav {
     position: fixed;
     display: flex;
-    justify-content: right;
+    justify-content: left;
     margin: 0;
     height: 100vh;
     width: 620px;
