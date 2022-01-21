@@ -84,6 +84,7 @@
     width: 50px;
     background-image: url('./assets/svg/logo.svg');
     background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;  
     transition: 0.3s;
 }
@@ -152,7 +153,6 @@ input[type=radio] {
     align-items: center;
     gap: 9.33px;
     z-index: 2000;
-    margin-left: 20px;
     transition: 1s;
 }
 .hamburger span {
@@ -374,6 +374,7 @@ button.hero {
 }
 
 .sectionBott{
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -504,6 +505,7 @@ button.hero {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .prcHead {
@@ -514,7 +516,7 @@ button.hero {
     line-height: 200%;
     text-align: center;
     color: #FFFFFF;
-    padding-top: 43px;
+    /* padding-top: 43px; */
     padding-bottom: 20px;
 }
 
@@ -666,7 +668,7 @@ button.hero {
 
 /*----MEDIA------------------------------------------------------------------------------*/
 
-@media (max-width: 796px) {
+@media (max-width: 768px) {
 
 :root {
     --font-size-name: 32px;
@@ -743,7 +745,7 @@ button.hero {
 
 .menu {
     flex-direction: column;
-    padding-right: 43.7643vw;
+    padding-left: 127px;
     padding-top: 134px;
     gap: 16px;
 }
@@ -751,7 +753,7 @@ button.hero {
     font-size: 34.8235px;
     line-height: 73px;
 }
-.langSwitch {
+.headerRightEl {
     margin-right: 114px;
 }
 .hamburger{
@@ -804,9 +806,12 @@ button.hero {
     line-height: 22px;
 }
 
-.vSection{
+/* .vSection{
     padding-left: 0;
     padding-right: 0;
+} */
+.video-player {
+    margin: 0 -20px
 }
 .video-player div{
     padding-top: 54.4273%;
@@ -849,4 +854,41 @@ button.hero {
     display: block;
     margin: 16px 0 29px;
 }
+}
+
+@media (max-width: 620px) {
+    .nav {
+        width: 100vw;
+    }
+    .menu {
+        padding-left: 0;
+        margin: 0 auto;
+    }
+    .sectionBott{
+        padding: 0;
+    }
+    .header{
+        gap: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .header {
+        justify-content:space-between;
+    }
+    .hamburger{
+        right: 20px;
+    }
+    .pPhoto {
+        max-width: 100%;
+    }
+    .headerRightEl {
+        margin-right: 70px;
+    }
+    .logo{
+        margin: 0;
+    }
+    .heroPic {
+        padding-left: 20px;
+    }
 }
