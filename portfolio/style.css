@@ -4,7 +4,7 @@
     --font-size-name: 60px;
     --font-weight-name: bold;
     --font-size-h2: 40px;
-    ---center-burger: 12.3px;
+    ---center-burger: 12.34px;
     ---filter-black: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
     contrast(87%);
   }
@@ -770,7 +770,6 @@ nav.white {
     animation: disappear 0.5s linear forwards;
 }
 .shadow.open {
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 1400;
