@@ -314,7 +314,6 @@ input[type=radio] {
 }
 
 .name {
-    max-height: 330px;
     max-width: 470px;
     display: flex;
     flex-direction: column;
@@ -342,9 +341,26 @@ input[type=radio] {
     background-color: transparent;
     border: var(--color-gold) solid 2px;
     color: var(--color-gold);
+    position: relative;
+    overflow: hidden;
 }
 button:hover {
     color: #ffffff;
+}
+button:before{
+    content: "";
+    background: linear-gradient(90deg, rgba(189,174,130, .05), rgba(189,174,130, .3));
+    height: 60px;
+    width: 50px;
+    position: absolute;
+    top: 0px;
+    left: -100px;
+    transform: skewX(-45deg);
+    transition: .4s ease-in-out;
+}
+.button:hover:before {
+    left: 150%;
+    transition: .7s ease-in-out;
 }
 button.white {
     color: #000000;
@@ -353,11 +369,17 @@ button.white:hover{
     color: #ffffff;
     background-color: var(--color-gold);
 }
+button.white:before{
+    background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
+}
 .button.active {
     background-color: var(--color-gold);
     border: none;
     color: #000000;
     cursor: default;
+}
+button.active:before{
+    background: transparent;
 }
 .button.active.white {
     background-color: var(--color-gold);
@@ -369,6 +391,11 @@ button.hero {
     background-color: var(--color-gold);
     border: none;
     color: #000000;
+    position: relative;
+    overflow: hidden;
+}
+button.hero:before{
+    background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
 }
 
 .button.hero:hover {
