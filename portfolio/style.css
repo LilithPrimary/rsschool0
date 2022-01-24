@@ -316,6 +316,9 @@ input[type=radio] {
 .name {
     max-height: 330px;
     max-width: 470px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .h1class{
     font-family: Merriweather;
@@ -418,6 +421,7 @@ button.hero {
 }
 
 .sectionBott{
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -930,3 +934,28 @@ nav.white {
         gap: 20px;
     }
 }
+@media (max-width: 450px) {
+    .header {
+        justify-content:space-between;
+    }
+    .hamburger{
+        right: 20px;
+    }
+    .pPhoto {
+        max-width: 100%;
+    }
+    .headerRightEl {
+        margin-right: 70px;
+    }
+    .logo{
+        margin: 0;
+    }
+    .heroPic {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .contBlock {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+} 
