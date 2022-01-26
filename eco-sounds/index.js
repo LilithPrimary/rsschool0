@@ -2,12 +2,16 @@ const img = document.querySelector(".main__image");
 const menuLinks = document.querySelectorAll("[data-bird]");
 const player = document.querySelector("audio");
 const playBtn = document.querySelector(".button__play");
-const dnldLink = document.querySelector(".download")
+const dnldLink = document.querySelector(".download");
+const burger = document.querySelector(".hamburger");
+const nav = document.querySelector(".nav")
 let isPlay = false;
 
 menuLinks.forEach(el => el.addEventListener("click", (e) =>{
     let bird = e.target.dataset.bird;
     let current = document.querySelector(".is_active");
+    nav.classList.remove("is_open");
+    burger.classList.remove("open");
     if (e.target.dataset.bird !== current.dataset.bird) {
         current.classList.remove("is_active")
         e.target.classList.add("is_active");
@@ -41,6 +45,13 @@ function playPause () {
         playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
     }
 }
+
+burger.addEventListener ("click", () => {
+    burger.classList.toggle("open");
+    nav.classList.toggle("is_open");
+})
+
+// CACHING
 ["forest", "nightingale", "blackbird", "robin", "lark", "warbler"].forEach(el => {
       const img = new Image();
       img.src = `assets/img/${el}.jpg`;
