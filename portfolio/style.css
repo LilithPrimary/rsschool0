@@ -524,6 +524,10 @@ button.hero:before{
     max-width: 450px;
     object-fit: cover;
 }
+.hide-img {
+    opacity: 0;
+    transition: .5s;
+}
 .pPhoto:hover {
     transform: scale(1.03);
 }

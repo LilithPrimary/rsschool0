@@ -10,7 +10,7 @@ const burgSpans = hamburger.querySelectorAll("span");
 const toggleMenu = () => [hamburger, nav, shadow].forEach(el => el.classList.toggle("open"));
 [...menuLinks, hamburger, shadow].forEach(el => el.addEventListener("click", toggleMenu));
 
-// WORK WITH SECTION PORTFOLIO BUTTONs
+// WORK WITH SECTION PORTFOLIO BUTTONS
 
 ["winter", "summer", "spring", "autumn"].forEach(el => {
   for(let i = 0; i < 6; i++) {
@@ -25,7 +25,11 @@ btnContainer.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON" && e.target.dataset.season !== current.dataset.season) {
     current.classList.remove("active");
     e.target.classList.add("active");
-    pPhoto.forEach((el, i) => el.src=`assets/img/${e.target.dataset.season}/${i}.jpg`);
+    pPhoto.forEach(el => el.classList.add("hide-img"))
+    setTimeout(() => {
+      pPhoto.forEach((el, i) => el.src=`assets/img/${e.target.dataset.season}/${i}.jpg`);
+      pPhoto.forEach(el => el.classList.remove("hide-img"));
+    }, 500)
   }
 });
 
