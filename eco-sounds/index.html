@@ -10,6 +10,23 @@
     <link rel="icon" href="assets/svg/favicon.svg" />
 </head>
 <body>
-
+    <header class="header">
+        <div class="container header__container">
+            <svg class="header__logo">
+                <use xlink:href="assets/svg/sprite.svg#logo" class="svg is_active" data-bird="forest"></use>
+            </svg>
+            <nav class="nav">
+                <ul class="header__menu">
+                    <li class="link menu__link" data-bird="nightingale">Nightingale</li>
+                    <li class="link menu__link" data-bird="blackbird">Blackbird</li>
+                    <li class="link menu__link" data-bird="robin">Robin</li>
+                    <li class="link menu__link" data-bird="lark">Lark</li>
+                    <li class="link menu__link" data-bird="warbler">Warbler</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+   
+    <script type="module" src="index.js"></script>     
 </body>
 </html>
