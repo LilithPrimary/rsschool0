@@ -1,5 +1,8 @@
 const img = document.querySelector(".main__image");
 const menuLinks = document.querySelectorAll("[data-bird]");
+const player = document.querySelector("audio");
+const playBtn = document.querySelector(".button__play");
+let isPlay = false;
 
 menuLinks.forEach(el => el.addEventListener("click", (e) =>{
     let bird = e.target.dataset.bird;
@@ -11,10 +14,28 @@ menuLinks.forEach(el => el.addEventListener("click", (e) =>{
     }
 }))
 
+playBtn.addEventListener("click", playPause);
+
 function changeBird (bird) {
     img.classList.add("hidden");
     setTimeout(() => {
         img.src = `assets/img/${bird}.jpg`;
         img.classList.remove("hidden");
     }, 300);
+    player.src = `assets/audio/${bird}.mp3`;
+    if (isPlay) {
+        player.play();
+    }
+}
+
+function playPause () {
+    if (isPlay) {
+        player.pause();
+        isPlay = false;
+        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play"
+    } else {
+        player.play();
+        isPlay = true;
+        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
+    }
 }
