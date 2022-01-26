@@ -39,3 +39,10 @@ function playPause () {
         playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
     }
 }
+
+["forest", "nightingale", "blackbird", "robin", "lark", "warbler"].forEach(el => {
+    const img = new Image();
+    img.src = `assets/img/${el}.jpg`;
+    const audio = new Audio();
+    audio.src = `assets/audio/${el}.mp3`;
+})
