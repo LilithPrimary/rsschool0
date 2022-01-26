@@ -280,7 +280,7 @@ body {
 
 @media (max-width: 796px) {
     .nav {
-        position: absolute;
+        position: fixed;
         right: -200vw;
         top: 0;
         background-color: #000;
