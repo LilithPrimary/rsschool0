@@ -1,0 +1,150 @@
+:root {
+    --color-hover: rgb(254, 204, 0);
+    --color-white: #fff;
+  }
+/*-------------NORMALIZE-----------------------------------------------------*/
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  scroll-behavior: smooth;
+  background-color: rgb(0,0,0);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: normal;
+  color: rgb(255,255,255);
+  font-family: 'Rubik';
+  font-weight: 400;
+  font-style: normal;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+body {
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/*-------------HEADER-----------------------------------------------------*/
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.header__container {
+    height: 70px;
+    padding: 0 7.3vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.image {
+    object-fit: cover;
+}
+.svg {
+    fill: var(--color-white);
+    transition: .3s;
+    cursor: pointer;
+}
+.header__logo{
+    width: 54px;
+    height: auto;
+}
+.svg:hover {
+    fill: var(--color-hover);
+}
+.nav {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header__menu {
+    display: flex;
+    gap: 2.34vw;
+}
+
+.link {
+    color: var(--color-white);
+    transition: .3s;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: var(--color-hover);
+}
+
+.is_active {
+    color: var(--color-hover);
+    fill: var(--color-hover);
+    transition: .5s;
+}
+
+/*-------------MAIN-----------------------------------------------------*/
+
+.main__container {
+    height: calc(100vh - 140px);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.main__image {
+    width: 100%;
+    transition: 0.5s;
+}
+.hidden {
+    opacity: 0;
+    transition: .5s;
+}
+/*-------------FOOTER-----------------------------------------------------*/
+
+.footer__container {
+    height: 70px;
+    padding: 0 7.3vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer__left {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+}
+
+.footer__right {
+    width: 191px;
+}
+.footer__buttons {
+    display: flex;
+    justify-content: right;
+    gap: 34px;
+}
+.button {
+    height: 30px;
+    width: 30px;
+}
