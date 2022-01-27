@@ -19,18 +19,29 @@ const singer = document.querySelector(".audio-singer");
 const title = document.querySelector(".audio-title");
 const time = document.querySelector(".time");
 const progress = document.querySelector(".audio-player__progress");
-let trackNum = 0;
+const psBar = document.querySelector(".audio-player__progress-bar");
+let trackNum = -1;
 let isPlay = false;
 let isShuffle = false;
+let inc = true;
+let audioPlay;
 
 function shuffle () {
-    return Math.floor(Math.random()*tracks.length);
+    let val = Math.floor(Math.random()*tracks.length);
+    if (val === trackNum) {
+        val = shuffle ();
+    }
+    return val
 }
 
 function setTrack () {
-    trackNum = isShuffle ? shuffle() : trackNum;
-    trackNum = trackNum >= tracks.length ? 0 : trackNum;
-    trackNum = trackNum < 0 ? tracks.length - 1 : trackNum;
+    if (isShuffle) {
+        trackNum = shuffle();
+    } else {
+        inc ? trackNum++ : trackNum--;
+        trackNum = trackNum >= tracks.length ? 0 : trackNum;
+        trackNum = trackNum < 0 ? tracks.length - 1 : trackNum;
+    }
     img.style.backgroundImage = `url(${tracks[trackNum].imgPath})`;
     song.src = tracks[trackNum].audioPath;
     singer.textContent = tracks[trackNum].singer;
@@ -41,18 +52,15 @@ function setTrack () {
 function pause () {
     song.pause();
     isPlay = false;
-    playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play"
+    playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play";
+    // clearInterval(audioPlay);
 }
 
 function play () {
     song.play();
     isPlay = true;
     playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause";
-}
-
-playBtn.addEventListener("click", () => {
-    isPlay ? pause() : play ();
-    let audioPlay = setInterval(() => {
+    audioPlay = setInterval(() => {
         time.textContent = foo();        
         function foo () {
             let min = Math.floor(song.duration/60);
@@ -67,26 +75,36 @@ playBtn.addEventListener("click", () => {
         }
         progress.style.width = `${song.currentTime*100/song.duration}%`;
         if (song.currentTime === song.duration) {
-            trackNum++;
             setTrack();
             play();
         }
     }, 10); 
+}
+
+playBtn.addEventListener("click", () => {
+    isPlay ? pause() : play ();
 });
 nextBtn.addEventListener("click", () => {
-    trackNum++;
+    inc = true;
     setTrack();
     isPlay ? play() : pause();
-})
+});
 previousBtn.addEventListener("click", () => {
-    trackNum--;
+    inc = false;
     setTrack();
     isPlay ? play() : pause();
-})
+});
 shuffleBtn.addEventListener("click", () => {
     isShuffle = isShuffle ? false : true;
     shuffleBtn.classList.toggle("is_active");
-})
+});
+psBar.addEventListener("click", (e) => {
+    let x = e.pageX;
+    let position = psBar.getBoundingClientRect();
+    let xStart = position.left;
+    let xEnd = position.right;
+    song.currentTime = song.duration*(x - xStart) / (xEnd-xStart);
+});
 
 window.addEventListener('load', setTrack);
     

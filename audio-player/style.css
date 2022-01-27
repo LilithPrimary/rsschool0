@@ -61,6 +61,8 @@ body {
     justify-content: center;
 }
 .main__container {
+    position: relative;
+    z-index: 1000;
     height: calc(100vh - 140px);
     display: flex;
     justify-content: center;
@@ -113,12 +115,13 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
 }
 .track_img {
     height: 269px;
     width: 100%;
 }
-.audio-player__line{
+.audio-player__progress-bar{
     background-color: var(--color-black);
     cursor: pointer;
     height: 5px;
