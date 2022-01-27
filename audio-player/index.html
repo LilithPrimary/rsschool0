@@ -16,24 +16,38 @@
         </div>
     </header>
     <main class="main">
+        <audio src="#"></audio>
         <div class="container main__container">
-            <div class="polaroid">
-                <div class="polaroid__photo"></div>
-                <div class="main_buttons">
-                    <svg class="svg button button__previous">
-                        <use xlink:href="assets/svg/sprite.svg#play"></use>
-                    </svg>
-                    <svg class="svg button button__play">
-                        <use xlink:href="assets/svg/sprite.svg#play"></use>
-                    </svg>
-                    <svg class="svg button button__next">
-                        <use xlink:href="assets/svg/sprite.svg#play"></use>
-                    </svg>
-                    <a href="assets/audio/forest.mp3" class="download" download>
-                        <svg class="svg button button__download">
-                            <use xlink:href="assets/svg/sprite.svg#download"></use>
+            <div class="audio-player polaroid">
+                <span class="polaroid__span audio-player__time time">00:00 \ 00:00</span>
+                <span class="polaroid__span audio-player__shuffle shuffle">shuffle</span>
+                <div class="polaroid__photo">
+                    <div class="audio-player__photo track_img"></div>
+                    <div class="audio-player__line">
+                        <div class="audio-player__progress"></div>
+                    </div>
+                </div>
+                <div class="polaroid__bottom">
+                    <div class="polaroid__buttons">
+                        <svg class="svg button button__previous">
+                            <use xlink:href="assets/svg/sprite.svg#previous"></use>
                         </svg>
-                    </a>
+                        <svg class="svg button button__play">
+                            <use xlink:href="assets/svg/sprite.svg#play"></use>
+                        </svg>
+                        <svg class="svg button button__next">
+                            <use xlink:href="assets/svg/sprite.svg#next"></use>
+                        </svg>
+                        <a href="" class="download" download>
+                            <svg class="svg button button__download">
+                                <use xlink:href="assets/svg/sprite.svg#download"></use>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="polaroid__audio-info">
+                        <h2 class="polaroid__title audio-title">Song title</h2>
+                        <h3 class="polaroid__title audio-singer">Singer name</h3>
+                    </div>
                 </div>
             </div>
         </div>

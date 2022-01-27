@@ -94,6 +94,7 @@ body {
 }
 
 .polaroid{
+    position: relative;
     height: 377px;
     width: 320px;
     padding: 23px 23px 0px;
@@ -104,13 +105,83 @@ body {
     height: 274px;
     width: 274px;
     background-color: var(--color-black);
+    display: flex;
+    flex-direction: column;
 }
-.main__buttons {
+.audio-player__photo{
+    background-image: url("./assets/img/yuki.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.track_img {
+    height: 269px;
+    width: 100%;
+}
+.audio-player__line{
+    background-color: var(--color-black);
+    cursor: pointer;
+    height: 5px;
+}
+.audio-player__progress{
+    background-color: var(--color-hover);
+    height: 100%;
+    width: 0;
+}
+.polaroid__bottom {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.polaroid__buttons {
     display: flex;
     justify-content: right;
-    gap: 34px;
+    gap: 10px;
 }
 .button {
     height: 30px;
     width: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+.button:hover {
+    fill: var(--color-hover);
+}
+
+.polaroid__audio-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.polaroid__title{
+    color: var(--color-black);
+}
+.audio-title {
+    font-weight: 700;
+    text-align: end;
+}
+.polaroid__span {
+    position: absolute;
+    font-size: 10px;
+    color: gray;
+}
+.shuffle {
+    top: 6.5px;
+    right: 23px;
+}
+.time {
+    top: 6.5px;
+    left: 23px;
+}
+.audio-player__shuffle{
+    cursor: pointer;
+}
+.audio-player__shuffle:hover{
+    color: var(--color-hover);
+}
+.is_active {
+    color: var(--color-hover);
 }
