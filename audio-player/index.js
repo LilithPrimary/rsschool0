@@ -35,7 +35,6 @@ function setTrack () {
     singer.textContent = tracks[trackNum].singer;
     title.textContent = tracks[trackNum].track;
     downloadLink.href = tracks[trackNum].audioPath;
-    console.log(song.duration);
 }
 
 function pause () {
@@ -52,7 +51,20 @@ function play () {
 
 playBtn.addEventListener("click", () => {
     isPlay ? pause() : play ();
-    console.log(song.duration);
+    let audioPlay = setInterval(() => {
+        time.textContent = foo();        
+        function foo () {
+            let min = Math.floor(song.duration/60);
+            let sec = Math.floor(60 * (song.duration/60 - min));
+            let curMin = Math.floor(song.currentTime/60)
+            let curSec = Math.floor(60 * (song.currentTime/60 - curMin));
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec;
+            curMin = curMin < 10 ? "0" + curMin : curMin;
+            curSec = curSec < 10 ? "0" + curSec : curSec;
+            return `${curMin}:${curSec} / ${min}:${sec}`
+        }
+    }, 10);
 });
 nextBtn.addEventListener("click", () => {
     trackNum++;
