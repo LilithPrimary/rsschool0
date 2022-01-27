@@ -18,6 +18,7 @@ const shuffleBtn = document.querySelector(".shuffle");
 const singer = document.querySelector(".audio-singer");
 const title = document.querySelector(".audio-title");
 const time = document.querySelector(".time");
+const progress = document.querySelector(".audio-player__progress");
 let trackNum = 0;
 let isPlay = false;
 let isShuffle = false;
@@ -64,7 +65,13 @@ playBtn.addEventListener("click", () => {
             curSec = curSec < 10 ? "0" + curSec : curSec;
             return `${curMin}:${curSec} / ${min}:${sec}`
         }
-    }, 10);
+        progress.style.width = `${song.currentTime*100/song.duration}%`;
+        if (song.currentTime === song.duration) {
+            trackNum++;
+            setTrack();
+            play();
+        }
+    }, 10); 
 });
 nextBtn.addEventListener("click", () => {
     trackNum++;
