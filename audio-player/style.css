@@ -1,0 +1,190 @@
+:root {
+    --color-hover: rgb(254, 204, 0);
+    --color-black: rgb(62, 66, 65);
+    --color-white: rgb(255, 255, 255);
+    ---center-burger: 12.3px;
+  } 
+
+  *,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  scroll-behavior: smooth;
+  background-color: beige;
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: normal;
+  color: rgb(255,255,255);
+  font-family: 'Rubik';
+  font-weight: 400;
+  font-style: normal;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.container{
+    max-width: 1920px;
+    margin: 0 auto;
+}
+.header__container{
+    height: 70px;
+    background-color: var(--color-black);
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main__container {
+    position: relative;
+    z-index: 1000;
+    height: calc(100vh - 140px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer__container{
+    height: 70px;
+    background-color: var(--color-black);
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.header__title {
+    font-size: 32px;
+    color: var(--color-hover);
+    font-weight: 700;
+}
+.link {
+    color: var(--color-white);
+    transition: .3s;
+    cursor: pointer;
+}
+.link:hover {
+    color: var(--color-hover);
+}
+.footer__left {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+}
+
+.polaroid{
+    position: relative;
+    height: 377px;
+    width: 320px;
+    padding: 23px 23px 0px;
+    background-color: var(--color-white);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.polaroid__photo{
+    height: 274px;
+    width: 274px;
+    background-color: var(--color-black);
+    display: flex;
+    flex-direction: column;
+}
+.audio-player__photo{
+    background-image: url("./assets/img/yuki.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.track_img {
+    height: 269px;
+    width: 100%;
+}
+.audio-player__progress-bar{
+    background-color: var(--color-black);
+    cursor: pointer;
+    height: 5px;
+}
+.audio-player__progress{
+    background-color: var(--color-hover);
+    height: 100%;
+    width: 0;
+}
+.polaroid__bottom {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.polaroid__buttons {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+.button {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+.button:hover {
+    fill: var(--color-hover);
+}
+
+.polaroid__audio-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.polaroid__title{
+    color: var(--color-black);
+}
+.audio-title {
+    font-weight: 700;
+    text-align: end;
+}
+.polaroid__span {
+    position: absolute;
+    font-size: 10px;
+    color: gray;
+}
+.shuffle {
+    top: 6.5px;
+    right: 23px;
+}
+.time {
+    top: 6.5px;
+    left: 23px;
+}
+.audio-player__shuffle{
+    cursor: pointer;
+}
+.audio-player__shuffle:hover{
+    color: var(--color-hover);
+}
+.is_active {
+    color: var(--color-hover);
+}
