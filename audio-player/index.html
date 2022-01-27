@@ -4,9 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap&subset=cyrillic-ext" rel="stylesheet" />
     <title>Audio player</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/svg/favicon.svg" />
 </head>
 <body>
-    
+    <header class="header">
+        <div class="container header__container">
+            <h1 class="title header__title">PLAYER</h1>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container main__container">
+            <div class="polaroid">
+                <div class="polaroid__photo"></div>
+                <div class="main_buttons">
+                    <svg class="svg button button__previous">
+                        <use xlink:href="assets/svg/sprite.svg#play"></use>
+                    </svg>
+                    <svg class="svg button button__play">
+                        <use xlink:href="assets/svg/sprite.svg#play"></use>
+                    </svg>
+                    <svg class="svg button button__next">
+                        <use xlink:href="assets/svg/sprite.svg#play"></use>
+                    </svg>
+                    <a href="assets/audio/forest.mp3" class="download" download>
+                        <svg class="svg button button__download">
+                            <use xlink:href="assets/svg/sprite.svg#download"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__left">
+                <span class="footer__span copy">©</span>
+                <span class="footer__span year">2022</span>
+                <a href="https://github.com/lilithprimary" class="link">lilithprimary</a>
+            </div>
+            <div class="footer__right">
+                <a target="_blank" href="https://rs.school/js-stage0/" class="link">RSSchool</a>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="index.js"></script>
 </body>
 </html>
