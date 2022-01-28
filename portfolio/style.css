@@ -486,6 +486,7 @@ button.hero:before{
 }
 .skillsDisc{
     max-width: 280px;
+    height: 108px;
     font-size: 18px;
     line-height: 200%;
     text-align: center;
@@ -727,7 +728,6 @@ button.hero:before{
     justify-content: space-between;
 }
 .date{
-    width: 188px;
     display: flex;
 }
 .date span:nth-child(2) {
@@ -741,7 +741,9 @@ button.hero:before{
 .spanHref:hover{
     color: var(--color-gold);
 }
-
+.spanHref.rs {
+    margin-right: 38.39px;
+}
 .snCont{
     height: 32px;
     width: 188px;
@@ -901,6 +903,7 @@ nav.white {
 }
 .skillsDisc{
     line-height: 22px;
+    height: 66px;
 }
 
 .vSection{

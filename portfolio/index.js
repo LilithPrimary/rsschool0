@@ -62,6 +62,7 @@ const setTheme = (thm) => {
 // WORK WITH LANGUAGE
 
 const textForTransl = document.querySelectorAll("[data-i18n]");
+console.log(textForTransl[44]);
 const langs = document.querySelectorAll(".langRadio");
 let lang = "en";
 langs.forEach(el => el.addEventListener("click", (e) => {
@@ -70,7 +71,9 @@ langs.forEach(el => el.addEventListener("click", (e) => {
   }
 }))
 const setLang = (lg) => {
-  textForTransl.forEach(el => el.textContent = i18Obj[lg][el.dataset.i18n])
+  textForTransl.forEach(el => {
+    ["input", "textarea"].includes(el.localName) ? el.placeholder = i18Obj[lg][el.dataset.i18n] : el.textContent = i18Obj[lg][el.dataset.i18n];
+  })
   lang = lg;
   langs.forEach(el => {
     if (el.id === lg) el.checked = true;
