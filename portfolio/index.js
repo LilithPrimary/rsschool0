@@ -1,4 +1,7 @@
+import i18Obj from './translate.js'
+
 // WORK WITH BURGER MENU
+
 const hamburger = document.querySelector(".hamburger");
 const nav = document.querySelector(".nav");
 const menuLinks = document.querySelectorAll(".menu-link");
@@ -7,17 +10,109 @@ const burgSpans = hamburger.querySelectorAll("span");
 const toggleMenu = () => [hamburger, nav, shadow].forEach(el => el.classList.toggle("open"));
 [...menuLinks, hamburger, shadow].forEach(el => el.addEventListener("click", toggleMenu));
 
-// WORK WITH SECTION PORTFOLIO BUTTONs
-let btnContainer = document.getElementById("pfBtns");
-let btns = btnContainer.getElementsByClassName("button");
-for (let i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-    let current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
+// WORK WITH SECTION PORTFOLIO BUTTONS
+
+["winter", "summer", "spring", "autumn"].forEach(el => {
+  for(let i = 0; i < 6; i++) {
+    const img = new Image();
+    img.src = `assets/img/${el}/${i}.jpg`;
+  }
+})
+const btnContainer = document.querySelector(".pButtons");
+const pPhoto = document.querySelectorAll(".pPhoto");
+btnContainer.addEventListener("click", (e) => {
+  let current = btnContainer.querySelector(".active");
+  if (e.target.tagName === "BUTTON" && e.target.dataset.season !== current.dataset.season) {
+    current.classList.remove("active");
+    e.target.classList.add("active");
+    pPhoto.forEach(el => el.classList.add("hide-img"))
+    setTimeout(() => {
+      pPhoto.forEach((el, i) => el.src=`assets/img/${e.target.dataset.season}/${i}.jpg`);
+      pPhoto.forEach(el => el.classList.remove("hide-img"));
+    }, 500)
+  }
+});
+
+// WORK WITH LIGHT THEME
+
+const sunMoon = document.querySelector(".sun-moon");
+const btns = btnContainer.querySelectorAll("button");
+const lines = document.querySelectorAll(".line");
+const secTitles = document.querySelectorAll(".section-title");
+const htmlTage = document.querySelector("html");
+const elsForSwitchTheme = [sunMoon, hamburger, nav, htmlTage, document.body, ...btns, ...lines, ...secTitles];
+let theme = "dark";
+sunMoon.addEventListener("click", () => {
+  let sunOrMoon = sunMoon.firstElementChild.href.baseVal;
+  let thm = (sunOrMoon === "./assets/svg/sprite.svg#moon") ? "light" : "dark";
+  setTheme(thm);
   });
+const setTheme = (thm) => {
+  if (thm === "light") {
+    elsForSwitchTheme.forEach(el => el.classList.add("white"));
+    sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#sun";
+    theme = "light";
+  } else {
+    elsForSwitchTheme.forEach(el => el.classList.remove("white"));
+    sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#moon";
+    theme = "dark";
+  }
+} 
+
+// WORK WITH LANGUAGE
+
+const textForTransl = document.querySelectorAll("[data-i18n]");
+console.log(textForTransl[44]);
+const langs = document.querySelectorAll(".langRadio");
+let lang = "en";
+langs.forEach(el => el.addEventListener("click", (e) => {
+  if (e.target.id !== lang) {
+    setLang(e.target.id);
+  }
+}))
+const setLang = (lg) => {
+  textForTransl.forEach(el => {
+    ["input", "textarea"].includes(el.localName) ? el.placeholder = i18Obj[lg][el.dataset.i18n] : el.textContent = i18Obj[lg][el.dataset.i18n];
+  })
+  lang = lg;
+  langs.forEach(el => {
+    if (el.id === lg) el.checked = true;
+  })
 }
 
+// WORK WITH VIDEO
+
+const play = document.querySelector(".videoBtn");
+const picture = document.querySelector(".video-player");
+const video = document.querySelector(".real-video");
+play.addEventListener("click", ()=>{
+  picture.classList.add("hide");
+  video.classList.remove("hide");
+  video.play();
+}
+)
+
+// WORK WITH LOCALSTORAGE
+
+function getLocalStorage() {
+  if(localStorage.getItem('theme')) {
+    const theme = localStorage.getItem('theme');
+    setTheme(theme);
+  }
+  if(localStorage.getItem('lang')) {
+    const lang = localStorage.getItem('lang');
+    setLang(lang);
+  }
+}
+
+window.addEventListener('load', getLocalStorage)
+
+function setLocalStorage() {
+  localStorage.setItem('theme', theme);
+  localStorage.setItem('lang', lang);
+}
+
+window.addEventListener('beforeunload', setLocalStorage);
 
 
 
@@ -34,25 +129,27 @@ for (let i = 0; i < btns.length; i++) {
 
 
 console.log (`
-[+] 1. Вёрстка соответствует макету. Ширина экрана 768px +48
-      - блок <header> +6
-      - секция hero +6
-      - секция skills +6
-      - секция portfolio +6
-      - секция video +6
-      - секция price +6
-      - секция contacts +6
-      - блок <footer> +6
-[+] 2. Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +15
-      - нет полосы прокрутки при ширине страницы от 1440рх до 768рх +5
-      - нет полосы прокрутки при ширине страницы от 768рх до 480рх +5
-      - нет полосы прокрутки при ширине страницы от 480рх до 320рх +5
-[+] 3. На ширине экрана 768рх и меньше реализовано адаптивное меню +22
-      - при ширине страницы 768рх панель навигации скрывается, появляется бургер-иконка +2
-      - при нажатии на бургер-иконку справа плавно появляется адаптивное меню, бургер-иконка изменяется на крестик +4
-      - высота адаптивного меню занимает всю высоту экрана. При ширине экрана 768-620рх вёрстка меню соответствует макету, когда экран становится уже, меню занимает всю ширину экрана +4
-      - при нажатии на крестик адаптивное меню плавно скрывается уезжая за правую часть экрана, крестик превращается в бургер-иконку +4
-      - бургер-иконка, которая при клике превращается в крестик, создана при помощи css-анимаций без использования изображений +2
-      - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям +2
-      - при клике по ссылке в адаптивном меню адаптивное меню плавно скрывается, крестик превращается в бургер-иконку +4
-`)
+[75/75]
+[+] 1. Смена изображений в секции portfolio +25
+        Изображения разных времён года получаем из папок с соответствующими названиями
+        Изображения можно заменить на другие с целью улучшения качества созданного приложения
+        - при кликах по кнопкам Winter, Spring, Summer, Autumn в секции portfolio отображаются изображения из папки с соответствующим названием +20
+        - кнопка, по которой кликнули, становится активной т.е. выделяется стилем. Другие кнопки при этом будут неактивными +5
+[+] 2. Перевод страницы на два языка +25
+        Для перевода можно воспользоваться файлом translate.js
+        Содержание файла можно редактировать или полностью изменить с целью улучшения качества созданного приложения
+        - при клике по надписи ru англоязычная страница переводится на русский язык +10
+        - при клике по надписи en русскоязычная страница переводится на английский язык +10
+        - надписи en или ru, соответствующие текущему языку страницы, становятся активными т.е. выделяются стилем +5
+[+] 3. Переключение светлой и тёмной темы +25
+        Внешний вид тёмной темы соответствует макету, который верстали в предыдущих частях задания, внешний вид светлой темы соответствует одному из двух вариантов макетов на выбор. Баллы за оба варианта одинаковые, выбирайте тот, который больше нравится.
+        - Вариант первый. Блоки и секции header, hero, contacts, footer остались без изменений, в оставшихся секциях цвет фона и шрифта поменялись местами: фон стал белым, шрифт черным Макет в figma - светлая тема - 1
+        - На страницу добавлен переключатель при клике по которому:
+           * тёмная тема приложения сменяется светлой +10
+           * светлая тема приложения сменяется тёмной +10
+           * после смены светлой и тёмной темы интерактивные элементы по-прежнему изменяют внешний вид при наведении и клике и при этом остаются видимыми на странице (нет ситуации с белым шрифтом на белом фоне) +5
+[+] 4. Дополнительный функционал: выбранный пользователем язык отображения страницы и светлая или тёмная тема сохраняются при перезагрузке страницы +5
+[+] 5. Дополнительный функционал: сложные эффекты для кнопок при наведении и/или клике +5
+        Для получения максимального балла за пункт требований достаточно добавить кнопкам только один эффект
+        Можно выбрать любой из предложенных эффектов или добавить свой собственный равноценный им по сложности
+ `)

@@ -4,7 +4,7 @@
     --font-size-name: 60px;
     --font-weight-name: bold;
     --font-size-h2: 40px;
-    ---center-burger: 12.3px;
+    ---center-burger: 12.34px;
     ---filter-black: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
     contrast(87%);
   }
@@ -57,6 +57,10 @@
     font-family: Inter;
     margin: 0 auto;
   }
+html.white, body.white {
+    color: #000000;
+    background-color: #FFFFFF;
+}
 
 .container {
     max-width: 1440px;
@@ -72,6 +76,7 @@
     width: 100%;
   }
 .header {
+    color: #ffffff;
     max-width: 1440px;
     padding: 0 20px;
     height: 90px;
@@ -96,10 +101,10 @@
 .headerRightEl{
     display: flex;
     align-items: center;
+    gap: 30px
 }
-
-.nav {
-    margin-right: 31px;
+.shadow {
+    display: none;
 }
 .menu {
     display: flex;
@@ -107,7 +112,7 @@
 }
 .menu-link {
     transition: 0.3s;
-    color: #ffffff ;
+    color: inherit;
     text-align: 200%;
 }
 .menu-link:hover {
@@ -141,6 +146,21 @@ input[type=radio] {
     color: var(--color-gold);
 }
 
+.sun-moon {
+    padding: 0 7.5px;
+    fill: #ffffff;
+    width: 45px;
+    height: 45px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.sun-moon.white:hover, .sun-moon:hover {
+    fill: var(--color-gold);
+}
+.sun-moon.white{
+    padding: 0;
+}
+
 .hamburger {
     position: fixed;
     right: 60px;
@@ -163,7 +183,10 @@ input[type=radio] {
     position: relative;
     transition: 0.3s;
 }
-.hamburger:hover span {
+.hamburger.white.open span {
+    background: #000000;
+}
+.hamburger.white:hover span, .hamburger:hover span {
     background: var(--color-gold);
 }
 .hamburger.open span:nth-child(1) {
@@ -270,6 +293,7 @@ input[type=radio] {
 /*----HERO------------------------------------------------------------------------------*/
 
 .hero-container {
+    color: white;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -290,7 +314,6 @@ input[type=radio] {
 }
 
 .name {
-    height: 330px;
     max-width: 470px;
     display: flex;
     flex-direction: column;
@@ -318,11 +341,47 @@ input[type=radio] {
     background-color: transparent;
     border: var(--color-gold) solid 2px;
     color: var(--color-gold);
+    position: relative;
+    overflow: hidden;
 }
 button:hover {
     color: #ffffff;
 }
+button:before{
+    content: "";
+    background: linear-gradient(90deg, rgba(189,174,130, .05), rgba(189,174,130, .3));
+    height: 60px;
+    width: 50px;
+    position: absolute;
+    top: 0px;
+    left: -100px;
+    transform: skewX(-45deg);
+    transition: .4s ease-in-out;
+}
+.button:hover:before {
+    left: 150%;
+    transition: .7s ease-in-out;
+}
+button.white {
+    color: #000000;
+}
+button.white:hover{
+    color: #ffffff;
+    background-color: var(--color-gold);
+}
+button.white:before{
+    background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
+}
 .button.active {
+    background-color: var(--color-gold);
+    border: none;
+    color: #000000;
+    cursor: default;
+}
+button.active:before{
+    background: transparent;
+}
+.button.active.white {
     background-color: var(--color-gold);
     border: none;
     color: #000000;
@@ -332,6 +391,11 @@ button.hero {
     background-color: var(--color-gold);
     border: none;
     color: #000000;
+    position: relative;
+    overflow: hidden;
+}
+button.hero:before{
+    background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
 }
 
 .button.hero:hover {
@@ -369,11 +433,18 @@ button.hero {
     text-align: center;
     color: var(--color-gold);
 }
+.section-title.white {
+    background-color: #ffffff;
+    color: #000000;
+}
 
 .line {
     height: 2px;
     width: 50%;
     background-color: var(--color-gold);
+}
+.line.white{
+    background: #000;
 }
 
 .sectionBott{
@@ -415,6 +486,7 @@ button.hero {
 }
 .skillsDisc{
     max-width: 280px;
+    height: 108px;
     font-size: 18px;
     line-height: 200%;
     text-align: center;
@@ -453,6 +525,10 @@ button.hero {
     max-width: 450px;
     object-fit: cover;
 }
+.hide-img {
+    opacity: 0;
+    transition: .5s;
+}
 .pPhoto:hover {
     transform: scale(1.03);
 }
@@ -465,6 +541,9 @@ button.hero {
     justify-content: center;
     align-items: center;
     background-color: none;
+}
+.video-player.hide {
+    display: none;
 }
 .video-player div {
     background-image: url("assets/img/video-player.jpg");
@@ -490,6 +569,13 @@ button.hero {
 .videoBtn:hover {
     filter: var(---filter-black);
 }
+.real-video {
+    display: block;
+    width: 100%;
+}
+.real-video.hide {
+    display: none;
+}
 
 /*----PRICE------------------------------------------------------------------------------*/
 
@@ -500,6 +586,7 @@ button.hero {
     gap: 25px;
     flex-wrap: wrap;
     max-width: 1400px;
+
 }
 .priceBlcs div {
     height: 505px ;
@@ -518,8 +605,7 @@ button.hero {
     font-size: 28px;
     line-height: 200%;
     text-align: center;
-    color: #FFFFFF;
-    /* padding-top: 43px; */
+    padding-top: 43px;
     padding-bottom: 20px;
 }
 
@@ -538,7 +624,6 @@ button.hero {
     font-size: 18px;
     line-height: 200%;
     text-align: center;
-    color: #FFFFFF;
 }
 .prcDisc.end {
     padding-bottom: 40px;
@@ -567,11 +652,16 @@ button.hero {
     padding-bottom: 195px;
     width: 450px;
 }
-.section-title.ctcs {
-    padding: 0;
+.ctcs-title {
     margin-bottom: 40px;
-    position: static;
     background-color: transparent;
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--font-size-h2);
+    line-height: 200%;
+    text-align: center;
+    color: var(--color-gold);
 }
 .contBlock input {
     height: 50px;
@@ -625,7 +715,9 @@ button.hero {
 .footer {
     width: inherit;
     height: 150px;
-    padding: 0 20px;;
+    padding: 0 20px;
+    background: #000000;
+    color: #ffffff;
 }
 .footer-container{
     max-width: 1400px;
@@ -637,7 +729,6 @@ button.hero {
     justify-content: space-between;
 }
 .date{
-    width: 188px;
     display: flex;
 }
 .date span:nth-child(2) {
@@ -651,7 +742,9 @@ button.hero {
 .spanHref:hover{
     color: var(--color-gold);
 }
-
+.spanHref.rs {
+    margin-right: 38.39px;
+}
 .snCont{
     height: 32px;
     width: 188px;
@@ -682,6 +775,9 @@ button.hero {
 .logo{
     margin-left: 40px;
 }
+.headerRightEl{
+    margin-right: 124px;
+}
 .nav {
     position: fixed;
     display: flex;
@@ -695,18 +791,26 @@ button.hero {
     right: -200vw;
     transition: 0.5s
 }
+nav.white {
+    color: #000000;
+    background-color: #FFFFFF;
+}
 .nav.open {
     right: 0;
 }
 
 .shadow {
     position: fixed;
+    display: block;
     top: 0;
     left: 0;
     z-index: 1400;
     animation: disappear 0.5s linear forwards;
 }
 .shadow.open {
+    top: 0;
+    left: 0;
+    z-index: 1400;
     animation: appear 0.5s linear forwards;
 }
 @keyframes appear {
@@ -756,25 +860,17 @@ button.hero {
     font-size: 34.8235px;
     line-height: 73px;
 }
-.headerRightEl {
-    margin-right: 114px;
-}
 .hamburger{
     display: flex;
 }
 
 .heroPic{
-    width: 768px;
-    height: 590px;
-    background-position: center;
+    background-position: -12px -34px;
     padding-left: 60px;
     padding-top: 168px;
     padding-bottom: 152px;
-    background-image: url('./assets/img/hero.jpg');
-    max-height: 600px;
-    max-width: 768px;
-    background-position: right;
-    background-size: cover;
+    height: 590 px;
+    background-size: 992px;
 }
 .h1class {
     padding-bottom: 20px;
@@ -807,6 +903,7 @@ button.hero {
 }
 .skillsDisc{
     line-height: 22px;
+    height: 66px;
 }
 
 .video-player {
@@ -837,8 +934,7 @@ button.hero {
 }
 .contacts-container{
     justify-content: center;
-    background-image: url(assets/img/contacts768.jpg);
-    background-position: left;
+    background-position: center;
 }
 .footer-container{
     flex-direction: column;
@@ -896,4 +992,4 @@ button.hero {
         padding-left: 20px;
         padding-right: 20px;
     }
-}
+} 
