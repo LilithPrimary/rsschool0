@@ -74,7 +74,8 @@ body {
     opacity: 0.5;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 .header__title {
     font-size: 32px;
@@ -86,9 +87,7 @@ body {
     transition: .3s;
     cursor: pointer;
 }
-.link:hover {
-    color: var(--color-hover);
-}
+
 .footer__left {
     display: flex;
     gap: 25px;
@@ -111,7 +110,6 @@ body {
     flex-direction: column;
 }
 .audio-player__photo{
-    background-image: url("./assets/img/yuki.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -131,6 +129,71 @@ body {
     height: 100%;
     width: 0;
 }
+.audio-player__volume-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.volume-bar {
+    position: absolute;
+    height: 274px;
+    width: 23px;
+    right: 0;
+    top: 23px;
+}
+.plus, .minus {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    color: gray;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    gap: 10px;
+    transition: 0.3s
+}
+.plus.is_active, .minus.is_active {
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.25);
+    font-size: smaller;
+}
+
+.audio-player__volume-shower {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: end;
+    align-items: center;
+}
+.volume-shower {
+    cursor: pointer;
+    width: 100%;
+    height: 224px;
+    gap: 8.22222px;
+    display: flex;
+    transition: 0.3s;
+    opacity: 0;
+}
+.volume-shower.is_active {
+    opacity: 0.7;
+}
+.span--is_active {
+    background-color: var(--color-hover) !important;
+}
+.volume-shower span {
+    cursor: pointer;
+    display: flex;
+    border: 0.2px solid rgb(243, 243, 243);
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    opacity: 1;
+}
 .polaroid__bottom {
     height: 80px;
     display: flex;
@@ -147,9 +210,6 @@ body {
     width: 30px;
     cursor: pointer;
     transition: .3s;
-}
-.button:hover {
-    fill: var(--color-hover);
 }
 
 .polaroid__audio-info {
@@ -182,9 +242,25 @@ body {
 .audio-player__shuffle{
     cursor: pointer;
 }
-.audio-player__shuffle:hover{
-    color: var(--color-hover);
-}
 .is_active {
     color: var(--color-hover);
+}
+
+@media (min-width: 769px) {
+    .audio-player__shuffle:hover{
+        color: var(--color-hover);
+    }   
+    .button:hover {
+        fill: var(--color-hover);
+    }
+    .link:hover {
+        color: var(--color-hover);
+    }
+    .plus:hover, .minus:hover {
+        color: var(--color-hover);
+    }
+    .volume-shower:hover {
+        opacity: 0.7;
+        transition: .3s;
+    }
 }
