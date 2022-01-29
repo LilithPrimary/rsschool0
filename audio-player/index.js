@@ -24,7 +24,7 @@ const volumeLevel = document.querySelectorAll("[data-num]");
 const plus = document.querySelector(".plus");
 const minus = document.querySelector(".minus");
 const volumeShower = document.querySelector(".volume-shower");
-let trackNum = -1;
+let trackNum = 0;
 let isPlay = false;
 let isShuffle = false;
 let inc = true;
@@ -53,6 +53,7 @@ function setTrack () {
     singer.textContent = tracks[trackNum].singer;
     title.textContent = tracks[trackNum].track;
     downloadLink.href = tracks[trackNum].audioPath;
+    setBgColor(trackNum);
 }
 function pause () {
     song.pause();
@@ -99,7 +100,6 @@ function changeVolumeLevel () {
         volume = volume - 1 < 0 ? 0 : volume - 1; 
     }
     song.volume = volume/10;
-    console.log(song.volume);
     changeVolumeBar ();
     setTimeout(() => {
         volumeShower.classList.remove("is_active");
@@ -168,7 +168,6 @@ minus.addEventListener("click", () => {
 });
 volumeLevel.forEach( el => el.addEventListener("click", (e) => {
     volumeShower.classList.add("is_active");
-    console.log(e.target.dataset.num);
     incVol = +e.target.dataset.num > volume ? true : false;
     volume = +e.target.dataset.num;
     song.volume = volume/10;
@@ -182,8 +181,46 @@ window.addEventListener('load', () => {
     isShuffle = true;
     setTrack ();
     isShuffle = false;
-    play();
-    pause();
-    changeVolumeBar();
 });
+
+function setBgColor(n) {
+    let canvas = document.createElement("canvas");
+    let pic = new Image();
+    const arOfColor = [];
+    pic.onload = function() {
+        canvas.width = pic.width;
+        canvas.height = pic.height;
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(pic, 0, 0);
+        var c = canvas.getContext('2d');
+        var p = c.getImageData(pic.width / 2, pic.height / 2, 100, 100).data;
+        const pCopy = [...p];
+        while (pCopy.length > 0) {
+            let color = [];
+            for (let j = 0; j < 4; j++) {
+                color.push(pCopy.shift());
+            }
+            color = color.map(el => {
+                el = el.toString(16);
+                if (el.length === 1)
+                el = "0" + el;
+                return el;
+            }).join("");
+            arOfColor.push('#' + color.slice(0, 6));
+        } 
+        console.log(arOfColor);
+        const colors = [...new Set(arOfColor)];
+        console.log(colors);
+        const numOfColors = colors.map(el => {
+            let n = arOfColor.filter(elem => elem === el).length;
+            return [el, n]
+        }).sort((a, b) => b[1] - a[1]);
+        console.log(numOfColors);
+        document.body.style.backgroundColor = numOfColors[0][0];
+    }
+    pic.src = tracks[n].imgPath; 
+}
+
+
+
     
