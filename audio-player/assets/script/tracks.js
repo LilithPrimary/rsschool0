@@ -32,7 +32,7 @@ const tracks = [
      audioPath: "./assets/audio/moby_lift_me_up.mp3",
      imgPath: "./assets/img/moby.jpg"},
     {singer: "Rammstein",
-     track: "Striped",
+     track: "Stripped",
      audioPath: "./assets/audio/rammstein_striped.mp3",
      imgPath: "./assets/img/rammstein.jpg"},
     {singer: "Schiller",
