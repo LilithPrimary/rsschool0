@@ -109,12 +109,16 @@ body {
   line-height: 40px;
 }
 .header__button {
-  background-color: var(--color-green);
+  background: linear-gradient(90deg, rgba(0,66,21,1) 0%, rgba(0,145,45,1) 50%, rgba(0,64,20,1) 100%);
   height: 40px;
   width: 150px;
   border-radius: 3%;
   font-weight: 500;
   font-size: 16px;
+}
+.header__button:active {
+  box-shadow: inset 0 0 30px black;
+  border: rgb(1, 46, 19) solid 1px;
 }
 .main__center {
   display: flex;
@@ -124,21 +128,29 @@ body {
 }
 
 .main__part {
-  width: 24.75vw;
-}
-
-.down {
   position: fixed;
-  
+  width: 24.75vw;
+  transition: 0.7s;
+  bottom: auto;
 }
 
 .photo-container {
+  right: 23.3vw;
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 1%;
   box-shadow: 0px 0px 20px var(--color-green);
+  animation: appere-right .5s ease-out forwards;
+}
+@keyframes appere-right {
+  0% {
+    right: -100vw;
+  }
+  100% {
+    right: 23.3vw;
+  }
 }
 .author-photo {
   width: 100%;
@@ -149,12 +161,22 @@ body {
 }
 
 .quote-container {
+  left: 23.3vw;
   max-height: 270px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
   gap: 30px;
+  animation: appere-left .5s ease-out forwards;
+}
+@keyframes appere-left {
+  0% {
+    left: -100vw;
+  }
+  100% {
+    left: 23.3vw;
+  }
 }
 .quote {
   font-size: 25px;
@@ -162,6 +184,20 @@ body {
   text-align: justify;
   text-indent: 40px;
   font-weight: 200;
+}
+.down {
+  animation: down .3s ease-out forwards;
+}
+@keyframes down {
+  0% {
+    bottom: auto;
+  }
+  20% {
+    bottom: 0;
+  }
+  100% {
+    bottom: -100vh;
+  }
 }
 
 
