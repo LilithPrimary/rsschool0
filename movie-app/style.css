@@ -107,50 +107,6 @@ body {
     transition: 0.4s; 
     background: transparent;
 }
-
-/* .search ~ .focus-border:before,
-.search ~ .focus-border:after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-green);
-    transition: 0.4s;
-}
-.search ~ .focus-border:after {
-    top: auto;
-    bottom: 0;
-}
-.search ~ .focus-border i:before,
-.search ~ .focus-border i:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 2px;
-    height: 0;
-    background-color: var(--color-green);
-    transition: 0.6s;
-}
-.search ~ .focus-border i:after {
-    left: auto;
-    right: 0;
-}
-.search:focus ~ .focus-border:before,
-.search:focus ~ .focus-border:after {
-    left: 0;
-    width: 100%;
-    transition: 0.4s;
-}
-.search:focus ~ .focus-border i:before,
-.search:focus ~ .focus-border i:after {
-    top: 0;
-    height: 100%;
-    transition: 0.6s;
-} */
-
 .search ~ .focus-border:before,
 .search ~ .focus-border:after {
     content: "";
@@ -182,13 +138,17 @@ body {
     right: -1;
 }
 .search:focus ~ .focus-border:before,
-.search:focus ~ .focus-border:after {
+.search:focus ~ .focus-border:after,
+.search:hover ~ .focus-border:before,
+.search:hover ~ .focus-border:after {
     left: 0; 
     width: 100%; 
     transition: 0.4s;
 }
 .search:focus ~ .focus-border i:before,
-.search:focus ~ .focus-border i:after {
+.search:focus ~ .focus-border i:after,
+.search:hover ~ .focus-border i:before,
+.search:hover ~ .focus-border i:after {
     top: 0; 
     height: 100%; 
     transition: 0.6s;
@@ -216,7 +176,8 @@ body {
         color: transparent;
     }
 }
-.search:focus ~ label {
+.search:focus ~ label,
+.search:hover ~ label {
     top: -24px; 
     left: 0; 
     font-size: 18px; 
@@ -235,6 +196,7 @@ body {
         color: var(--color-green);
     }
 }
-.search:focus::placeholder {
+.search:focus::placeholder,
+.search:hover::placeholder {
     color: transparent;
 }
