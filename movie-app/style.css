@@ -1,0 +1,240 @@
+:root {
+    --color-green: #00892B;
+    --color-orange: rgb(254, 204, 0);
+    --color-white: #fff;
+    --color-black: #3E4241;
+  }  
+
+*,
+*:before,
+*:after {
+  user-select: text;    
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+:focus{
+    outline: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  scroll-behavior: smooth;
+  background-color: rgb(0,0,0);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: normal;
+  color: rgb(255,255,255);
+  font-family: 'Rubik';
+  font-weight: 400;
+  font-style: normal;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+.header__container {
+    background: black;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+.main__container {
+    height: calc(100vh - 190px);
+}
+.footer__container {
+    background: orange;
+    height: 70px;
+}
+.header__logo {
+    color: var(--color-orange);
+    font-weight: 700;
+    font-size: 40px;
+}
+.search {
+    height: 50px;
+    width: 200px;
+    background: rgba(0, 0, 0, .5);
+    color: var(--color-white);
+    font-size: 20px;
+}
+.search::placeholder{
+    font-family: 'Rubik';
+    font-size: 20px;
+    color: rgb(212, 212, 212);
+    transition: 0.3s;
+}
+.input {
+    height: 50px;
+    width: 200px;
+    position: relative;
+}
+
+.search {
+    position: relative;
+    z-index: 1;
+    padding: 7px 14px 9px;
+    transition: 0.4s;
+    color: var(--color-white);
+    font-size: 20px;
+    width: 100%;
+    padding: 7px 14px;
+    transition: 0.4s; 
+    background: transparent;
+}
+
+/* .search ~ .focus-border:before,
+.search ~ .focus-border:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-green);
+    transition: 0.4s;
+}
+.search ~ .focus-border:after {
+    top: auto;
+    bottom: 0;
+}
+.search ~ .focus-border i:before,
+.search ~ .focus-border i:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 2px;
+    height: 0;
+    background-color: var(--color-green);
+    transition: 0.6s;
+}
+.search ~ .focus-border i:after {
+    left: auto;
+    right: 0;
+}
+.search:focus ~ .focus-border:before,
+.search:focus ~ .focus-border:after {
+    left: 0;
+    width: 100%;
+    transition: 0.4s;
+}
+.search:focus ~ .focus-border i:before,
+.search:focus ~ .focus-border i:after {
+    top: 0;
+    height: 100%;
+    transition: 0.6s;
+} */
+
+.search ~ .focus-border:before,
+.search ~ .focus-border:after {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 50%; 
+    width: 0; 
+    height: 2px; 
+    background-color: #4caf50; 
+    transition: 0.4s;
+}
+.search ~ .focus-border:after {
+    top: auto;
+    bottom: 0;
+}
+.search ~ .focus-border i:before,
+.search ~ .focus-border i:after {
+    content: ""; 
+    position: absolute; 
+    top: 50%; 
+    left: 0; 
+    width: 2px; 
+    height: 0; 
+    background-color: #4caf50; 
+    transition: 0.6s;
+}
+.search ~ .focus-border i:after {
+    left: auto; 
+    right: -1;
+}
+.search:focus ~ .focus-border:before,
+.search:focus ~ .focus-border:after {
+    left: 0; 
+    width: 100%; 
+    transition: 0.4s;
+}
+.search:focus ~ .focus-border i:before,
+.search:focus ~ .focus-border i:after {
+    top: 0; 
+    height: 100%; 
+    transition: 0.6s;
+}
+.search ~ label {
+    position: absolute; 
+    z-index: 0;
+    left: 14px; 
+    width: 100%; 
+    top: 15px; 
+    color: transparent;
+    transition: 0.3s; 
+    letter-spacing: 0.5px;
+    font-size: 20px;
+    animation: disappeare 0.3s ease-out forwards;
+}
+@keyframes disappeare {
+    0% { 
+        color: var(--color-green);
+    }
+    20% {
+        color: #aaa;
+    }
+    100% {
+        color: transparent;
+    }
+}
+.search:focus ~ label {
+    top: -24px; 
+    left: 0; 
+    font-size: 18px; 
+    color: var(--color-green); 
+    transition: 0.3s;
+    animation: appeare 0.3s ease-out forwards;
+}
+@keyframes appeare {
+    0% { 
+        color: transparent;
+    }
+    50% {
+        color: #aaa;
+    }
+    100% {
+        color: var(--color-green);
+    }
+}
+.search:focus::placeholder {
+    color: transparent;
+}
