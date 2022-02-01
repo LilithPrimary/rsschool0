@@ -6,6 +6,7 @@
     --color-red: #E48E66;
     --color-white: #fff;
     --color-black: #3E4241;
+    --color-green: rgb(20, 184, 107);
   }  
 
 *,
@@ -45,7 +46,7 @@ body {
   scroll-behavior: smooth;
   background-color: var(--color-yellow);
   min-height: 100vh;
-  font-size: 16px;
+  font-size: 18px;
   line-height: normal;
   color: rgb(255,255,255);
   font-family: 'Rubik';
@@ -68,11 +69,36 @@ body {
     padding: 0 40px;
 }
 .main__container {
-    height: calc(100vh - 190px);
+    padding: 40px 40px;
 }
-.footer__container {
-    background: var(--color-violet);
+
+.footer__container{
     height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+    background: var(--color-violet);
+}
+.footer__content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer__left {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+}
+.link {
+    color: var(--color-white);
+    transition: .3s;
+    cursor: pointer;
+}
+.link:hover {
+    color: var(--color-blue);
 }
 .logo-container {
     position: relative;
@@ -249,4 +275,65 @@ body {
 .search:focus::placeholder,
 .search:hover::placeholder {
     color: transparent;
+}
+
+.movies{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.movie {
+    height: 560px;
+    width: 300px;
+}
+.movie__poster {
+    width: 100%;
+    height: 450px;
+    background-image: url("https://image.tmdb.org/t/p/w1280/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.movie__info {
+    background-color: var(--color-dark-red);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px 20px;
+}
+.movie__name {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+}
+.bottom_section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.movie__rating {
+    color: var(--color-violet);
+    font-weight: 500;
+}
+.description-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, .5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.description {
+    width: 300px;
+    max-height: 80vh;
+    background-color: var(--color-white);
+    padding: 20px;
+    color: var(--color-black);
+    overflow: auto;
 }
