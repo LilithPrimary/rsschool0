@@ -65,8 +65,10 @@ function createMovie(el) {
 getPost(urlMostPop).catch(err => console.log(err));
 
 search.addEventListener("search", (e) => {
-    const value = search.value;
-    getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=3fd2be6f0c70a2a598f084ddfb75487c`);
-    search.value = "";
+    if (search.value !== "") {
+        const value = search.value;
+        getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=3fd2be6f0c70a2a598f084ddfb75487c`);
+        search.value = "";
+    }
 })
 logo.addEventListener("click", () => getPost(urlMostPop).catch(err => console.log(err)));
