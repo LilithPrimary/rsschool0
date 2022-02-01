@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie App</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap&subset=cyrillic-ext" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/svg/favicon.svg" />
+</head>
+<body>
+    <header>
+        <div class="container header__container">
+            <div class="logo-container">
+                <img src="./assets/svg/favicon.svg" alt="" class="img header__logo">
+            </div>
+            <h1 class="header__title">MOVIE</h1>
+            <div class="input input-effect">
+                <!-- <form class="form" autocomplete="off" > -->
+                    <input type="search" id="search" class="search" placeholder="Search" autofocus>
+                    <label>Search</label>
+                    <span class="focus-border">
+                        <i></i>
+                    </span>
+                <!-- </form> -->
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container main__container">
+            <div class="movies"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container footer__container">
+            <div class="footer__content">
+                <div class="footer__left">
+                    <span class="footer__span copy">©</span>
+                    <span class="footer__span year">2022</span>
+                    <a target="_blank" href="https://github.com/lilithprimary" class="link">LilithPrimary</a>
+                </div>
+                <div class="footer__right">
+                    <a target="_blank" href="https://rs.school/js-stage0/" class="link">RSSchool</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
