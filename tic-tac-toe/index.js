@@ -5,6 +5,7 @@ const title = document.querySelector(".text");
 const button = document.querySelector(".button");
 const crossLine = document.querySelector(".cross-line");
 const headerTitle = document.querySelector(".title");
+let array = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 let counter = 0;
 const zero = "assets/svg/zero.svg";
 const cross = "assets/svg/cross.svg";
@@ -19,8 +20,14 @@ grid.addEventListener ("click", e => {
 })
 
 function addSign(element) {
-    element.lastElementChild.src = counter % 2 === 0 ? cross : zero;
-    counter++;
+    if (!element.contains(element.lastElementChild)) {
+        const img = document.createElement("img");
+        img.classList.add("sign");
+        img.src = counter % 2 === 0 ? cross : zero;
+        element.id = counter % 2 === 0 ? "cross" : "zero";
+        element.append(img);
+        counter++;
+    }
 }
 
 function checkWinner() {
@@ -35,9 +42,9 @@ function checkWinner() {
         [2, 4, 6, "l8"]
     ];
     for (let el of winCombination) {
-        if (cells[el[0]].lastElementChild.src.includes(cross) && cells[el[1]].lastElementChild.src.includes(cross) && cells[el[2]].lastElementChild.src.includes(cross)) {
+        if (cells[el[0]].id === "cross" && cells[el[1]].id === "cross" && cells[el[2]].id === "cross") {
             showResult("Crosses wins", el[3]); return;
-        } else if (cells[el[0]].lastElementChild.src.includes(zero) && cells[el[1]].lastElementChild.src.includes(zero) && cells[el[2]].lastElementChild.src.includes(zero)) {
+        } else if (cells[el[0]].id === "zero" && cells[el[1]].id === "zero" && cells[el[2]].id === "zero") {
             showResult("Zeros wins", el[3]); return;
         }
     }
@@ -64,7 +71,10 @@ button.addEventListener("click", () => newGame());
 headerTitle.addEventListener("click", () => newGame());
 
 function newGame() {
-    cells.forEach(el => el.lastElementChild.src = "");
+    cells.forEach(el => {
+        el.innerHTML = "";
+        el.id = "null";
+    });
     counter = 0;
     grid.classList.remove("hide");
     textCont.classList.add("hide");
