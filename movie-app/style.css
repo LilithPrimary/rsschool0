@@ -92,6 +92,16 @@ body {
     gap: 25px;
     justify-content: space-between;
 }
+.footer__center {
+    margin-right: 159.57px;
+}
+.footer__logo {
+    height: 40px;
+    transition: 0.3s;
+}
+.footer__logo:hover {
+    transform: rotate(360deg);
+}
 .link {
     color: var(--color-white);
     transition: .3s;
@@ -388,6 +398,12 @@ body {
 @media (max-width: 768px) {
     .header__title{
         display: none;
+    }
+    .footer__container{
+        height: 140px;
+    }
+    .footer__center {
+        margin: 0;
     }
     .footer__content {
         flex-direction: column;
