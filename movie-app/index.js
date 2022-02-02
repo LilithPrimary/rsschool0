@@ -1,7 +1,11 @@
 const movies = document.querySelector(".movies");
 const search = document.querySelector(".search");
 const logo = document.querySelector(".header__logo");
-const urlMostPop = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c";
+const [nday, nmonth, nyear] = (new Date().toLocaleDateString()).split(".");
+const nDate = new Date();
+nDate.setMonth(nDate.getMonth() - 1);
+const [pDay, pMonth, pYear] = (nDate.toLocaleDateString()).split(".");
+const urlMostPop = `https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${pYear}-${pMonth}-${pDay}&primary_release_date.lte=${nyear}-${nmonth}-${nday}&api_key=dac505e3f24f28b559a5d0744b792cfa`;
 
 async function getPost (url) {
     const response = await fetch (url);
@@ -26,6 +30,7 @@ function showDescription() {
 }
 
 function createMovie(el) {
+    console.log(el);
     const movie = document.createElement("div");
     movie.classList.add("movie");
     const moviePoster = document.createElement("div");
@@ -46,7 +51,15 @@ function createMovie(el) {
     bottomSection.classList.add("bottom_section");
     const movieYear = document.createElement("span");
     movieYear.classList.add("movie__year");
-    let [year, month, day] = el.release_date.split("-");
+    let year, other;
+    if (el.hasOwnProperty("release_date")) {
+        [year, ...other] = el.release_date.split("-");
+        console.log(year);
+    }
+    else {
+        year = "unknown";
+        console.log(year);
+    }
     movieYear.textContent = year;
     const movieRating = document.createElement("span");
     movieRating.classList.add("movie__rating");
@@ -67,7 +80,7 @@ getPost(urlMostPop).catch(err => console.log(err));
 search.addEventListener("search", (e) => {
     if (search.value !== "") {
         const value = search.value;
-        getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=3fd2be6f0c70a2a598f084ddfb75487c`);
+        getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=dac505e3f24f28b559a5d0744b792cfa`);
         search.value = "";
     }
 })
