@@ -5,3 +5,4 @@ Private repository for @lilithprimary
 + audio-player https://rolling-scopes-school.github.io/lilithprimary-JSFEPRESCHOOL/audio-player/
 + random-jokes https://rolling-scopes-school.github.io/lilithprimary-JSFEPRESCHOOL/random-jokes/
 + movie-app https://rolling-scopes-school.github.io/lilithprimary-JSFEPRESCHOOL/movie-app/
++ tic-tac-toe https://rolling-scopes-school.github.io/lilithprimary-JSFEPRESCHOOL/tic-tac-toe/
