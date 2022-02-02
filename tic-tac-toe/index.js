@@ -4,6 +4,7 @@ const cells = document.querySelectorAll(".cell");
 const title = document.querySelector(".text");
 const button = document.querySelector(".button");
 const crossLine = document.querySelector(".cross-line");
+const headerTitle = document.querySelector(".title");
 let counter = 0;
 const zero = "assets/svg/zero.svg";
 const cross = "assets/svg/cross.svg";
@@ -59,9 +60,12 @@ function showResult(result, line) {
     }, 500)
 }
 
-button.addEventListener("click", () => {
+button.addEventListener("click", () => newGame());
+headerTitle.addEventListener("click", () => newGame());
+
+function newGame() {
     cells.forEach(el => el.lastElementChild.src = "");
     counter = 0;
     grid.classList.remove("hide");
     textCont.classList.add("hide");
-})
+}

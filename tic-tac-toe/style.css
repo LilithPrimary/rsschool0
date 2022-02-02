@@ -1,7 +1,12 @@
 :root {
-    --color-white: #fff;
-    --color-black: #3E4241;
-    --color-green: rgb(20, 184, 107);
+  --color-violet: #684870;
+  --color-yellow: #E2D574;
+  --color-blue: #6FE3FF;
+  --color-dark-red: #CC7350;
+  --color-red: #E48E66;
+  --color-white: #fff;
+  --color-black: #3E4241;
+  --color-green: rgb(20, 184, 107);
 }  
 
 
@@ -40,7 +45,7 @@ body {
   min-height: 100vh;
   font-size: 16px;
   line-height: normal;
-  color: var(--color-black);
+  color: var(--color-white);
   font-family: 'Rubik';
   font-weight: 400;
   font-style: normal;
@@ -50,20 +55,86 @@ body {
 
 .container {
     max-width: 1920px;
+    margin: 0 auto;
 }
 .header__container {
-    height: 70px;
-    background-color: var(--color-black);
+  position: relative;
+}
+.header__wrapper {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title__container{
+  position: relative;
+  width: 250.28px;
+}
+.title {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--color-violet);
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+}
+.title:active {
+  font-size: 39px;
+}
+.title:hover {
+  animation: shake 0.2s ease infinite;
+}
+@keyframes shake {
+  0% {
+    top: 0;
+  }
+  25% {
+    top: -2px;
+  }
+  75% {
+    top: 2px;
+  }
+  100% {
+    top: 0;
+  }
 }
 .main__container {
-    height: calc(100vh - 140px);
+    height: calc(100vh - 70px);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("assets/img/bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .footer__container {
   height: 70px;
+  padding: 0 50px;
   background-color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer__left {
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
+}
+.link {
+  color: var(--color-white);
+  transition: .3s;
+  cursor: pointer;
+  transition: .3s;
+}
+.link:hover {
+  color: orange;
 }
 .grid-container {
   position: relative;
@@ -72,6 +143,7 @@ body {
 }
 .text-container {
   background-color: #fff;
+  box-shadow: 2px 2px 10px #3E4241;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -183,16 +255,13 @@ body {
   transition: height 0.3s;
 }
 .cross-line.l7 {
-  position: static;
   width: 464px;
   height: 10px;
   top: 150px;
   left: -82px;
   transform: rotate(45deg);
-  transition: width 0.3s;
 }
 .cross-line.l8 {
-  position: static;
   width: 464px;
   height: 10px;
   top: 150px;
