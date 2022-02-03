@@ -105,7 +105,7 @@ function changeVolumeLevel () {
         volumeShower.classList.remove("is_active");
     }, 2000);
 }
-function changeVolumeBar () {
+function changeVolumeBar() {
     if (incVol) {
         volumeLevel.forEach((el, i) => {
             if (i <= volume - 1) {
@@ -151,20 +151,12 @@ psBar.addEventListener("dragend", (e) => {
 });
 psBar.addEventListener("click", (e) => changeTrackTime(e));
 plus.addEventListener("click", () => {
-    plus.classList.add("is_active");
     incVol = true;
     changeVolumeLevel();
-    setTimeout(() => {
-        plus.classList.remove("is_active");
-    }, 100)
 })
 minus.addEventListener("click", () => {
-    minus.classList.add("is_active");
     incVol = false;
     changeVolumeLevel();
-    setTimeout(() => {
-        minus.classList.remove("is_active");
-    }, 100)
 });
 volumeLevel.forEach( el => el.addEventListener("click", (e) => {
     volumeShower.classList.add("is_active");
@@ -181,6 +173,7 @@ window.addEventListener('load', () => {
     isShuffle = true;
     setTrack ();
     isShuffle = false;
+    changeVolumeBar();
 });
 
 function setBgColor(n) {
