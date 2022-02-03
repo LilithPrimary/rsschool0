@@ -139,6 +139,7 @@ body {
 }
 .footer__center {
   margin-right: 125.48px;
+  fill: var(--color-white)
 }
 .button__play {
   height: 40px;
