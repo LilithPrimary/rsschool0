@@ -599,6 +599,7 @@ button.hero:before{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .prcHead {
@@ -767,7 +768,7 @@ button.hero:before{
 
 /*----MEDIA------------------------------------------------------------------------------*/
 
-@media (max-width: 796px) {
+@media (max-width: 768px) {
 
 :root {
     --font-size-name: 32px;
@@ -863,7 +864,6 @@ nav.light {
     font-size: 34.8235px;
     line-height: 73px;
 }
-
 .hamburger{
     display: flex;
 }
@@ -910,9 +910,8 @@ nav.light {
     height: 66px;
 }
 
-.vSection{
-    padding-left: 0;
-    padding-right: 0;
+.video-player {
+    margin: 0 -20px
 }
 .video-player div{
     padding-top: 54.4273%;
@@ -972,6 +971,7 @@ nav.light {
         gap: 20px;
     }
 }
+
 @media (max-width: 450px) {
     .header {
         justify-content:space-between;
