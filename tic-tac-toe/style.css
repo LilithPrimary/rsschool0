@@ -85,7 +85,8 @@ body {
   user-select: none;
 }
 .title:active {
-  font-size: 39px;
+  font-size: 38px;
+  margin-left: 5px;
 }
 .title:hover {
   animation: shake 0.2s ease infinite;
@@ -129,12 +130,19 @@ body {
 }
 .link {
   color: var(--color-white);
-  transition: .3s;
   cursor: pointer;
   transition: .3s;
 }
 .link:hover {
+  fill: orange;
   color: orange;
+}
+.footer__center {
+  margin-right: 125.48px;
+}
+.button__play {
+  height: 40px;
+  width: 40px;
 }
 .grid-container {
   position: relative;
@@ -208,7 +216,7 @@ body {
   position: absolute;
   border-radius: 50%;
   display: block;
-  background: linear-gradient(90deg, rgba(32,21,91,0.4) 0%, rgba(32,21,91,1) 7%, rgba(22,14,62,1) 49%, rgba(32,21,91,1) 95%, rgba(32,21,91,0.4) 100%);
+  background: red;
   width: 0;
   height: 0;
 }
