@@ -327,6 +327,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px 50px;
+    gap: 20px;
   }
   .footer__center {
     margin: 0 150px;
