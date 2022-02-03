@@ -57,8 +57,12 @@
     font-family: Inter;
     margin: 0 auto;
   }
-html.white, body.white {
-    color: #000000;
+body {
+    background-color: transparent;
+    color: inherit;
+}
+html.light {
+    color: black;
     background-color: #FFFFFF;
 }
 
@@ -154,10 +158,10 @@ input[type=radio] {
     transition: 0.5s;
     cursor: pointer;
 }
-.sun-moon.white:hover, .sun-moon:hover {
+.sun-moon.light:hover, .sun-moon:hover {
     fill: var(--color-gold);
 }
-.sun-moon.white{
+.sun-moon.light{
     padding: 0;
 }
 
@@ -183,10 +187,10 @@ input[type=radio] {
     position: relative;
     transition: 0.3s;
 }
-.hamburger.white.open span {
+.hamburger.light.open span {
     background: #000000;
 }
-.hamburger.white:hover span, .hamburger:hover span {
+.hamburger.light:hover span, .hamburger:hover span {
     background: var(--color-gold);
 }
 .hamburger.open span:nth-child(1) {
@@ -362,14 +366,14 @@ button:before{
     left: 150%;
     transition: .7s ease-in-out;
 }
-button.white {
+button.light {
     color: #000000;
 }
-button.white:hover{
+button.light:hover{
     color: #ffffff;
     background-color: var(--color-gold);
 }
-button.white:before{
+button.light:before{
     background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
 }
 .button.active {
@@ -381,7 +385,7 @@ button.white:before{
 button.active:before{
     background: transparent;
 }
-.button.active.white {
+.button.active.light {
     background-color: var(--color-gold);
     border: none;
     color: #000000;
@@ -433,9 +437,9 @@ button.hero:before{
     text-align: center;
     color: var(--color-gold);
 }
-.section-title.white {
+.section-title.light {
     background-color: #ffffff;
-    color: #000000;
+    color: inherit;
 }
 
 .line {
@@ -443,7 +447,7 @@ button.hero:before{
     width: 50%;
     background-color: var(--color-gold);
 }
-.line.white{
+.line.light{
     background: #000;
 }
 
@@ -791,7 +795,7 @@ button.hero:before{
     right: -200vw;
     transition: 0.5s
 }
-nav.white {
+nav.light {
     color: #000000;
     background-color: #FFFFFF;
 }

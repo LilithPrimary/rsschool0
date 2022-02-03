@@ -47,13 +47,13 @@ sunMoon.addEventListener("click", () => {
   let thm = (sunOrMoon === "./assets/svg/sprite.svg#moon") ? "light" : "dark";
   setTheme(thm);
   });
-const setTheme = (thm) => {
+function setTheme(thm) {
   if (thm === "light") {
-    elsForSwitchTheme.forEach(el => el.classList.add("white"));
+    elsForSwitchTheme.forEach(el => el.classList.add("light"));
     sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#sun";
     theme = "light";
   } else {
-    elsForSwitchTheme.forEach(el => el.classList.remove("white"));
+    elsForSwitchTheme.forEach(el => el.classList.remove("light"));
     sunMoon.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#moon";
     theme = "dark";
   }

@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css?family=Inter:regular,600,700&display=swap&subset=cyrillic-ext" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="assets/svg/favicon.svg" />
+    <script>
+        if(localStorage.getItem('theme')) {
+        const theme = localStorage.getItem('theme');
+        document.firstElementChild.classList.add(theme);
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -20,11 +26,11 @@
                     <div class="shadow"></div>
                     <nav class="nav">
                         <ul class="menu">
-                        <li><a href="#skills" class="menu-link" data-i18n = "skills">Skills</a></li>
-                        <li><a href="#portfolio" class="menu-link" data-i18n = "portfolio">Portfolio</a></li>
-                        <li><a href="#video" class="menu-link" data-i18n = "video">Video</a></li>
-                        <li><a href="#price" class="menu-link" data-i18n = "price">Price</a></li>
-                        <li><a href="#contacts" class="menu-link" data-i18n = "contacts">Contacts</a></li>
+                        <li><a href="#skills" class="menu-link" data-i18n = "skills"></a></li>
+                        <li><a href="#portfolio" class="menu-link" data-i18n = "portfolio"></a></li>
+                        <li><a href="#video" class="menu-link" data-i18n = "video"></a></li>
+                        <li><a href="#price" class="menu-link" data-i18n = "price"></a></li>
+                        <li><a href="#contacts" class="menu-link" data-i18n = "contacts"></a></li>
                         </ul>
                     </nav>
                     <div class="langSwitch">
@@ -55,11 +61,9 @@
             <section class="hero-container">
                 <div class="heroPic">
                     <div class="name">
-                        <h1 class="h1class" data-i18n = "hero-title">Alexa Rise</h1>
-                        <p class="textUnderName" data-i18n = "hero-text">Save sincere emotions, romantic feelings and
-                        happy moments of life together with professional
-                        photographer Alexa Rise</p>
-                        <button class="button hero" data-i18n = "hire">Hire me</button>
+                        <h1 class="h1class" data-i18n = "hero-title"></h1>
+                        <p class="textUnderName" data-i18n = "hero-text"></p>
+                        <button class="button hero" data-i18n = "hire"></button>
                     </div>
                 </div>
             </section>
@@ -68,7 +72,7 @@
                 <section class="section">
                     <div class="sectionTop">
                         <div class="line"></div>
-                        <h2 class="section-title" id="skills" data-i18n = "skills">Skills</h2>
+                        <h2 class="section-title" id="skills" data-i18n = "skills"></h2>
                     </div>
                     <div class="sectionBott">
                         <div class="skillBoxSec">
@@ -76,15 +80,15 @@
                                 <svg class="skillsIcon">
                                     <use xlink:href="./assets/svg/sprite.svg#camera"></use>
                                 </svg>
-                                <p class="skillsH" data-i18n = "skill-title-1">Digital photography</p>
-                                <p class="skillsDisc" data-i18n = "skill-text-1">High-quality photos in the studio and on the nature</p>
+                                <p class="skillsH" data-i18n = "skill-title-1"></p>
+                                <p class="skillsDisc" data-i18n = "skill-text-1"></p>
                             </div>
                             <div class="skillBox">
                                 <svg class="skillsIcon">
                                     <use xlink:href="./assets/svg/sprite.svg#videoico"></use>
                                 </svg>
-                                <p class="skillsH" data-i18n = "skill-title-2">Video shooting</p>
-                                <p class="skillsDisc" data-i18n = "skill-text-2">Capture your moments so that they always stay with you</p>
+                                <p class="skillsH" data-i18n = "skill-title-2"></p>
+                                <p class="skillsDisc" data-i18n = "skill-text-2"></p>
                             </div>
                         </div>
                         <div class="skillBoxSec">
@@ -92,15 +96,15 @@
                                 <svg class="skillsIcon">
                                     <use xlink:href="./assets/svg/sprite.svg#picture"></use>
                                 </svg>
-                                <p class="skillsH" data-i18n = "skill-title-3">Retouch</p>
-                                <p class="skillsDisc" data-i18n = "skill-text-3">I strive to make photography surpass reality</p>
+                                <p class="skillsH" data-i18n = "skill-title-3"></p>
+                                <p class="skillsDisc" data-i18n = "skill-text-3"></p>
                             </div>
                             <div class="skillBox">
                                 <svg class="skillsIcon">
                                     <use xlink:href="./assets/svg/sprite.svg#microphone"></use>
                                 </svg>
-                                <p class="skillsH" data-i18n = "skill-title-4">Audio</p>
-                                <p class="skillsDisc" data-i18n = "skill-text-4">Professional sounds recording for video, advertising, portfolio</p>
+                                <p class="skillsH" data-i18n = "skill-title-4"></p>
+                                <p class="skillsDisc" data-i18n = "skill-text-4"></p>
                             </div>
                         </div>
                     </div>
@@ -109,16 +113,16 @@
                 <section class="section">
                     <div class="sectionTop">
                         <div class="line"></div>
-                        <h2 class="section-title" id="portfolio" data-i18n = "portfolio">Portfolio</h2>
+                        <h2 class="section-title" id="portfolio" data-i18n = "portfolio"></h2>
                     </div>
                     <div class="pButtons">
                         <div class="pButtonsSec">
-                            <button class="button" data-season="winter" data-i18n = "winter">Winter</button>
-                            <button class="button" data-season="spring" data-i18n = "spring">Spring</button>
+                            <button class="button" data-season="winter" data-i18n = "winter"></button>
+                            <button class="button" data-season="spring" data-i18n = "spring"></button>
                         </div>
                         <div class="pButtonsSec">
-                            <button class="button" data-season="summer" data-i18n = "summer">Summer</button>
-                            <button class="button active" data-season="autumn" data-i18n = "autumn">Autumn</button>
+                            <button class="button" data-season="summer" data-i18n = "summer"></button>
+                            <button class="button active" data-season="autumn" data-i18n = "autumn"></button>
                         </div>
                     </div>
                     <div class="photoCont autumn">
@@ -134,7 +138,7 @@
                 <section class="section vSection">
                     <div class="sectionTop">
                         <div class="line"></div>
-                        <h2 class="section-title" id="video" data-i18n = "video">Video</h2>
+                        <h2 class="section-title" id="video" data-i18n = "video"></h2>
                     </div>
                     <div class="video-player">
                         <div></div>
@@ -148,38 +152,38 @@
                 <section class="section">
                     <div class="sectionTop">
                         <div class="line"></div>
-                        <h2 class="section-title" id="price" data-i18n = "price">Price</h2>
+                        <h2 class="section-title" id="price" data-i18n = "price"></h2>
                     </div>
                     <div class="priceBlcs">
                         <div>
                             <span class="prcHead">Standard</span>
                             <span class="price">500 $</span>
-                            <span class="prcDisc" data-i18n = "price-description-1-span-1">One location</span>
-                            <span class="prcDisc" data-i18n = "price-description-1-span-2">120 photos in color</span>
-                            <span class="prcDisc" data-i18n = "price-description-1-span-3">12 photos in retouch</span>
-                            <span class="prcDisc" data-i18n = "price-description-1-span-4">Readiness 2-3 weeks</span>
-                            <span class="prcDisc end" data-i18n = "price-description-1-span-5">Make up, visage</span>
-                            <button class="button hero" data-i18n = "order">Order shooting</button>
+                            <span class="prcDisc" data-i18n = "price-description-1-span-1"></span>
+                            <span class="prcDisc" data-i18n = "price-description-1-span-2"></span>
+                            <span class="prcDisc" data-i18n = "price-description-1-span-3"></span>
+                            <span class="prcDisc" data-i18n = "price-description-1-span-4"></span>
+                            <span class="prcDisc end" data-i18n = "price-description-1-span-5"></span>
+                            <button class="button hero" data-i18n = "order"></button>
                         </div>
                         <div>
                             <span class="prcHead">Premium</span>
                             <span class="price">700 $</span>
-                            <span class="prcDisc" data-i18n = "price-description-2-span-1">One or two locations</span>
-                            <span class="prcDisc" data-i18n = "price-description-2-span-2">200 photos in color</span>
-                            <span class="prcDisc" data-i18n = "price-description-2-span-3">20 photos in retouch</span>
-                            <span class="prcDisc" data-i18n = "price-description-2-span-4">Readiness 1-2 weeks</span>
-                            <span class="prcDisc end" data-i18n = "price-description-2-span-5">Make up, visage</span>
-                            <button class="button hero" data-i18n = "order">Order shooting</button>
+                            <span class="prcDisc" data-i18n = "price-description-2-span-1"></span>
+                            <span class="prcDisc" data-i18n = "price-description-2-span-2"></span>
+                            <span class="prcDisc" data-i18n = "price-description-2-span-3"></span>
+                            <span class="prcDisc" data-i18n = "price-description-2-span-4"></span>
+                            <span class="prcDisc end" data-i18n = "price-description-2-span-5"></span>
+                            <button class="button hero" data-i18n = "order"></button>
                         </div>
                         <div>
                             <span class="prcHead">Gold</span>
                             <span class="price">1000 $</span>
-                            <span class="prcDisc" data-i18n = "price-description-3-span-1">Three locations or more</span>
-                            <span class="prcDisc" data-i18n = "price-description-3-span-2">300 photos in color</span>
-                            <span class="prcDisc" data-i18n = "price-description-3-span-3">50 photos in retouch</span>
-                            <span class="prcDisc" data-i18n = "price-description-3-span-4">Readiness 1 week</span>
-                            <span class="prcDisc end" data-i18n = "price-description-3-span-5">Make up, visage, hairstyle</span>
-                            <button class="button hero" data-i18n = "order">Order shooting</button>
+                            <span class="prcDisc" data-i18n = "price-description-3-span-1"></span>
+                            <span class="prcDisc" data-i18n = "price-description-3-span-2"></span>
+                            <span class="prcDisc" data-i18n = "price-description-3-span-3"></span>
+                            <span class="prcDisc" data-i18n = "price-description-3-span-4"></span>
+                            <span class="prcDisc end" data-i18n = "price-description-3-span-5"></span>
+                            <button class="button hero" data-i18n = "order"></button>
                         </div>
                     </div>
                 </section>
@@ -187,11 +191,11 @@
 <!-- CONTACTS  -->
             <section class="contacts-container">
                 <div class="contBlock">
-                    <h2 class="ctcs-title" id="contacts" data-i18n = "contact-me">Contact me</h2>
+                    <h2 class="ctcs-title" id="contacts" data-i18n = "contact-me"></h2>
                     <input type="email" name="contacts" id="mail" placeholder="E-mail" >
-                    <input type="tel" name="contacts" id="phone" placeholder="Phone" data-i18n = "phone">
-                    <textarea name="contacts" id="message" cols="30" rows="10" placeholder="Message" data-i18n = "message"></textarea>
-                    <button class="button hero" data-i18n = "send-message">Send message</button>
+                    <input type="tel" name="contacts" id="phone" placeholder="" data-i18n = "phone">
+                    <textarea name="contacts" id="message" cols="30" rows="10" placeholder="" data-i18n = "message"></textarea>
+                    <button class="button hero" data-i18n = "send-message"></button>
                 </div>
             </section>
         </main>
@@ -236,7 +240,7 @@
                 </ul>
             </div>
         </footer>
-    </div>    
-    <script type="module" src="index.js"></script>
+    </div>
+    <script type="module" src="index.js"></script>    
 </body>
 </html>
