@@ -20,7 +20,12 @@
         <div class="container main__container">
             <div class="audio-player polaroid">
                 <span class="polaroid__span audio-player__time time">00:00 \ 00:00</span>
-                <span class="polaroid__span audio-player__shuffle shuffle">shuffle</span>
+                <span class="polaroid__span audio-player__shuffle">
+                    <span class="shuffle">shuffle</span>
+                    <svg class="svg button button__mute">
+                        <use xlink:href="assets/svg/sprite.svg#unmute"></use>
+                    </svg>
+                </span>
                 <div class="polaroid__photo">
                     <div class="audio-player__photo track_img"></div>
                     <div class="audio-player__progress-bar">

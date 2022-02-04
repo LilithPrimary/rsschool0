@@ -232,22 +232,30 @@ body {
     color: gray;
 }
 .shuffle {
-    top: 6.5px;
-    right: 23px;
+    cursor: pointer;
+}
+.button__mute {
+    width: 15px;
+    height: 15px;
 }
 .time {
     top: 6.5px;
     left: 23px;
 }
 .audio-player__shuffle{
-    cursor: pointer;
+    top: 0;
+    right: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 .is_active {
     color: var(--color-hover);
 }
 
 @media (min-width: 769px) {
-    .audio-player__shuffle:hover{
+    .shuffle:hover{
         color: var(--color-hover);
     }   
     .button:hover {

@@ -24,6 +24,8 @@ const volumeLevel = document.querySelectorAll("[data-num]");
 const plus = document.querySelector(".plus");
 const minus = document.querySelector(".minus");
 const volumeShower = document.querySelector(".volume-shower");
+const muteBtn = document.querySelector(".button__mute");
+let mute = false;
 let trackNum = 0;
 let isPlay = false;
 let isShuffle = false;
@@ -55,12 +57,12 @@ function setTrack () {
     downloadLink.href = tracks[trackNum].audioPath;
     setBgColor(trackNum);
 }
-function pause () {
+function pause() {
     song.pause();
     isPlay = false;
     playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play";
 }
-function play () {
+function play() {
     song.play();
     isPlay = true;
     playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause";
@@ -119,6 +121,8 @@ function changeVolumeBar() {
             }
         })        
     }
+    muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
+    mute = false;
 }
 
 playBtn.addEventListener("click", () => {
@@ -168,6 +172,17 @@ volumeLevel.forEach( el => el.addEventListener("click", (e) => {
         volumeShower.classList.remove("is_active");
     }, 2000);
 }));
+muteBtn.addEventListener("click", (e) => {
+    if (!mute) {
+        song.volume = 0;
+        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#mute";
+        mute = true;
+    } else {
+        song.volume = volume/10;
+        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
+        mute = false;
+    }
+})
 
 window.addEventListener('load', () => {
     isShuffle = true;
@@ -201,14 +216,11 @@ function setBgColor(n) {
             }).join("");
             arOfColor.push('#' + color.slice(0, 6));
         } 
-        console.log(arOfColor);
         const colors = [...new Set(arOfColor)];
-        console.log(colors);
         const numOfColors = colors.map(el => {
             let n = arOfColor.filter(elem => elem === el).length;
             return [el, n]
         }).sort((a, b) => b[1] - a[1]);
-        console.log(numOfColors);
         document.body.style.backgroundColor = numOfColors[0][0];
     }
     pic.src = tracks[n].imgPath; 
