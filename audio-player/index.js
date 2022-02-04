@@ -24,6 +24,8 @@ const volumeLevel = document.querySelectorAll("[data-num]");
 const plus = document.querySelector(".plus");
 const minus = document.querySelector(".minus");
 const volumeShower = document.querySelector(".volume-shower");
+const muteBtn = document.querySelector(".button__mute");
+let mute = false;
 let trackNum = 0;
 let isPlay = false;
 let isShuffle = false;
@@ -55,12 +57,12 @@ function setTrack () {
     downloadLink.href = tracks[trackNum].audioPath;
     setBgColor(trackNum);
 }
-function pause () {
+function pause() {
     song.pause();
     isPlay = false;
     playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play";
 }
-function play () {
+function play() {
     song.play();
     isPlay = true;
     playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause";
@@ -105,7 +107,7 @@ function changeVolumeLevel () {
         volumeShower.classList.remove("is_active");
     }, 2000);
 }
-function changeVolumeBar () {
+function changeVolumeBar() {
     if (incVol) {
         volumeLevel.forEach((el, i) => {
             if (i <= volume - 1) {
@@ -119,6 +121,8 @@ function changeVolumeBar () {
             }
         })        
     }
+    muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
+    mute = false;
 }
 
 playBtn.addEventListener("click", () => {
@@ -151,20 +155,12 @@ psBar.addEventListener("dragend", (e) => {
 });
 psBar.addEventListener("click", (e) => changeTrackTime(e));
 plus.addEventListener("click", () => {
-    plus.classList.add("is_active");
     incVol = true;
     changeVolumeLevel();
-    setTimeout(() => {
-        plus.classList.remove("is_active");
-    }, 100)
 })
 minus.addEventListener("click", () => {
-    minus.classList.add("is_active");
     incVol = false;
     changeVolumeLevel();
-    setTimeout(() => {
-        minus.classList.remove("is_active");
-    }, 100)
 });
 volumeLevel.forEach( el => el.addEventListener("click", (e) => {
     volumeShower.classList.add("is_active");
@@ -176,11 +172,23 @@ volumeLevel.forEach( el => el.addEventListener("click", (e) => {
         volumeShower.classList.remove("is_active");
     }, 2000);
 }));
+muteBtn.addEventListener("click", (e) => {
+    if (!mute) {
+        song.volume = 0;
+        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#mute";
+        mute = true;
+    } else {
+        song.volume = volume/10;
+        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
+        mute = false;
+    }
+})
 
 window.addEventListener('load', () => {
     isShuffle = true;
     setTrack ();
     isShuffle = false;
+    changeVolumeBar();
 });
 
 function setBgColor(n) {
@@ -208,14 +216,11 @@ function setBgColor(n) {
             }).join("");
             arOfColor.push('#' + color.slice(0, 6));
         } 
-        console.log(arOfColor);
         const colors = [...new Set(arOfColor)];
-        console.log(colors);
         const numOfColors = colors.map(el => {
             let n = arOfColor.filter(elem => elem === el).length;
             return [el, n]
         }).sort((a, b) => b[1] - a[1]);
-        console.log(numOfColors);
         document.body.style.backgroundColor = numOfColors[0][0];
     }
     pic.src = tracks[n].imgPath; 
