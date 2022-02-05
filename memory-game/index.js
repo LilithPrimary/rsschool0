@@ -48,19 +48,23 @@ function startGame() {
     let mutchCards = [];
     let twoCards = [];
     cardsOnField.forEach(el => {
-            el.addEventListener("click", () =>{
-
+            el.addEventListener("click", () => {
+                el.style.pointerEvents = "none";
                 if (!mutchCards.includes(el)) {
                     turn(el);
                     twoCards[counter] = el;
                     counter++;
                     if (counter === 2) {                
-                        button.parentNode.nextElementSibling.classList.remove("hide");
+                        gameField.style.pointerEvents = "none";
                         mutchCards = checkCards (twoCards, mutchCards);
                         setTimeout(() => {
                             twoCards.forEach(el => {
-                                if (!mutchCards.includes(el)) turn(el)});
-                                button.parentNode.nextElementSibling.classList.add("hide")
+                                if (!mutchCards.includes(el)) {
+                                    turn(el);
+                                    el.style.pointerEvents = "inherit";
+                                }
+                            });
+                                gameField.style.pointerEvents = "all";
                         }, 1000);
                         counter = 0;
                     }
