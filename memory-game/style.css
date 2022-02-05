@@ -12,6 +12,7 @@
   margin: 0;
   border: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 a {
   text-decoration: none;
@@ -68,6 +69,7 @@ html {
     transform: translate(-50%);
     cursor: pointer;
     z-index: 10;
+    column-gap: 20px;
 }
 .title:hover {
     color: white;
@@ -78,6 +80,22 @@ html {
     font-weight: 700;
     white-space: nowrap;
     transition: .3s;
+}
+.player__container {
+    height: 50px;
+    padding: 5px;
+    display: flex;
+    border-radius: 10%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.player__container h2 {
+    color:  var(--color-hover);
+    font-weight: 700;
+}
+.highlight{
+    box-shadow: 0 0 10px yellow;
 }
 .main__container {
     position: relative;
@@ -95,27 +113,25 @@ html {
     row-gap: 10px;
     column-gap: 10px;
     user-select: none;
+    pointer-events: inherit;
 }
 .info-table {
     position: absolute;
-    left: 25%;
-    top: 10%;
+    left: 50%;
+    top: 50%;
     border-radius: 1%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 75%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 600px;
+    height: 450px;
     background-color: #c5ac62;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    transform: scale(1);
     transition: .5s;
-    opacity: 1;
 }
-.info-table.hide {
-    transform: scale(0);
-    opacity: 1;
+.info-table.hidden {
+    transform: translate(-50%, -50%) scale(0);
 }
 
 .text {
@@ -226,6 +242,10 @@ html {
     .card {
         height: 60px;
         width: 60px;
+    }
+    .info-table {
+        max-width: 320px;
+        height: 260px;
     }
     
 }
