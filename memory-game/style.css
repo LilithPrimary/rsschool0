@@ -220,6 +220,16 @@ html {
     transform: translate(-50%);
     column-gap: 20px;
 }
+.footer__button {
+    background: rgba(0, 0, 0, 0);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.footer__button svg {
+    height: 100%;
+    width: 100%;
+}
 .link {
     fill: white;
     color: inherit;
