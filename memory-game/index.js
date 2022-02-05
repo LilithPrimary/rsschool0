@@ -2,8 +2,11 @@ import cards from './assets/script/cards.js'
 
 const gameField = document.querySelector(".game__wrapper");
 const button = document.querySelector(".button");
-document.body.firstElementChild.firstElementChild.firstElementChild.addEventListener("click", () => newGame());
+const player1 = document.querySelector(".player1").lastElementChild;
+const player2 = document.querySelector(".player2").lastElementChild;
+let player = player1;
 
+document.body.firstElementChild.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.addEventListener("click", () => newGame());
 button.addEventListener("click", () => newGame());
 
 Array.prototype.shuffle = function() {
@@ -47,19 +50,23 @@ function startGame() {
     let mutchCards = [];
     let twoCards = [];
     cardsOnField.forEach(el => {
-            el.addEventListener("click", () =>{
-
+            el.addEventListener("click", () => {
+                el.style.pointerEvents = "none";
                 if (!mutchCards.includes(el)) {
                     turn(el);
                     twoCards[counter] = el;
                     counter++;
                     if (counter === 2) {                
-                        button.parentNode.nextElementSibling.classList.remove("hide");
+                        gameField.style.pointerEvents = "none";
                         mutchCards = checkCards (twoCards, mutchCards);
                         setTimeout(() => {
                             twoCards.forEach(el => {
-                                if (!mutchCards.includes(el)) turn(el)});
-                                button.parentNode.nextElementSibling.classList.add("hide")
+                                if (!mutchCards.includes(el)) {
+                                    turn(el);
+                                    el.style.pointerEvents = "inherit";
+                                }
+                            });
+                                gameField.style.pointerEvents = "all";
                         }, 1000);
                         counter = 0;
                     }
@@ -76,23 +83,44 @@ function checkCards (twoCards, mutchCards) {
     if (twoCards[0].id === twoCards[1].id) {
         mutchCards.push(...twoCards);
         twoCards.forEach(el => el.style.cursor = "auto");
+        player.textContent = +player.textContent + 1;
+    } else {
+        setTimeout(() => {
+            player.parentNode.classList.toggle("highlight"); 
+            switch (player) {
+                case player1: player = player2; break;
+                default: player = player1;
+            }
+            player.parentNode.classList.toggle("highlight"); 
+        }, 1100)
     }
     if (mutchCards.length / 2 === cards.length) {
-        console.log("win");
         win();
     }
     return mutchCards;
 }
 function win() {
-    button.previousElementSibling.textContent = "You're win! One more time?";
+    switch (true) {
+        case +player1.textContent === +player2.textContent: 
+            button.previousElementSibling.textContent = "DRAW! One more time?"; break;
+        case +player1.textContent > +player2.textContent:
+            button.previousElementSibling.textContent = "Player 1 wins! One more time?"; break;
+        default: 
+            button.previousElementSibling.textContent = "Player 2 wins! One more time?";
+    }
     setTimeout(() => {
-        button.parentNode.classList.remove("hide");
+        button.parentNode.classList.remove("hidden");
     }, 1000)
 };
+
 function newGame() {
     gameField.innerHTML = "";
+    player1.textContent = player2.textContent = 0;
+    player1.parentNode.classList.add("highlight");
+    player2.parentNode.classList.remove("highlight");
+    player = player1;
     startGame();
     setTimeout (() => {
-        button.parentNode.classList.add("hide");
+        button.parentNode.classList.add("hidden");
     }, 500);
 }
