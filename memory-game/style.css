@@ -81,18 +81,19 @@ html {
 }
 .main__container {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 70px 0
 }
 .game__wrapper {
     position: relative;
-    height: 440px;
-    width: 550px;
+    max-width: 550px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    row-gap: 10px;
+    column-gap: 10px;
 }
 .info-table {
     position: absolute;
@@ -224,4 +225,16 @@ html {
 .rslogo {
     width: 30px;
     height: 30px;
+}
+
+@media(max-width: 768px) {
+    .game__wrapper {
+        max-width: 320px;
+        gap: 5px;
+    }
+    .card {
+        height: 60px;
+        width: 60px;
+    }
+    
 }

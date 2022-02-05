@@ -2,6 +2,7 @@ import cards from './assets/script/cards.js'
 
 const gameField = document.querySelector(".game__wrapper");
 const button = document.querySelector(".button");
+
 document.body.firstElementChild.firstElementChild.firstElementChild.addEventListener("click", () => newGame());
 
 button.addEventListener("click", () => newGame());
