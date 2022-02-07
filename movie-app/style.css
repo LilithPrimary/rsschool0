@@ -70,6 +70,7 @@ body {
 }
 .main__container {
     padding: 40px 40px;
+    min-height: calc(100vh - 150px);
 }
 
 .footer__container{
@@ -398,6 +399,10 @@ body {
 @media (max-width: 768px) {
     .header__title{
         display: none;
+    }
+    .main__container {
+        padding: 40px 40px;
+        min-height: calc(100vh - 220px);
     }
     .footer__container{
         height: 140px;

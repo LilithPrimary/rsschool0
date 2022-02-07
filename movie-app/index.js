@@ -1,3 +1,6 @@
+import selfScore from "./assets/script/selfscore.js";
+console.log(selfScore);
+
 const movies = document.querySelector(".movies");
 const search = document.querySelector(".search");
 const logo = document.querySelector(".header__logo");
@@ -5,14 +8,19 @@ const [nday, nmonth, nyear] = (new Date().toLocaleDateString()).split(".");
 const nDate = new Date();
 nDate.setMonth(nDate.getMonth() - 1);
 const [pDay, pMonth, pYear] = (nDate.toLocaleDateString()).split(".");
-const urlMostPop = `https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${pYear}-${pMonth}-${pDay}&primary_release_date.lte=${nyear}-${nmonth}-${nday}&api_key=dac505e3f24f28b559a5d0744b792cfa`;
+const apiKey = "dac505e3f24f28b559a5d0744b792cfa";
+const urlMostPop = `https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${pYear}-${pMonth}-${pDay}&primary_release_date.lte=${nyear}-${nmonth}-${nday}&api_key=${apiKey}`;
 
 async function getPost (url) {
     const response = await fetch (url);
     const data = await response.json();
     const dataAr = data.results;
     movies.innerHTML = "";
-    dataAr.forEach(el => movies.append(createMovie(el)));
+    if (dataAr.length === 0) {
+        emptyResult();
+    } else {
+        dataAr.forEach(el => movies.append(createMovie(el)));
+    }
     showDescription()
 }
 
@@ -30,12 +38,17 @@ function showDescription() {
 }
 
 function createMovie(el) {
-    console.log(el);
     const movie = document.createElement("div");
     movie.classList.add("movie");
     const moviePoster = document.createElement("div");
     moviePoster.classList.add("movie__poster", "active");
-    moviePoster.style.backgroundImage = `url("https://image.tmdb.org/t/p/w1280${el.poster_path}")`
+    try {
+        moviePoster.style.backgroundImage = `url("https://image.tmdb.org/t/p/w1280${el.poster_path}")`
+    }
+    catch(err) {
+        console.log(err);
+        moviePoster.style.backgroundImage = `url("./assets/svg/favicon.svg")`;
+    }
     const descriptionContainer = document.createElement("div");
     descriptionContainer.classList.add("description-container");
     const descriptionText = document.createElement("p");
@@ -52,14 +65,19 @@ function createMovie(el) {
     const movieYear = document.createElement("span");
     movieYear.classList.add("movie__year");
     let year, other;
-    if (el.hasOwnProperty("release_date")) {
+    try {
         [year, ...other] = el.release_date.split("-");
-        console.log(year);
     }
-    else {
+    catch (err) {
+        console.log(err);
         year = "unknown";
-        console.log(year);
     }
+    // if (el.hasOwnProperty("release_date")) {
+    //     [year, ...other] = el.release_date.split("-");
+    // }
+    // else {
+    //     year = "unknown";
+    // }
     movieYear.textContent = year;
     const movieRating = document.createElement("span");
     movieRating.classList.add("movie__rating");
@@ -75,13 +93,22 @@ function createMovie(el) {
     return movie;
 }
 
-getPost(urlMostPop).catch(err => console.log(err));
+function emptyResult() {
+    const emptyResult = document.createElement("div");
+    emptyResult.textContent = "Nothing found";
+    emptyResult.style.color = "#684870";
+    movies.append(emptyResult);
+}
+
+getPost(urlMostPop).catch(err => console.log("ошибочка", err));
 
 search.addEventListener("search", (e) => {
     if (search.value !== "") {
         const value = search.value;
-        getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=dac505e3f24f28b559a5d0744b792cfa`);
-        search.value = "";
+        getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=${apiKey}`);        
     }
 })
-logo.addEventListener("click", () => getPost(urlMostPop).catch(err => console.log(err)));
+logo.addEventListener("click", () => {
+    search.value= "";
+    getPost(urlMostPop).catch(err => console.log(err));
+});
