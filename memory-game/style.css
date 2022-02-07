@@ -129,6 +129,7 @@ html {
     align-items: center;
     justify-content: space-around;
     transition: .5s;
+    padding: 0 20px;
 }
 .info-table.hidden {
     transform: translate(-50%, -50%) scale(0);
@@ -138,6 +139,7 @@ html {
     font-size: 32px;
     color: var(--color-white);
     font-weight: 600;
+    text-align: center;
 }
 .button {
     background: var(--color-violet);
