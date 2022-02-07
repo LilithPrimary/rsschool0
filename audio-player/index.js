@@ -1,4 +1,7 @@
 import tracks from './assets/script/tracks.js'
+import score from './assets/script/score.js'
+
+console.log(score);
 
 // CACHING
 tracks.forEach(el => {
