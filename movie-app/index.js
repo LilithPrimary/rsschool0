@@ -1,3 +1,6 @@
+import selfScore from "./assets/script/selfscore.js";
+console.log(selfScore);
+
 const movies = document.querySelector(".movies");
 const search = document.querySelector(".search");
 const logo = document.querySelector(".header__logo");
@@ -103,7 +106,9 @@ search.addEventListener("search", (e) => {
     if (search.value !== "") {
         const value = search.value;
         getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=${apiKey}`);        
-        search.value = "";
     }
 })
-logo.addEventListener("click", () => getPost(urlMostPop).catch(err => console.log(err)));
+logo.addEventListener("click", () => {
+    search.value= "";
+    getPost(urlMostPop).catch(err => console.log(err));
+});
