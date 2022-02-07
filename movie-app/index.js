@@ -99,16 +99,31 @@ function emptyResult() {
     emptyResult.style.color = "#684870";
     movies.append(emptyResult);
 }
-
-getPost(urlMostPop).catch(err => console.log("ошибочка", err));
+function tryLater() {
+    movies.innerHTML = "";
+    const emptyResult = document.createElement("div");
+    emptyResult.textContent = "Someting with API. Try again later";
+    emptyResult.style.color = "#684870";
+    movies.append(emptyResult);
+}
+getPost(urlMostPop).catch(err => {
+    console.log(err);
+    tryLater();
+});
 
 search.addEventListener("search", (e) => {
     if (search.value !== "") {
         const value = search.value;
-        getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=${apiKey}`);        
+        getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=${apiKey}`).catch(err => {
+            console.log(err);
+            tryLater();
+        });        
     }
 })
 logo.addEventListener("click", () => {
     search.value= "";
-    getPost(urlMostPop).catch(err => console.log(err));
+    getPost(urlMostPop).catch(err => {
+        console.log(err);
+        tryLater();
+    });
 });
