@@ -11,6 +11,7 @@
   margin: 0;
   border: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 a {
   text-decoration: none;
