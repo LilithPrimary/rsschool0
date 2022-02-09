@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap&subset=cyrillic-ext" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/svg/favicon.svg" />
+</head>
+<body>
+    <header>
+        <div class="container header__container">
+            <div class="wrapper score__wrapper">
+                <span class="score-text">SCORE:</span>
+                <span class="score">0</span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container main__container">
+            <div class="wrapper game__wrapper">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container footer__container">
+            <div class="wrapper footer__wrapper">
+                <button class="footer__button play__button">
+                    <svg class="link play">
+                        <use xlink:href="assets/svg/sprite.svg#play"></use>
+                    </svg>
+                </button>
+                <button class="footer__button mute__button">
+                    <svg class="link mute">
+                        <use xlink:href="assets/svg/sprite.svg#unmute"></use>
+                    </svg>
+                </button>
+                <span class="footer__span copy">©</span>
+                <span class="footer__span year">2022</span>
+                <a target="_blank" href="https://rs.school/js-stage0/" class="link">
+                    <svg class="rslogo">
+                        <use xlink:href="assets/svg/sprite.svg#rslogo"></use>
+                    </svg> 
+                </a>
+                <a target="_blank" href="https://github.com/lilithprimary" class="link">LilithPrimary</a>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="index.js"></script>
+</body>
+</html>

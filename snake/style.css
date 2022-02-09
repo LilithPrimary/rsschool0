@@ -1,0 +1,120 @@
+:root {
+    --color-hover: rgb(254, 204, 0);
+    --color-white: #fff;
+    --center-burger: 12.3px;
+  }  
+
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  scroll-behavior: smooth;
+  background-color: transparent;
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: normal;
+  color: rgb(255,255,255);
+  font-family: 'Rubik';
+  font-weight: 400;
+  font-style: normal;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+html{
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+.container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1920px;
+}
+.header__container {
+    position: relative;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.score__wrapper {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+    z-index: 10;
+    column-gap: 20px;
+}
+.main__container {
+    height: 100vh;
+    padding: 100px;
+}
+canvas {
+    border: solid 5px #0F2027;
+}
+.footer__container {
+    position: relative;
+}
+.footer__wrapper {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    column-gap: 20px;
+}
+.footer__button {
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.footer__button svg {
+    height: 100%;
+    width: 100%;
+}
+.link {
+    fill: white;
+    color: inherit;
+    transition: .3s;
+}
+.link:hover {
+    fill: yellow;
+    color: yellow;
+}
+.rslogo {
+    width: 30px;
+    height: 30px;
+}
+
+@media(max-width: 768px) {
+
+}
