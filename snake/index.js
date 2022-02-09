@@ -7,17 +7,11 @@ wrapper.append(canvas);
 const ctx = canvas.getContext("2d");
 canvas.width = 460;
 canvas.height = 460;
-let interval = 300;
 const box = 20;
 let countX = canvas.width / box;
 let countY = canvas.height / box;
-let dir = "";
-const snake = [];
-snake[0] = {
-    x: 0,
-    y: (countY-1) * box
-}
-let food = foodCoor();
+let dir, interval, snake, food;
+let game;
 let music = createMusic("./assets/audio/music.mp3");
 music.loop = true;
 let eatSound = createMusic("./assets/audio/eat.wav");
@@ -37,6 +31,19 @@ function setVolume() {
         isMute = true;
         eatSound.volume = 0;
         muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#mute"
+    }
+}
+
+function playPause() {
+    if (isPlay) {
+        music.pause();
+        isPlay = false;
+        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play"
+    } else {
+        music.volume = 0.1;
+        music.play();
+        isPlay = true;
+        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
     }
 }
 
@@ -62,6 +69,7 @@ function foodCoor() {
 }
 
 function drawGame() {
+    let end = false;
     let snakeHead = {
         x: snake[0].x,
         y: snake[0].y
@@ -78,14 +86,14 @@ function drawGame() {
         ctx.fillStyle = snakeHead.x === el.x && snakeHead.y === el.y ? "green" : "white";
         ctx.fillRect(el.x, el.y, box, box);
         if (i != 0 && snakeHead.x === el.x && snakeHead.y === el.y) {
-            endGame(); return;
+            end = endGame();
         }
     })
     if (snakeHead.x === food.x && snakeHead.y === food.y) {
         food = foodCoor();
         eatSound.play();
         score.textContent = +score.textContent + 1;
-        interval -= 2;
+        interval -= 4;
     } else {
         snake.pop();
     }
@@ -95,16 +103,52 @@ function drawGame() {
     if (dir === "down") snakeHead.y += box;
     snake.unshift(snakeHead);
     if (snakeHead.x < 0 || snakeHead.x >= canvas.width || snakeHead.y < 0 || snakeHead.y >= canvas.height) {
-        endGame(); return;
+        end = endGame();
     }
     clearInterval(game);
+    if (end) return;
     game = setInterval(drawGame, interval);
 }
 
 
 
 function endGame() {
-    clearInterval(game);
+    clearInterval(game);   
+    let message = document.createElement("div");
+    message.classList.add("message-wrapper");
+    let scoreTitle = document.createElement("h3");
+    scoreTitle.classList.add("score-title");
+    scoreTitle.textContent = score.textContent;
+    let text = document.createElement("p");
+    text.classList.add("message");
+    switch (true) {
+        case +score.textContent < 20: text.textContent = "LOOOOOOOSER!! Try one more time?"; break;
+        case +score.textContent >= 40: text.textContent = "You're so COOL!! One more time?"; break;
+        default: text.textContent = "Not bad! One more time?"
+    }
+    let btn = document.createElement("button");
+    btn.classList.add("button-omt");
+    btn.textContent = "Play";
+    message.append(scoreTitle, text, btn);
+    wrapper.append(message);
+    btn.addEventListener("click", () => {
+        newGame();
+        wrapper.removeChild(message);
+    });
+    return true;
+}
+
+function newGame() {
+    score.textContent = 0;
+    snake = [];
+    snake[0] = {
+        x: Math.floor(countX / 2)*box,
+        y: Math.floor(countY / 2)*box
+    }
+    interval = 300;
+    food = foodCoor();
+    dir = "";
+    drawGame();
 }
 
 function direction(e) {
@@ -116,17 +160,4 @@ function direction(e) {
     }
 }
 
-function playPause() {
-    if (isPlay) {
-        music.pause();
-        isPlay = false;
-        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play"
-    } else {
-        music.volume = 0.1;
-        music.play();
-        isPlay = true;
-        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
-    }
-}
-
-let game = setInterval(drawGame, interval);
+newGame();
