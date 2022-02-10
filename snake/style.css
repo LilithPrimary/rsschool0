@@ -142,8 +142,8 @@ canvas {
     transition: .3s;
 }
 .link:hover {
-    fill: yellow;
-    color: yellow;
+    fill: #6c0ba9;
+    color: #6c0ba9;
 }
 .rslogo {
     width: 30px;

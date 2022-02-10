@@ -5,9 +5,9 @@ const playBtn = document.querySelector(".play");
 const muteBtn = document.querySelector(".mute");
 wrapper.append(canvas);
 const ctx = canvas.getContext("2d");
-canvas.width = 460;
-canvas.height = 460;
-const box = 20;
+canvas.width = 480;
+canvas.height = 480;
+const box = 24;
 let countX = canvas.width / box;
 let countY = canvas.height / box;
 let dir, interval, snake, food;
@@ -15,22 +15,31 @@ let game;
 let music = createMusic("./assets/audio/music.mp3");
 music.loop = true;
 let eatSound = createMusic("./assets/audio/eat.wav");
+let looseSound = createMusic("./assets/audio/loose.wav")
 let isPlay = false;
 let isMute = false;
 let pause = false;
+let img = imgGenerator(); 
 
 document.addEventListener("keydown", direction);
 playBtn.addEventListener("click", playPause);
 muteBtn.addEventListener("click", setVolume);
 
+function imgGenerator() {
+    let img = new Image();
+    img.src = `./assets/img/${Math.ceil(Math.random()*8)}.png`;
+    return img;
+}
+imgGenerator();
+
 function setVolume() {
     if (isMute) {
         isMute = false;
-        eatSound.volume = 0.1;
+        eatSound.volume = looseSound.volume = 0.1;
         muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
     } else {
         isMute = true;
-        eatSound.volume = 0;
+        eatSound.volume = looseSound.volume = 0;
         muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#mute"
     }
 }
@@ -81,17 +90,20 @@ function drawGame() {
             ctx.fillRect(i*box, j*box, box, box);
         }
     }
-    ctx.fillStyle = "red";
-    ctx.fillRect(food.x, food.y, box, box);
+    ctx.drawImage(img, food.x, food.y);
     snake.forEach((el, i) => {
-        ctx.fillStyle = snakeHead.x === el.x && snakeHead.y === el.y ? "#6c0ba9" : "yellow";
-        ctx.fillRect(el.x, el.y, box, box);
+            ctx.beginPath();
+            ctx.fillStyle = i === 0? "yellow" : "#009846";
+            ctx.arc(el.x + box / 2, el.y + box / 2, box / 2, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.closePath();
         if (i != 0 && snakeHead.x === el.x && snakeHead.y === el.y) {
             end = endGame();
         }
     })
     if (snakeHead.x === food.x && snakeHead.y === food.y) {
         food = foodCoor();
+        img = imgGenerator();
         eatSound.play();
         score.textContent = +score.textContent + 1;
         interval -= 4;
@@ -132,6 +144,7 @@ function endGame() {
     message.append(scoreTitle, text, btn);
     wrapper.append(message);
     setTimeout (() => {
+        looseSound.play();
         message.style.transform = "scale(1)";
     }, 300);
     btn.addEventListener("click", () => {
@@ -158,13 +171,15 @@ function newGame() {
 }
 
 function direction(e) {
-    switch (true) {
-        case e.keyCode == 37 && dir != "right": dir = "left"; break;
-        case e.keyCode == 38 && dir != "down": dir = "up"; break;
-        case e.keyCode == 39 && dir != "left": dir = "right"; break;
-        case e.keyCode == 40 && dir != "up": dir = "down"; break;
-        case e.keyCode == 32: gamePause();
-    }
+    setTimeout(() => {
+        switch (true) {
+            case e.keyCode == 37 && dir != "right": dir = "left"; break;
+            case e.keyCode == 38 && dir != "down": dir = "up"; break;
+            case e.keyCode == 39 && dir != "left": dir = "right"; break;
+            case e.keyCode == 40 && dir != "up": dir = "down"; break;
+        }
+    }, 0);
+    if (e.keyCode == 32) gamePause();
 }
 
 function gamePause() {
