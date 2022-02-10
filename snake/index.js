@@ -17,6 +17,7 @@ music.loop = true;
 let eatSound = createMusic("./assets/audio/eat.wav");
 let isPlay = false;
 let isMute = false;
+let pause = false;
 
 document.addEventListener("keydown", direction);
 playBtn.addEventListener("click", playPause);
@@ -83,7 +84,7 @@ function drawGame() {
     ctx.fillStyle = "red";
     ctx.fillRect(food.x, food.y, box, box);
     snake.forEach((el, i) => {
-        ctx.fillStyle = snakeHead.x === el.x && snakeHead.y === el.y ? "green" : "white";
+        ctx.fillStyle = snakeHead.x === el.x && snakeHead.y === el.y ? "#6c0ba9" : "yellow";
         ctx.fillRect(el.x, el.y, box, box);
         if (i != 0 && snakeHead.x === el.x && snakeHead.y === el.y) {
             end = endGame();
@@ -110,19 +111,18 @@ function drawGame() {
     game = setInterval(drawGame, interval);
 }
 
-
-
 function endGame() {
     clearInterval(game);   
     let message = document.createElement("div");
     message.classList.add("message-wrapper");
+    message.style.transform = "scale(0)";
     let scoreTitle = document.createElement("h3");
     scoreTitle.classList.add("score-title");
     scoreTitle.textContent = score.textContent;
     let text = document.createElement("p");
     text.classList.add("message");
     switch (true) {
-        case +score.textContent < 20: text.textContent = "LOOOOOOOSER!! Try one more time?"; break;
+        case +score.textContent < 20: text.textContent = "Put yourself together! One more time!"; break;
         case +score.textContent >= 40: text.textContent = "You're so COOL!! One more time?"; break;
         default: text.textContent = "Not bad! One more time?"
     }
@@ -131,9 +131,15 @@ function endGame() {
     btn.textContent = "Play";
     message.append(scoreTitle, text, btn);
     wrapper.append(message);
+    setTimeout (() => {
+        message.style.transform = "scale(1)";
+    }, 300);
     btn.addEventListener("click", () => {
         newGame();
-        wrapper.removeChild(message);
+        message.style.transform = "scale(0)";
+        setTimeout (() => {
+            wrapper.removeChild(message);
+        }, 1000);
     });
     return true;
 }
@@ -157,7 +163,27 @@ function direction(e) {
         case e.keyCode == 38 && dir != "down": dir = "up"; break;
         case e.keyCode == 39 && dir != "left": dir = "right"; break;
         case e.keyCode == 40 && dir != "up": dir = "down"; break;
+        case e.keyCode == 32: gamePause();
     }
 }
 
+function gamePause() {
+    if (pause) {
+        pause = false;
+        game = setInterval(drawGame, interval);
+        wrapper.removeChild(wrapper.lastElementChild);
+
+    } else {
+        pause = true;
+        clearInterval(game);
+        let pauseWrap = document.createElement("div");
+        pauseWrap.classList.add("message-wrapper");
+        pauseWrap.style.background = "transparent";
+        let text = document.createElement("h3");
+        text.classList.add("score-title");
+        text.textContent = "PAUSE";
+        pauseWrap.append(text);
+        wrapper.append(pauseWrap);
+    }
+}
 newGame();
