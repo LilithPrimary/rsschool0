@@ -10,7 +10,7 @@ canvas.height = 480;
 const box = 24;
 let countX = canvas.width / box;
 let countY = canvas.height / box;
-let dir, interval, snake, food;
+let dir, interval, snake, snakeHead, food, privDir;
 let game;
 let music = createMusic("./assets/audio/music.mp3");
 music.loop = true;
@@ -19,7 +19,7 @@ let looseSound = createMusic("./assets/audio/loose.wav")
 let isPlay = false;
 let isMute = false;
 let pause = false;
-let img = imgGenerator(); 
+let img = imgGenerator();
 
 document.addEventListener("keydown", direction);
 playBtn.addEventListener("click", playPause);
@@ -79,11 +79,9 @@ function foodCoor() {
 }
 
 function drawGame() {
+    let prEl = {};
     let end = false;
-    let snakeHead = {
-        x: snake[0].x,
-        y: snake[0].y
-    }
+    snakeHead = Object.assign({}, snake[0]);
     for (let i = 0; i < countX; i++) {
         for (let j = 0; j < countY; j++) {
             ctx.fillStyle = (i%2 == 0 && j%2 == 0) || ((i%2 != 0 && j%2 != 0)) ? "#0F2027" : "#2C5364";
@@ -97,9 +95,6 @@ function drawGame() {
             ctx.arc(el.x + box / 2, el.y + box / 2, box / 2, 0, Math.PI * 2, true);
             ctx.fill();
             ctx.closePath();
-        if (i != 0 && snakeHead.x === el.x && snakeHead.y === el.y) {
-            end = endGame();
-        }
     })
     if (snakeHead.x === food.x && snakeHead.y === food.y) {
         food = foodCoor();
@@ -108,16 +103,30 @@ function drawGame() {
         score.textContent = +score.textContent + 1;
         interval -= 4;
     } else {
-        snake.pop();
+        prEl = snake.pop();
     }
     if (dir === "right") snakeHead.x += box;
     if (dir === "left") snakeHead.x -= box;
     if (dir === "up") snakeHead.y -= box;
     if (dir === "down") snakeHead.y += box;
     snake.unshift(snakeHead);
+    if ((snake.length > 2 && snakeHead.x === snake[2]["x"] && snakeHead.y === snake[2]["y"]) ||
+    (snake.length < 3 && snakeHead.x === prEl["x"] && snakeHead.y === prEl["y"])) {
+        switch (true) {
+            case ["left", "right"].includes(dir) && privDir === "up": snakeHead.y -= box; break;
+            case ["left", "right"].includes(dir) && privDir === "down": snakeHead.y += box; break;
+            case ["up", "down"].includes(dir) && privDir === "left": snakeHead.x -= box; break;
+            case ["up", "down"].includes(dir) && privDir === "right": snakeHead.x += box; break;
+        }
+    }
     if (snakeHead.x < 0 || snakeHead.x >= canvas.width || snakeHead.y < 0 || snakeHead.y >= canvas.height) {
         end = endGame();
     }
+    snake.forEach((el, i) => {
+        if (i != 0 && snakeHead.x === el.x && snakeHead.y === el.y) {           
+            end = endGame();
+        }
+    })
     clearInterval(game);
     if (end) return;
     game = setInterval(drawGame, interval);
@@ -160,26 +169,26 @@ function endGame() {
 function newGame() {
     score.textContent = 0;
     snake = [];
-    snake[0] = {
+    snake.push ({
         x: Math.floor(countX / 2)*box,
         y: Math.floor(countY / 2)*box
-    }
-    interval = 300;
+    });
+    interval = 500;
     food = foodCoor();
     dir = "";
+    privDir = "";
     drawGame();
 }
 
 function direction(e) {
-    setTimeout(() => {
-        switch (true) {
-            case e.keyCode == 37 && dir != "right": dir = "left"; break;
-            case e.keyCode == 38 && dir != "down": dir = "up"; break;
-            case e.keyCode == 39 && dir != "left": dir = "right"; break;
-            case e.keyCode == 40 && dir != "up": dir = "down"; break;
-        }
-    }, 0);
-    if (e.keyCode == 32) gamePause();
+    privDir = dir;
+    switch (true) {
+        case e.keyCode == 37 && dir != "right": dir = "left"; break;
+        case e.keyCode == 38 && dir != "down": dir = "up"; break;
+        case e.keyCode == 39 && dir != "left": dir = "right"; break;
+        case e.keyCode == 40 && dir != "up": dir = "down"; break;
+        case e.keyCode == 32: gamePause();
+    }
 }
 
 function gamePause() {
