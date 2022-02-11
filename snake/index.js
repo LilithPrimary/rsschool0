@@ -173,7 +173,7 @@ function newGame() {
         x: Math.floor(countX / 2)*box,
         y: Math.floor(countY / 2)*box
     });
-    interval = 500;
+    interval = 300;
     food = foodCoor();
     dir = "";
     privDir = "";
