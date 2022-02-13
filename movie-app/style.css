@@ -108,9 +108,15 @@ body {
     transition: .3s;
     cursor: pointer;
     font-size: inherit;
+    fill: var(--color-white);
 }
 .link:hover {
     color: var(--color-blue);
+    fill: var(--color-blue);
+}
+.rslogo {
+    width: 30px;
+    height: 30px;
 }
 .logo-container {
     position: relative;
@@ -432,6 +438,7 @@ button.remove{
         height: 140px;
     }
     .footer__center {
+        width: min-content;
         margin: 0;
     }
     .footer__content {
