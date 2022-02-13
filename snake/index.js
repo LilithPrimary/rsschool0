@@ -111,12 +111,16 @@ function drawGame() {
     if (dir === "down") snakeHead.y += box;
     snake.unshift(snakeHead);
     if ((snake.length > 2 && snakeHead.x === snake[2]["x"] && snakeHead.y === snake[2]["y"]) ||
-    (snake.length < 3 && snakeHead.x === prEl["x"] && snakeHead.y === prEl["y"])) {
+    (snake.length < 3 && snakeHead.x === prEl["x"] && snakeHead.y === prEl["y"])) { // отлавливаем, чтобы змея не ползала сама по себе
         switch (true) {
-            case ["left", "right"].includes(dir) && privDir === "up": snakeHead.y -= box; break;
-            case ["left", "right"].includes(dir) && privDir === "down": snakeHead.y += box; break;
-            case ["up", "down"].includes(dir) && privDir === "left": snakeHead.x -= box; break;
-            case ["up", "down"].includes(dir) && privDir === "right": snakeHead.x += box; break;
+            case ["left"].includes(dir) && privDir === "up": snakeHead.y -= box; snakeHead.x += box; break;
+            case ["right"].includes(dir) && privDir === "up": snakeHead.y -= box; snakeHead.x -= box; break;
+            case ["left"].includes(dir) && privDir === "down": snakeHead.y += box; snakeHead.x += box; break;
+            case ["right"].includes(dir) && privDir === "down": snakeHead.y += box; snakeHead.x -= box; break;
+            case ["up"].includes(dir) && privDir === "left": snakeHead.x -= box; snakeHead.y += box; break;
+            case ["down"].includes(dir) && privDir === "left": snakeHead.x -= box; snakeHead.y -= box; break;
+            case ["up"].includes(dir) && privDir === "right": snakeHead.x += box; snakeHead.y += box; break;
+            case ["down"].includes(dir) && privDir === "right": snakeHead.x += box; snakeHead.y -= box; break;
         }
     }
     if (snakeHead.x < 0 || snakeHead.x >= canvas.width || snakeHead.y < 0 || snakeHead.y >= canvas.height) {
