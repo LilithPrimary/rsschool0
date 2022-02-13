@@ -10,18 +10,30 @@ nDate.setMonth(nDate.getMonth() - 1);
 const [pDay, pMonth, pYear] = (nDate.toLocaleDateString()).split(".");
 const apiKey = "dac505e3f24f28b559a5d0744b792cfa";
 const urlMostPop = `https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${pYear}-${pMonth}-${pDay}&primary_release_date.lte=${nyear}-${nmonth}-${nday}&api_key=${apiKey}`;
+let urlSearch = urlMostPop;
+let page = 2;
 
 async function getPost (url) {
     const response = await fetch (url);
     const data = await response.json();
     const dataAr = data.results;
-    movies.innerHTML = "";
     if (dataAr.length === 0) {
         emptyResult();
     } else {
+        var button = document.createElement("button");
+        button.classList.add("button");
+        button.textContent = "More";
         dataAr.forEach(el => movies.append(createMovie(el)));
+        movies.append(button);
     }
     showDescription()
+    button.addEventListener("click", (e) => morePages(e));
+}
+
+function morePages(e) {
+    e.target.parentNode.removeChild(e.target);
+    getPost (urlSearch + `&page=${page}`);
+    page++;   
 }
 
 function showDescription() {
@@ -115,15 +127,21 @@ getPost(urlMostPop).catch(err => {
 
 search.addEventListener("search", (e) => {
     if (search.value !== "") {
+        movies.innerHTML = "";
+        page = 2;
         const value = search.value;
-        getPost(`https://api.themoviedb.org/3/search/movie?query=${value}&api_key=${apiKey}`).catch(err => {
+        urlSearch = `https://api.themoviedb.org/3/search/movie?query=${value}&api_key=${apiKey}`;
+        getPost(urlSearch).catch(err => {
             console.log(err);
             tryLater();
         });        
     }
 })
 logo.addEventListener("click", () => {
+    movies.innerHTML = "";
+    urlSearch = urlMostPop;
     search.value= "";
+    page = 2;
     getPost(urlMostPop).catch(err => {
         console.log(err);
         tryLater();

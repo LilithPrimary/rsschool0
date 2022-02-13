@@ -395,6 +395,24 @@ body {
     }
 }
 
+button {
+    width: 100%;
+    background-color: var(--color-violet);
+    height: 30px;
+    color: var(--color-white);
+    font-family: inherit;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover {
+    color: var(--color-yellow);
+    box-shadow: 0 0 5px var(--color-black);
+}
+button:active {
+    box-shadow: inset 0 0 10px var(--color-black);
+    font-size: 15px;
+}
  
 @media (max-width: 768px) {
     .header__title{
