@@ -28,6 +28,14 @@ function showDescription() {
     const posters = document.querySelectorAll(".movie__poster");
     const descriptions = document.querySelectorAll(".description-container");
     posters.forEach(el => el.addEventListener("click", () => {
+        posters.forEach(el => {
+            if (el.nextElementSibling.classList.contains("active")) {
+                setTimeout (() => {
+                    el.classList.add("active");
+                    el.nextElementSibling.classList.remove("active");
+                }, 100)
+            }
+        })
         el.classList.toggle("active");
         el.nextElementSibling.classList.toggle("active");
     }))
@@ -72,12 +80,6 @@ function createMovie(el) {
         console.log(err);
         year = "unknown";
     }
-    // if (el.hasOwnProperty("release_date")) {
-    //     [year, ...other] = el.release_date.split("-");
-    // }
-    // else {
-    //     year = "unknown";
-    // }
     movieYear.textContent = year;
     const movieRating = document.createElement("span");
     movieRating.classList.add("movie__rating");
