@@ -404,6 +404,8 @@ button {
     font-weight: 400;
     cursor: pointer;
     font-size: 16px;
+    transition: transform .3s;
+    transform: scale(1);
 }
 button:hover {
     color: var(--color-yellow);
@@ -414,6 +416,10 @@ button:active {
     font-size: 15px;
 }
  
+button.remove{
+    transform: scale(0);
+}
+
 @media (max-width: 768px) {
     .header__title{
         display: none;

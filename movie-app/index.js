@@ -31,7 +31,10 @@ async function getPost (url) {
 }
 
 function morePages(e) {
-    e.target.parentNode.removeChild(e.target);
+    e.target.classList.add("remove");
+    setTimeout (() => {
+        e.target.parentNode.removeChild(e.target);
+    }, 5000)
     getPost (urlSearch + `&page=${page}`);
     page++;   
 }
