@@ -103,6 +103,7 @@ body {
   color: var(--color-white);
   cursor: pointer;
   transition: .3s;
+  fill: var(--color-white)
 }
 .result {
   background: transparent;
@@ -147,7 +148,10 @@ body {
   gap: 25px;
   justify-content: space-between;
 }
-
+.rslogo {
+  width: 30px;
+  height: 30px;
+}
 .link:hover {
   fill: orange;
   color: orange;

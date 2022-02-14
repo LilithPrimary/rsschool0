@@ -1,3 +1,5 @@
+import selfscore from "./assets/script/selfscore.js";
+console.log(selfscore);
 const grid = document.querySelector(".grid");
 const textCont = document.querySelector(".text-container");
 const cells = document.querySelectorAll(".cell");
@@ -124,7 +126,7 @@ function showResult(result, line) {
     if (line != "") {
         crossLine.classList.add(line);
     }
-    title.textContent = result;
+    title.textContent = result +` in ${counter} steps`;
     setTimeout(() => {
         finishSound.play();
         grid.classList.add("hide");
@@ -162,7 +164,6 @@ function newGame(id) {
     win = false;
     grid.classList.remove("hide");
     textCont.classList.add("hide");
-    console.log(player);
     if (player === "computer") {
         compTurn();
     }
