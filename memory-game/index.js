@@ -1,52 +1,24 @@
-import cards from './assets/script/cards.js'
+import selfscore from './assets/script/selfscore.js';
+import cards from './assets/script/cards.js';
 
+console.log(selfscore);
 const gameField = document.querySelector(".game__wrapper");
 const button = document.querySelector(".button");
 const player1 = document.querySelector(".player1").lastElementChild;
 const player2 = document.querySelector(".player2").lastElementChild;
 const playBtn = document.querySelector(".play");
 const muteBtn = document.querySelector(".mute");
+const ngBtn = document.querySelector(".header__title");
 let player = player1;
 let match, noMatch, draw, winSound, music;
 let isPlay = false;
 let isMute = true;
+let result = [];
 
-sound();
-
-document.body.firstElementChild.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.addEventListener("click", () => newGame());
+ngBtn.addEventListener("click", () => newGame());
+ngBtn.nextElementSibling.addEventListener("click", showScoreTable)
 button.addEventListener("click", () => newGame());
-playBtn.addEventListener("click", () => playPause());
 
-function sound () {
-    match = new Audio();
-    match.src = "./assets/audio/match.wav";
-    noMatch = new Audio();
-    noMatch.src = "./assets/audio/no-match.wav";
-    draw = new Audio();
-    draw.src = "./assets/audio/draw.wav";
-    winSound = new Audio();
-    winSound.src = "./assets/audio/win.wav";
-    music = new Audio();
-    music.src = "./assets/audio/music.mp3";
-    music.loop = true;
-    music.volume = 0.1;
-    setVolume();
-}
-
-muteBtn.addEventListener("click", () => setVolume());
-
-function setVolume() {
-    if (isMute) {
-        isMute = false;
-        match.volume = 0.1;
-        noMatch.volume = draw.volume = winSound.volume = 0.3;
-        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
-    } else {
-        isMute = true;
-        match.volume = noMatch.volume = draw.volume = winSound.volume = 0;
-        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#mute"
-    }
-}
 Array.prototype.shuffle = function() {
     for (var i = this.length - 1; i > 0; i--) {
         var num = Math.floor(Math.random() * (i + 1));
@@ -58,6 +30,46 @@ Array.prototype.shuffle = function() {
         return 0.5 - Math.random();
     });
     return this;
+}
+
+function showScoreTable() {
+    const tableWrapper = document.createElement("div");
+    tableWrapper.classList.add("flag", "info-table", "hidden");
+    const ol = document.createElement("ol");
+    if (result.length < 10) {
+        for (let i = result.length - 1; i >= 0; i--) {
+            let li = document.createElement("li");
+            let span1 = document.createElement("span");
+            span1.textContent = result[i][0]
+            let span2 = document.createElement("span");
+            span2.textContent = `score: ${result[i][1]}`;
+            span2.style.color = "rgb(99,28,108)";
+            span2.style.fontWeight = 700;
+            li.append(span1, span2)
+            ol.append(li);
+        }
+    } else {
+        for (let i = result.length - 1; i >= result.length - 10; i--) {
+            let li = document.createElement("li");
+            let span1 = document.createElement("span");
+            span1.textContent = result[i][0]
+            let span2 = document.createElement("span");
+            span2.textContent = `score: ${result[i][1]}`;
+            span2.style.color = "rgb(99,28,108)";
+            span2.style.fontWeight = 700;
+            li.append(span1, span2)
+            ol.append(li);
+        }
+    }
+    tableWrapper.append(ol);
+    setTimeout(() => tableWrapper.classList.remove("hidden"), 300)
+    gameField.parentNode.append(tableWrapper);
+    gameField.parentNode.addEventListener("click", () => {
+        if (gameField.parentNode.lastElementChild.classList.contains("flag")) {
+            tableWrapper.classList.add("hidden")
+            setTimeout(() => gameField.parentNode.removeChild(tableWrapper), 700)
+        }
+    })
 }
 
 function fillCardArray() {
@@ -145,17 +157,21 @@ function win() {
     switch (true) {
         case +player1.textContent === +player2.textContent:
             setTimeout(() => draw.play(), 1000);
-            button.previousElementSibling.textContent = "DRAW! One more time?"; break;
+            button.previousElementSibling.textContent = "DRAW! One more time?";
+            result.push([`DRAW!`, `${player1.textContent} - ${player2.textContent}`]); break;
         case +player1.textContent > +player2.textContent:
             setTimeout(() => winSound.play(), 1000);
-            button.previousElementSibling.textContent = "Player 1 wins! One more time?"; break;
+            button.previousElementSibling.textContent = `Player 1 wins with score ${player1.textContent}! One more time?`; 
+            result.push(["Player 1", player1.textContent]); break;
         default:
             setTimeout(() => winSound.play(), 1000);
-            button.previousElementSibling.textContent = "Player 2 wins! One more time?";
+            button.previousElementSibling.textContent = `Player 2 wins with score ${player2.textContent}! One more time?`;
+            result.push(["Player 2", player2.textContent]);
     }
     setTimeout(() => {
         button.parentNode.classList.remove("hidden");
     }, 1000)
+    console.log(result);
 };
 
 function newGame() {
@@ -169,6 +185,36 @@ function newGame() {
         button.parentNode.classList.add("hidden");
     }, 500);
 }
+
+
+// Sound & music
+function setVolume() {
+    if (isMute) {
+        isMute = false;
+        match.volume = 0.1;
+        noMatch.volume = draw.volume = winSound.volume = 0.3;
+        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
+    } else {
+        isMute = true;
+        match.volume = noMatch.volume = draw.volume = winSound.volume = 0;
+        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#mute"
+    }
+}
+function sound () {
+    match = new Audio();
+    match.src = "./assets/audio/match.wav";
+    noMatch = new Audio();
+    noMatch.src = "./assets/audio/no-match.wav";
+    draw = new Audio();
+    draw.src = "./assets/audio/draw.wav";
+    winSound = new Audio();
+    winSound.src = "./assets/audio/win.wav";
+    music = new Audio();
+    music.src = "./assets/audio/music.mp3";
+    music.loop = true;
+    music.volume = 0.1;
+    setVolume();
+}
 function playPause() {
     if (isPlay) {
         music.pause();
@@ -180,3 +226,19 @@ function playPause() {
         playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
     }
 }
+playBtn.addEventListener("click", () => playPause());
+muteBtn.addEventListener("click", () => setVolume());
+sound();
+
+// Local storage
+function getLocalStorage() {
+    if(localStorage.getItem('result')) {
+        const res = localStorage.getItem('result');
+        result = JSON.parse(res);
+    }
+}  
+function setLocalStorage() {
+    localStorage.setItem('result', JSON.stringify(result));
+}
+window.addEventListener('load', getLocalStorage)  
+window.addEventListener('beforeunload', setLocalStorage);
