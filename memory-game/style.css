@@ -67,7 +67,6 @@ html {
     top: 10px;
     left: 50%;
     transform: translate(-50%);
-    cursor: pointer;
     z-index: 10;
     column-gap: 20px;
 }
@@ -80,6 +79,7 @@ html {
     font-weight: 700;
     white-space: nowrap;
     transition: .3s;
+    cursor: pointer;
 }
 .score {
     background: transparent;
