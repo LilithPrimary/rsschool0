@@ -36,30 +36,35 @@ function showScoreTable() {
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("flag", "info-table", "hidden");
     const ol = document.createElement("ol");
-    if (result.length < 10) {
-        for (let i = result.length - 1; i >= 0; i--) {
-            let li = document.createElement("li");
-            let span1 = document.createElement("span");
-            span1.textContent = result[i][0]
-            let span2 = document.createElement("span");
-            span2.textContent = `score: ${result[i][1]}`;
-            span2.style.color = "rgb(99,28,108)";
-            span2.style.fontWeight = 700;
-            li.append(span1, span2)
-            ol.append(li);
-        }
-    } else {
-        for (let i = result.length - 1; i >= result.length - 10; i--) {
-            let li = document.createElement("li");
-            let span1 = document.createElement("span");
-            span1.textContent = result[i][0]
-            let span2 = document.createElement("span");
-            span2.textContent = `score: ${result[i][1]}`;
-            span2.style.color = "rgb(99,28,108)";
-            span2.style.fontWeight = 700;
-            li.append(span1, span2)
-            ol.append(li);
-        }
+    switch (true) {
+        case result.length === 0:
+            ol.textContent = "There're no game results here yet";
+            break;
+        case result.length > 10:
+            for (let i = result.length - 1; i >= result.length - 10; i--) {
+                let li = document.createElement("li");
+                let span1 = document.createElement("span");
+                span1.textContent = result[i][0]
+                let span2 = document.createElement("span");
+                span2.textContent = `score: ${result[i][1]}`;
+                span2.style.color = "rgb(99,28,108)";
+                span2.style.fontWeight = 700;
+                li.append(span1, span2)
+                ol.append(li);
+            };
+            break;
+        default:
+            for (let i = result.length - 1; i >= 0; i--) {
+                let li = document.createElement("li");
+                let span1 = document.createElement("span");
+                span1.textContent = result[i][0]
+                let span2 = document.createElement("span");
+                span2.textContent = `score: ${result[i][1]}`;
+                span2.style.color = "rgb(99,28,108)";
+                span2.style.fontWeight = 700;
+                li.append(span1, span2)
+                ol.append(li);
+            };
     }
     tableWrapper.append(ol);
     setTimeout(() => tableWrapper.classList.remove("hidden"), 300)
