@@ -2,7 +2,7 @@ const grid = document.querySelector(".grid");
 const textCont = document.querySelector(".text-container");
 const cells = document.querySelectorAll(".cell");
 const title = document.querySelector(".text");
-const button = document.querySelector(".button");
+const button = document.querySelectorAll(".button");
 const crossLine = document.querySelector(".cross-line");
 const headerTitle = document.querySelector(".title");
 const zeroSound = document.querySelector(".zero-sound");
@@ -10,25 +10,72 @@ const crossSound = document.querySelector(".cross-sound");
 const finishSound = document.querySelector(".finish-sound");
 const music = document.querySelector(".bg-sound");
 const playBtn = document.querySelector(".button__play");
+const resultsBtn = document.querySelector(".result");
 music.volume = 0.1;
 music.loop = true;
 zeroSound.volume = 0.2;
 crossSound.volume = 0.2;
 finishSound.volume = 0.2;
+let results = [];
 let isPlay = false;
 let win = false;
 let counter = 0;
 const zero = "./assets/svg/zero.svg";
 const cross = "./assets/svg/cross.svg";
+let player;
 
-grid.addEventListener ("click", e => {
-    if (counter < 9 && !win) {
+resultsBtn.addEventListener("click", () => showResultsTable());
+
+function showResultsTable() {
+    const container = document.createElement("div");
+    container.classList.add("res-container");
+    const ol = document.createElement("ol");
+    if (results.length < 10) {
+        for (let i = results.length - 1; i >= 0; i--) {
+            let li = document.createElement("li");
+            li.textContent = results[i];
+            ol.append(li);
+        }
+    } else {
+        for (let i = results.length - 1; i >= results.length - 10; i--) {
+            let li = document.createElement("li");
+            li.textContent = results[i];
+            ol.append(li);
+        }
+    }
+    container.append(ol);
+    grid.parentNode.append(container);
+    grid.parentNode.parentNode.addEventListener("click", () => {
+        if (grid.parentNode.lastElementChild.classList.contains("res-container")) {
+            grid.parentNode.removeChild(container);
+        }
+    })
+}
+
+grid.addEventListener ("click", (e) => {
+    if (counter < 9 && !win && player === "human" && !e.target.contains(e.target.lastElementChild)) {
         if (e.target.classList.contains("cell")) {
             addSign(e.target);
             checkWinner();
+            player = "computer";
+            compTurn();
         } 
     } 
 })
+
+function compTurn() {
+    if (win || player !== "computer") return;
+    let cell = Math.floor(Math.random()*9);
+    if (cells[cell].contains(cells[cell].lastElementChild)) {
+        compTurn();
+    } else {
+        setTimeout(() => {
+            addSign(cells[cell]);
+            checkWinner();
+            player = "human";
+        }, 300);
+    }
+}
 
 function addSign(element) {
     if (!element.contains(element.lastElementChild)) {
@@ -55,13 +102,21 @@ function checkWinner() {
     ];
     for (let el of winCombination) {
         if (cells[el[0]].id === "cross" && cells[el[1]].id === "cross" && cells[el[2]].id === "cross") {
-            win = true; showResult("Crosses wins", el[3]); return;
+            win = true;
+            showResult("Crosses wins", el[3]);
+            results.push(player + " | crosses")
+            return;
         } else if (cells[el[0]].id === "zero" && cells[el[1]].id === "zero" && cells[el[2]].id === "zero") {
-            win = true; showResult("Zeros wins", el[3]); return;
+            win = true;
+            showResult("Zeros wins", el[3]);
+            results.push(player + " | zeros");
+            return;
         }
     }
     if (counter === 9) {
-        showResult("DRAW", ""); return;
+        showResult("DRAW", "");
+        results.push("draw");
+        return;
     }
 }
 
@@ -80,21 +135,39 @@ function showResult(result, line) {
     }, 500)
 }
 
-button.addEventListener("click", () => newGame());
-headerTitle.addEventListener("click", () => newGame());
-playBtn.addEventListener("click", () => playPause());
+function showButtonContainer() {
+    grid.classList.add("hide");
+    textCont.classList.remove("hide");
+}
 
-function newGame() {
+button.forEach(el => el.addEventListener("click", (e) => {
+    newGame(e.target.id);
+}));
+
+
+headerTitle.addEventListener("click", () =>{
+    title.textContent = "Choose";
+    setTimeout(() => {
+        showButtonContainer ();
+    }, 500)
+});
+
+function newGame(id) {
     cells.forEach(el => {
         el.innerHTML = "";
         el.id = "null";
     });
+    player = id;
     counter = 0;
     win = false;
     grid.classList.remove("hide");
     textCont.classList.add("hide");
+    console.log(player);
+    if (player === "computer") {
+        compTurn();
+    }
 }
-
+playBtn.addEventListener("click", () => playPause());
 function playPause() {
     if (isPlay) {
         music.pause();
@@ -106,3 +179,17 @@ function playPause() {
         playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
     }
 }
+
+function getLocalStorage() {
+    if(localStorage.getItem('results')) {
+        const res = localStorage.getItem('results');
+        results = JSON.parse(res);
+    }
+}  
+function setLocalStorage() {
+    localStorage.setItem('results', JSON.stringify(results));
+}
+window.addEventListener('load', getLocalStorage)  
+window.addEventListener('beforeunload', setLocalStorage);
+title.textContent = "Choose";
+showButtonContainer();
