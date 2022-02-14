@@ -32,18 +32,23 @@ function showResultsTable() {
     const container = document.createElement("div");
     container.classList.add("res-container");
     const ol = document.createElement("ol");
-    if (results.length < 10) {
-        for (let i = results.length - 1; i >= 0; i--) {
-            let li = document.createElement("li");
-            li.textContent = results[i];
-            ol.append(li);
-        }
-    } else {
-        for (let i = results.length - 1; i >= results.length - 10; i--) {
-            let li = document.createElement("li");
-            li.textContent = results[i];
-            ol.append(li);
-        }
+    switch (true) {
+        case results.length === 0:
+            ol.textContent = "There're no game results here yet";
+            break;
+        case results.length > 10:
+            for (let i = results.length - 1; i >= results.length - 10; i--) {
+                let li = document.createElement("li");
+                li.textContent = results[i];
+                ol.append(li);
+            }
+            break;
+        default:
+            for (let i = results.length - 1; i >= 0; i--) {
+                let li = document.createElement("li");
+                li.textContent = results[i];
+                ol.append(li);
+            }
     }
     container.append(ol);
     grid.parentNode.append(container);
