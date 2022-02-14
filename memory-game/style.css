@@ -81,6 +81,11 @@ html {
     white-space: nowrap;
     transition: .3s;
 }
+.score {
+    background: transparent;
+    color: var(--color-white);
+    cursor: pointer;
+}
 .player__container {
     padding: 5px;
     display: flex;
@@ -129,6 +134,7 @@ html {
     align-items: center;
     justify-content: space-around;
     transition: .5s;
+    padding: 0 20px;
 }
 .info-table.hidden {
     transform: translate(-50%, -50%) scale(0);
@@ -138,6 +144,7 @@ html {
     font-size: 32px;
     color: var(--color-white);
     font-weight: 600;
+    text-align: center;
 }
 .button {
     background: var(--color-violet);
@@ -242,6 +249,37 @@ html {
 .rslogo {
     width: 30px;
     height: 30px;
+}
+
+ol {
+    counter-reset: li; 
+    font-family: inherit
+}
+ol li {
+    position: relative;
+    width: 200px;
+    margin: 0 0 6px 32px;
+    padding: 5px 8px;
+    background:#f6f6f6;
+    color: var(--color-black);
+    font-family: inherit;
+    display: flex;
+    justify-content: space-between;
+}
+ol li:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 32px;
+    padding: 4px 0;
+    border-top: 2px solid #666;
+    color: #fff;
+    background: #666;
+    font-weight: bold;
+    font-family: inherit;
+    text-align: center;
 }
 
 @media(max-width: 768px) {
