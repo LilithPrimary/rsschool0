@@ -12,6 +12,7 @@
   border: 0;
   box-sizing: border-box;
   user-select: none;
+  outline: none;
 }
 a {
   text-decoration: none;
@@ -67,12 +68,45 @@ html{
 }
 .score__wrapper {
     position: absolute;
-    top: 10px;
+    width: 480px;
+    top: 20px;
     left: 50%;
     transform: translate(-50%);
-    cursor: pointer;
     z-index: 10;
     column-gap: 20px;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+.score-button {
+    background: transparent;
+    font-family: inherit;
+}
+.name-input {
+    background: transparent;
+    color: var(--color-white);
+    padding-left: 10px;
+    height: 20px;
+    font-family: inherit;
+    outline: none;
+    transition: .3s;
+}
+.name-input.hidden {
+    display: none;
+}
+.name-input:focus {
+    border: solid 2px #6c0ba9;
+    border-radius: 5px;
+}
+.name-input::placeholder {
+    color: var(--color-white);
+}
+.player-name.hidden {
+    display: none;
+}
+.player-name {
+    color: yellow;
+    font-weight: 700;
 }
 .main__container {
     height: 100vh;
@@ -139,6 +173,7 @@ canvas {
 .link {
     fill: white;
     color: inherit;
+    cursor: pointer;
     transition: .3s;
 }
 .link:hover {
@@ -149,7 +184,36 @@ canvas {
     width: 30px;
     height: 30px;
 }
-
+ol {
+    counter-reset: li; 
+    font-family: inherit
+}
+ol li {
+    position: relative;
+    width: 200px;
+    margin: 0 0 6px 32px;
+    padding: 5px 8px;
+    background:#f6f6f6;
+    color: #0F2027;
+    font-family: inherit;
+    display: flex;
+    justify-content: space-between;
+}
+ol li:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 32px;
+    padding: 4px 0;
+    border-top: 2px solid #666;
+    color: #fff;
+    background: #666;
+    font-weight: bold;
+    font-family: inherit;
+    text-align: center;
+}
 @media(max-width: 768px) {
 
 }

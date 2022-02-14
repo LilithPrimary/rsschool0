@@ -1,3 +1,5 @@
+import selfscore from './assets/script/selfscore.js';
+console.log(selfscore);
 const wrapper = document.querySelector(".game__wrapper");
 const score = document.querySelector(".score");
 const canvas = document.createElement("canvas");
@@ -20,6 +22,8 @@ let isPlay = false;
 let isMute = false;
 let pause = false;
 let img = imgGenerator();
+let playerName = "Player";
+let scoreTable = [];
 
 document.addEventListener("keydown", direction);
 playBtn.addEventListener("click", playPause);
@@ -30,40 +34,54 @@ function imgGenerator() {
     img.src = `./assets/img/${Math.ceil(Math.random()*8)}.png`;
     return img;
 }
-imgGenerator();
 
-function setVolume() {
-    if (isMute) {
-        isMute = false;
-        eatSound.volume = looseSound.volume = 0.1;
-        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
-    } else {
-        isMute = true;
-        eatSound.volume = looseSound.volume = 0;
-        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#mute"
+document.querySelector(".score-button").addEventListener("click", showScoreTable);
+function showScoreTable() {
+    const tableWrapper = document.createElement("div");
+    tableWrapper.classList.add("message-wrapper", "flag");
+    tableWrapper.style.transform = "scale(0)";
+    const ol = document.createElement("ol");
+    scoreTable.sort((a, b) => a[1] - b[1]);
+    switch (true) {
+        case scoreTable.length === 0:
+            ol.textContent = "There're no game results here yet";
+            break;
+        case scoreTable.length > 10:
+            for (let i = scoreTable.length - 1; i >= scoreTable.length - 10; i--) {
+                let li = document.createElement("li");
+                let span1 = document.createElement("span");
+                span1.textContent = scoreTable[i][0]
+                let span2 = document.createElement("span");
+                span2.textContent = `score: ${scoreTable[i][1]}`;
+                span2.style.color = "rgb(99,28,108)";
+                span2.style.fontWeight = 700;
+                li.append(span1, span2)
+                ol.append(li);
+            };
+            break;
+        default:
+            for (let i = scoreTable.length - 1; i >= 0; i--) {
+                let li = document.createElement("li");
+                let span1 = document.createElement("span");
+                span1.textContent = scoreTable[i][0]
+                let span2 = document.createElement("span");
+                span2.textContent = `score: ${scoreTable[i][1]}`;
+                span2.style.color = "rgb(99,28,108)";
+                span2.style.fontWeight = 700;
+                li.append(span1, span2)
+                ol.append(li);
+            };
     }
+    tableWrapper.append(ol);
+    setTimeout (() => tableWrapper.style.transform = "scale(1)", 300);
+    wrapper.append(tableWrapper);
+    wrapper.parentNode.addEventListener("click", () => {
+        if (wrapper.lastElementChild.classList.contains("flag")) {
+            tableWrapper.style.transform = "scale(0)";
+            setTimeout(() => wrapper.removeChild(tableWrapper), 500)
+        }
+    })
 }
-
-function playPause() {
-    if (isPlay) {
-        music.pause();
-        isPlay = false;
-        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play"
-    } else {
-        music.volume = 0.1;
-        music.play();
-        isPlay = true;
-        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
-    }
-}
-
-function createMusic(path) {
-    let music = new Audio();
-    music.src = path;
-    music.volume = 0.2;
-    return music;
-}
-
 
 function foodCoor() {
     let food = {
@@ -111,12 +129,16 @@ function drawGame() {
     if (dir === "down") snakeHead.y += box;
     snake.unshift(snakeHead);
     if ((snake.length > 2 && snakeHead.x === snake[2]["x"] && snakeHead.y === snake[2]["y"]) ||
-    (snake.length < 3 && snakeHead.x === prEl["x"] && snakeHead.y === prEl["y"])) {
+    (snake.length < 3 && snakeHead.x === prEl["x"] && snakeHead.y === prEl["y"])) { // отлавливаем, чтобы змея не ползала сама по себе
         switch (true) {
-            case ["left", "right"].includes(dir) && privDir === "up": snakeHead.y -= box; break;
-            case ["left", "right"].includes(dir) && privDir === "down": snakeHead.y += box; break;
-            case ["up", "down"].includes(dir) && privDir === "left": snakeHead.x -= box; break;
-            case ["up", "down"].includes(dir) && privDir === "right": snakeHead.x += box; break;
+            case ["left"].includes(dir) && privDir === "up": snakeHead.y -= box; snakeHead.x += box; break;
+            case ["right"].includes(dir) && privDir === "up": snakeHead.y -= box; snakeHead.x -= box; break;
+            case ["left"].includes(dir) && privDir === "down": snakeHead.y += box; snakeHead.x += box; break;
+            case ["right"].includes(dir) && privDir === "down": snakeHead.y += box; snakeHead.x -= box; break;
+            case ["up"].includes(dir) && privDir === "left": snakeHead.x -= box; snakeHead.y += box; break;
+            case ["down"].includes(dir) && privDir === "left": snakeHead.x -= box; snakeHead.y -= box; break;
+            case ["up"].includes(dir) && privDir === "right": snakeHead.x += box; snakeHead.y += box; break;
+            case ["down"].includes(dir) && privDir === "right": snakeHead.x += box; snakeHead.y -= box; break;
         }
     }
     if (snakeHead.x < 0 || snakeHead.x >= canvas.width || snakeHead.y < 0 || snakeHead.y >= canvas.height) {
@@ -133,7 +155,8 @@ function drawGame() {
 }
 
 function endGame() {
-    clearInterval(game);   
+    clearInterval(game);
+    scoreTable.push([playerName, score.textContent]);
     let message = document.createElement("div");
     message.classList.add("message-wrapper");
     message.style.transform = "scale(0)";
@@ -187,8 +210,18 @@ function direction(e) {
         case e.keyCode == 38 && dir != "down": dir = "up"; break;
         case e.keyCode == 39 && dir != "left": dir = "right"; break;
         case e.keyCode == 40 && dir != "up": dir = "down"; break;
-        case e.keyCode == 32: gamePause();
+        case e.keyCode == 32: gamePause(); break;
+        case e.keyCode == 13: if (document.querySelector("input").value !== "") setPlayerName();
     }
+}
+
+function setPlayerName(){
+    playerName = document.querySelector("input").value;
+    const name = document.querySelector(".player-name");
+    console.log(name, playerName);
+    document.querySelector("input").classList.add("hidden");
+    name.textContent = playerName;
+    name.classList.remove("hidden");
 }
 
 function gamePause() {
@@ -211,3 +244,48 @@ function gamePause() {
     }
 }
 newGame();
+
+//Sound & music
+function createMusic(path) {
+    let music = new Audio();
+    music.src = path;
+    music.volume = 0.2;
+    return music;
+}
+function setVolume() {
+    if (isMute) {
+        isMute = false;
+        eatSound.volume = looseSound.volume = 0.1;
+        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#unmute";
+    } else {
+        isMute = true;
+        eatSound.volume = looseSound.volume = 0;
+        muteBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#mute"
+    }
+}
+
+function playPause() {
+    if (isPlay) {
+        music.pause();
+        isPlay = false;
+        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#play"
+    } else {
+        music.volume = 0.1;
+        music.play();
+        isPlay = true;
+        playBtn.firstElementChild.href.baseVal = "./assets/svg/sprite.svg#pause"
+    }
+}
+
+// Local storage
+function getLocalStorage() {
+    if(localStorage.getItem('scoreTable')) {
+        const res = localStorage.getItem('scoreTable');
+        scoreTable = JSON.parse(res);
+    }
+}  
+function setLocalStorage() {
+    localStorage.setItem('scoreTable', JSON.stringify(scoreTable));
+}
+window.addEventListener('load', getLocalStorage)  
+window.addEventListener('beforeunload', setLocalStorage);
