@@ -36,6 +36,7 @@ function showScoreTable() {
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("flag", "info-table", "hidden");
     const ol = document.createElement("ol");
+    result.sort((a, b) => a[1]-b[1]);
     switch (true) {
         case result.length === 0:
             ol.textContent = "There're no game results here yet";
