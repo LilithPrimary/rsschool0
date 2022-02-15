@@ -124,7 +124,7 @@ canvas {
 .message-wrapper {
     position: absolute;
     height: 100%;
-    width: 100%;
+    min-width: 100%;
     padding: 20px;
     background-color: #0F2027;
     top: 0;
@@ -134,6 +134,7 @@ canvas {
     align-items: center;
     justify-content: center;
     row-gap: 30px;
+    column-gap: 30px;
     transition: 0.3s;
 }
 .button-omt {
