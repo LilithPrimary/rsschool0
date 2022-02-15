@@ -13,6 +13,8 @@
   border: 0;
   box-sizing: border-box;
   user-select: none;
+  outline: none;
+  font-family: inherit;
 }
 a {
   text-decoration: none;
@@ -101,6 +103,15 @@ html {
 }
 .highlight{
     box-shadow: 0 0 10px yellow;
+}
+input {
+    background: transparent;
+    color: var(--color-white);
+    min-width: 62px;
+    max-width: 72px;
+    padding-left: 5px;
+    font-weight: 700;
+    font-size: 16px;
 }
 .main__container {
     position: relative;

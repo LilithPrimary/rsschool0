@@ -14,6 +14,31 @@ let match, noMatch, draw, winSound, music;
 let isPlay = false;
 let isMute = true;
 let result = [];
+const playersName = [player1.previousElementSibling, player2.previousElementSibling];
+
+playersName.forEach(el => el.addEventListener("click", (e) =>{
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = e.target.textContent;
+    e.target.parentNode.insertAdjacentElement('afterbegin', input);
+    e.target.style.display = "none";
+    input.addEventListener("input", ()=> {
+        switch (true) {
+            case /^[\w-]{1,7}$/.test(input.value): input.style.borderBottom = "solid 2px green"; break;
+            case input.value === "": input.removeAttribute("style"); break;
+            default: input.style.borderBottom = "solid 2px red";
+        }
+    })
+    input.addEventListener("blur", complitInput);
+    input.addEventListener("change", complitInput);
+    function complitInput(event) {
+        if (e.target.parentNode.firstElementChild.tagName === "INPUT" && /^[\w-]{1,7}$/.test(input.value)) {
+            e.target.textContent = input.value;
+            e.target.style.display = "block"; 
+            input.parentNode.removeChild(input);
+        } 
+    }
+}))
 
 ngBtn.addEventListener("click", () => newGame());
 ngBtn.nextElementSibling.addEventListener("click", showScoreTable)
@@ -37,8 +62,11 @@ function showScoreTable() {
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("flag", "info-table", "hidden");
     tableWrapper.style.flexDirection = "row";
+    console.log(result);
     const resCopy = [...result];
-    resCopy.sort((a, b) => a[1]-b[1]);
+    console.log(resCopy);
+    resCopy.sort((a, b) => a[1] - b[1]);
+    console.log(resCopy);
     let arr = resCopy;
     loop:
     for (let i = 0; i < 2; i++) {
@@ -66,7 +94,7 @@ function showScoreTable() {
                 for (let i = arr.length - 1; i >= 0; i--) {
                     let li = document.createElement("li");
                     let span1 = document.createElement("span");
-                    span1.textContent = result[i][0]
+                    span1.textContent = arr[i][0]
                     let span2 = document.createElement("span");
                     span2.textContent = `score: ${arr[i][1]}`;
                     span2.style.color = "rgb(99,28,108)";
@@ -174,15 +202,15 @@ function win() {
         case +player1.textContent === +player2.textContent:
             setTimeout(() => draw.play(), 1000);
             button.previousElementSibling.textContent = "DRAW! One more time?";
-            result.push([`DRAW!`, `${player1.textContent} - ${player2.textContent}`]); break;
+            result.push([`DRAW!`, `10`]); break;
         case +player1.textContent > +player2.textContent:
             setTimeout(() => winSound.play(), 1000);
             button.previousElementSibling.textContent = `Player 1 wins with score ${player1.textContent}! One more time?`; 
-            result.push(["Player 1", player1.textContent]); break;
+            result.push([playersName[0].textContent, player1.textContent]); break;
         default:
             setTimeout(() => winSound.play(), 1000);
             button.previousElementSibling.textContent = `Player 2 wins with score ${player2.textContent}! One more time?`;
-            result.push(["Player 2", player2.textContent]);
+            result.push([playersName[1].textContent, player2.textContent]);
     }
     setTimeout(() => {
         button.parentNode.classList.remove("hidden");
