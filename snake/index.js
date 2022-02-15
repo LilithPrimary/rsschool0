@@ -5,6 +5,7 @@ const score = document.querySelector(".score");
 const canvas = document.createElement("canvas");
 const playBtn = document.querySelector(".play");
 const muteBtn = document.querySelector(".mute");
+const input = document.querySelector("input");
 wrapper.append(canvas);
 const ctx = canvas.getContext("2d");
 canvas.width = 480;
@@ -12,7 +13,7 @@ canvas.height = 480;
 const box = 24;
 let countX = canvas.width / box;
 let countY = canvas.height / box;
-let dir, interval, snake, snakeHead, food, privDir;
+let dir, interval, snake, snakeHead, food, privDir, end;
 let game;
 let music = createMusic("./assets/audio/music.mp3");
 music.loop = true;
@@ -37,42 +38,52 @@ function imgGenerator() {
 
 document.querySelector(".score-button").addEventListener("click", showScoreTable);
 function showScoreTable() {
+    if (wrapper.lastElementChild.classList.contains("flag")) return;
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("message-wrapper", "flag");
+    tableWrapper.style.flexDirection = "row";
     tableWrapper.style.transform = "scale(0)";
-    const ol = document.createElement("ol");
-    scoreTable.sort((a, b) => a[1] - b[1]);
-    switch (true) {
-        case scoreTable.length === 0:
-            ol.textContent = "There're no game results here yet";
-            break;
-        case scoreTable.length > 10:
-            for (let i = scoreTable.length - 1; i >= scoreTable.length - 10; i--) {
-                let li = document.createElement("li");
-                let span1 = document.createElement("span");
-                span1.textContent = scoreTable[i][0]
-                let span2 = document.createElement("span");
-                span2.textContent = `score: ${scoreTable[i][1]}`;
-                span2.style.color = "rgb(99,28,108)";
-                span2.style.fontWeight = 700;
-                li.append(span1, span2)
-                ol.append(li);
-            };
-            break;
-        default:
-            for (let i = scoreTable.length - 1; i >= 0; i--) {
-                let li = document.createElement("li");
-                let span1 = document.createElement("span");
-                span1.textContent = scoreTable[i][0]
-                let span2 = document.createElement("span");
-                span2.textContent = `score: ${scoreTable[i][1]}`;
-                span2.style.color = "rgb(99,28,108)";
-                span2.style.fontWeight = 700;
-                li.append(span1, span2)
-                ol.append(li);
-            };
-    }
-    tableWrapper.append(ol);
+    const scoreCopy = [...scoreTable];
+    scoreCopy.sort((a, b) => a[1] - b[1]);
+    let arr = scoreCopy;
+    loop:
+    for (let i = 0; i < 2; i++) {
+        const ol = document.createElement("ol");
+        ol.textContent = i == 0 ? "Best:" : "Last:";
+        switch (true) {
+            case arr.length === 0:
+                ol.textContent = "There're no game results here yet";
+                tableWrapper.append(ol);
+                break loop;
+            case scoreTable.length > 10:
+                for (let i = arr.length - 1; i >= arr.length - 10; i--) {
+                    let li = document.createElement("li");
+                    let span1 = document.createElement("span");
+                    span1.textContent = arr[i][0]
+                    let span2 = document.createElement("span");
+                    span2.textContent = `score: ${arr[i][1]}`;
+                    span2.style.color = "rgb(99,28,108)";
+                    span2.style.fontWeight = 700;
+                    li.append(span1, span2)
+                    ol.append(li);
+                };
+                break;
+            default:
+                for (let i = arr.length - 1; i >= 0; i--) {
+                    let li = document.createElement("li");
+                    let span1 = document.createElement("span");
+                    span1.textContent = arr[i][0]
+                    let span2 = document.createElement("span");
+                    span2.textContent = `score: ${arr[i][1]}`;
+                    span2.style.color = "rgb(99,28,108)";
+                    span2.style.fontWeight = 700;
+                    li.append(span1, span2)
+                    ol.append(li);
+                };
+        }
+        tableWrapper.append(ol);
+        arr = scoreTable;
+    }    
     setTimeout (() => tableWrapper.style.transform = "scale(1)", 300);
     wrapper.append(tableWrapper);
     wrapper.parentNode.addEventListener("click", () => {
@@ -98,7 +109,7 @@ function foodCoor() {
 
 function drawGame() {
     let prEl = {};
-    let end = false;
+    end = false;
     snakeHead = Object.assign({}, snake[0]);
     for (let i = 0; i < countX; i++) {
         for (let j = 0; j < countY; j++) {
@@ -211,20 +222,29 @@ function direction(e) {
         case e.keyCode == 39 && dir != "left": dir = "right"; break;
         case e.keyCode == 40 && dir != "up": dir = "down"; break;
         case e.keyCode == 32: gamePause(); break;
-        case e.keyCode == 13: if (document.querySelector("input").value !== "") setPlayerName();
+        case e.keyCode == 13: setPlayerName();
     }
 }
 
+input.addEventListener("input", () => {
+    switch (true) {
+        case /^[\w- ]{1,12}$/.test(input.value): input.style.border = "solid 2px green"; break;
+        case input.value === "": input.removeAttribute("style"); break;
+        default: input.style.border = "solid 2px red";
+    }
+})
 function setPlayerName(){
-    playerName = document.querySelector("input").value;
-    const name = document.querySelector(".player-name");
-    console.log(name, playerName);
-    document.querySelector("input").classList.add("hidden");
-    name.textContent = playerName;
-    name.classList.remove("hidden");
+    if (/^[\w- ]{1,12}$/.test(input.value)) {
+        playerName = input.value;
+        const name = document.querySelector(".player-name");
+        input.classList.add("hidden");
+        name.textContent = playerName;
+        name.classList.remove("hidden");
+    }
 }
 
 function gamePause() {
+    if (end || wrapper.lastElementChild.classList.contains("flag")) return;
     if (pause) {
         pause = false;
         game = setInterval(drawGame, interval);
