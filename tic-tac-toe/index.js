@@ -13,6 +13,16 @@ const finishSound = document.querySelector(".finish-sound");
 const music = document.querySelector(".bg-sound");
 const playBtn = document.querySelector(".button__play");
 const resultsBtn = document.querySelector(".result");
+const winCombination = [
+    [0, 4, 8, "l7"],
+    [2, 4, 6, "l8"],
+    [0, 1, 2, "l1"],
+    [3, 4, 5, "l2"],
+    [6, 7, 8, "l3"],
+    [0, 3, 6, "l4"],
+    [1, 4, 7, "l5"],
+    [2, 5, 8, "l6"]
+];
 music.volume = 0.1;
 music.loop = true;
 zeroSound.volume = 0.2;
@@ -24,7 +34,8 @@ let win = false;
 let counter = 0;
 const zero = "./assets/svg/zero.svg";
 const cross = "./assets/svg/cross.svg";
-let player;
+let player, human, computer, cell, string;
+let fillCell = 0;
 
 resultsBtn.addEventListener("click", () => showResultsTable());
 
@@ -71,17 +82,113 @@ grid.addEventListener ("click", (e) => {
 })
 
 function compTurn() {
-    if (win || player !== "computer") return;
-    let cell = Math.floor(Math.random()*9);
-    if (cells[cell].contains(cells[cell].lastElementChild)) {
-        compTurn();
-    } else {
-        setTimeout(() => {
-            addSign(cells[cell]);
-            checkWinner();
-            player = "human";
-        }, 300);
+    console.log("START comptern string:", string)
+    if (win || player !== "computer" || counter === 9) return;
+    switch (true) {
+        case fillCell === 0:
+            let arr = firstMove();
+            string = arr[0];
+            cell = arr[1];
+            fillCell++;
+            break;
+        case fillCell === 1:
+            cell = secondMove(string); fillCell++; break;
+        default:
+            cell = thirdMove(string); fillCell = 0;
+    }   
+    let check = checkHuman();
+    if (check !== "empty") {
+        cell = check;
+        fillCell = 0;
     }
+    check = checkOpportunities(); 
+    cell = check === "empty" ? cell : check;
+    if (cell === "empty") {
+        fillCell = 0;
+        cell = randomMove();
+    }
+    console.log("END comptern string:", string)
+    console.log("to addSign:", cells[cell], "cell:", cell);
+    setTimeout(() => {
+                addSign(cells[cell]);
+                checkWinner();
+                player = "human";
+            }, 300);
+}
+
+function checkHuman() {
+    for (let element of winCombination){
+        let counter = 0;
+        for (let i = 0; i < 3; i ++) {
+            if (cells[element[i]].id === human) counter ++;
+        }
+        if (counter === 2) {
+            for (let i = 0; i < 3; i++) {
+                if (![human, computer].includes(cells[element[i]].id)) {
+                    return element[i];
+                }
+            }
+        }
+    }
+    return "empty";
+}
+
+function checkOpportunities() {
+    for (let element of winCombination){
+        let counter = 0;
+        for (let i = 0; i < 3; i ++) {
+            if (cells[element[i]].id === computer) counter ++;
+        }
+        if (counter === 2) {
+            for (let i = 0; i < 3; i++) {
+                if (![human, computer].includes(cells[element[i]].id)) {
+                    return element[i];
+                }
+            }
+        }
+    }
+    return "empty";
+}
+
+function firstMove() {
+    let counter = 0;
+    for (let el of winCombination){
+        if (cells[el[0]].id === "null" && cells[el[1]].id === "null" && cells[el[2]].id === "null") {
+            if ([0, 1].includes(counter)) {
+                return [el, el[1]];
+            } else {
+                return [el, el[0]];
+            }
+        }
+        counter++;
+    }
+    return ["empty", "empty"];
+}
+
+function secondMove(element) {
+    console.log("secondMove:", element);
+    if (element === winCombination[0] || element === winCombination[1]) {
+        if (cells[element[0]].id === "null" && cells[element[2]].id === "null") return element[0];
+    } else {
+        if (cells[element[0]].id === "null" && cells[element[2]].id === "null") return element[1];
+    }
+    return "empty";
+}
+
+function thirdMove(element) {
+    console.log("thirdMove:", element);
+    if (cells[element[2]].id === "null") return element[2];
+    return "empty";
+}
+
+function randomMove() {
+    console.log("random move");
+    let c = Math.floor(Math.random()*9);
+    if (cells[c].contains(cells[c].lastElementChild)) {
+        c = randomMove();
+    }
+    console.log(c);
+    return c;
 }
 
 function addSign(element) {
@@ -97,16 +204,6 @@ function addSign(element) {
 }
 
 function checkWinner() {
-    const winCombination = [
-        [0, 1, 2, "l1"],
-        [3, 4, 5, "l2"],
-        [6, 7, 8, "l3"],
-        [0, 3, 6, "l4"],
-        [1, 4, 7, "l5"],
-        [2, 5, 8, "l6"],
-        [0, 4, 8, "l7"],
-        [2, 4, 6, "l8"]
-    ];
     for (let el of winCombination) {
         if (cells[el[0]].id === "cross" && cells[el[1]].id === "cross" && cells[el[2]].id === "cross") {
             win = true;
@@ -165,12 +262,18 @@ function newGame(id) {
         el.id = "null";
     });
     player = id;
+    fillCell = 0;
     counter = 0;
     win = false;
     grid.classList.remove("hide");
     textCont.classList.add("hide");
     if (player === "computer") {
+        computer = "cross";
+        human = "zero";
         compTurn();
+    } else {
+        computer = "zero";
+        human = "cross";
     }
 }
 playBtn.addEventListener("click", () => playPause());
