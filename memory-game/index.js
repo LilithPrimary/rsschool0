@@ -33,6 +33,7 @@ Array.prototype.shuffle = function() {
 }
 
 function showScoreTable() {
+    if (gameField.parentNode.lastElementChild.classList.contains("flag")) return;
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("flag", "info-table", "hidden");
     tableWrapper.style.flexDirection = "row";
