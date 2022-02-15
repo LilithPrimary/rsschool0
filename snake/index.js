@@ -222,10 +222,11 @@ function direction(e) {
         case e.keyCode == 39 && dir != "left": dir = "right"; break;
         case e.keyCode == 40 && dir != "up": dir = "down"; break;
         case e.keyCode == 32: gamePause(); break;
-        case e.keyCode == 13: setPlayerName();
     }
 }
 
+input.addEventListener("change", setPlayerName);
+input.addEventListener("blur", setPlayerName);
 input.addEventListener("input", () => {
     switch (true) {
         case /^[\w- ]{1,12}$/.test(input.value): input.style.border = "solid 2px green"; break;
@@ -240,6 +241,10 @@ function setPlayerName(){
         input.classList.add("hidden");
         name.textContent = playerName;
         name.classList.remove("hidden");
+        name.addEventListener("click", () => {
+            name.classList.add("hidden");
+            input.classList.remove("hidden");
+        })
     }
 }
 
