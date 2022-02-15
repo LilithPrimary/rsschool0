@@ -46,6 +46,7 @@ function showScoreTable() {
         switch (true) {
             case arr.length === 0:
                 ol.textContent = "There're no game results here yet";
+                tableWrapper.append(ol);
                 break loop;
             case arr.length > 10:
                 for (let i = arr.length - 1; i >= arr.length - 10; i--) {
