@@ -35,39 +35,47 @@ Array.prototype.shuffle = function() {
 function showScoreTable() {
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("flag", "info-table", "hidden");
-    const ol = document.createElement("ol");
-    result.sort((a, b) => a[1]-b[1]);
-    switch (true) {
-        case result.length === 0:
-            ol.textContent = "There're no game results here yet";
-            break;
-        case result.length > 10:
-            for (let i = result.length - 1; i >= result.length - 10; i--) {
-                let li = document.createElement("li");
-                let span1 = document.createElement("span");
-                span1.textContent = result[i][0]
-                let span2 = document.createElement("span");
-                span2.textContent = `score: ${result[i][1]}`;
-                span2.style.color = "rgb(99,28,108)";
-                span2.style.fontWeight = 700;
-                li.append(span1, span2)
-                ol.append(li);
-            };
-            break;
-        default:
-            for (let i = result.length - 1; i >= 0; i--) {
-                let li = document.createElement("li");
-                let span1 = document.createElement("span");
-                span1.textContent = result[i][0]
-                let span2 = document.createElement("span");
-                span2.textContent = `score: ${result[i][1]}`;
-                span2.style.color = "rgb(99,28,108)";
-                span2.style.fontWeight = 700;
-                li.append(span1, span2)
-                ol.append(li);
-            };
+    tableWrapper.style.flexDirection = "row";
+    const resCopy = [...result];
+    resCopy.sort((a, b) => a[1]-b[1]);
+    let arr = resCopy;
+    loop:
+    for (let i = 0; i < 2; i++) {
+        const ol = document.createElement("ol");
+        ol.textContent = i == 0 ? "Best:" : "Last:";
+        switch (true) {
+            case arr.length === 0:
+                ol.textContent = "There're no game results here yet";
+                break loop;
+            case arr.length > 10:
+                for (let i = arr.length - 1; i >= arr.length - 10; i--) {
+                    let li = document.createElement("li");
+                    let span1 = document.createElement("span");
+                    span1.textContent = arr[i][0]
+                    let span2 = document.createElement("span");
+                    span2.textContent = `score: ${arr[i][1]}`;
+                    span2.style.color = "rgb(99,28,108)";
+                    span2.style.fontWeight = 700;
+                    li.append(span1, span2)
+                    ol.append(li);
+                };
+                break;
+            default:
+                for (let i = arr.length - 1; i >= 0; i--) {
+                    let li = document.createElement("li");
+                    let span1 = document.createElement("span");
+                    span1.textContent = result[i][0]
+                    let span2 = document.createElement("span");
+                    span2.textContent = `score: ${arr[i][1]}`;
+                    span2.style.color = "rgb(99,28,108)";
+                    span2.style.fontWeight = 700;
+                    li.append(span1, span2)
+                    ol.append(li);
+                };
+        }
+        arr = result;
+        tableWrapper.append(ol);
     }
-    tableWrapper.append(ol);
     setTimeout(() => tableWrapper.classList.remove("hidden"), 300)
     gameField.parentNode.append(tableWrapper);
     gameField.parentNode.addEventListener("click", () => {
