@@ -205,11 +205,11 @@ function win() {
             result.push([`DRAW!`, `10`]); break;
         case +player1.textContent > +player2.textContent:
             setTimeout(() => winSound.play(), 1000);
-            button.previousElementSibling.textContent = `Player 1 wins with score ${player1.textContent}! One more time?`; 
+            button.previousElementSibling.textContent = `${playersName[0].textContent} wins with score ${player1.textContent}! One more time?`; 
             result.push([playersName[0].textContent, player1.textContent]); break;
         default:
             setTimeout(() => winSound.play(), 1000);
-            button.previousElementSibling.textContent = `Player 2 wins with score ${player2.textContent}! One more time?`;
+            button.previousElementSibling.textContent = `${playersName[1].textContent} wins with score ${player2.textContent}! One more time?`;
             result.push([playersName[1].textContent, player2.textContent]);
     }
     setTimeout(() => {
