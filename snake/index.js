@@ -51,6 +51,7 @@ function showScoreTable() {
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("message-wrapper", "flag");
     tableWrapper.style.flexDirection = window.screen.width > 600 ? "row" : "column";
+    if (window.screen.width < 600) tableWrapper.style.justifyContent = "start";
     tableWrapper.style.transform = "scale(0)";
     const scoreCopy = [...scoreTable];
     scoreCopy.sort((a, b) => a[1] - b[1]);
