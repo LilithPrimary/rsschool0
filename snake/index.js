@@ -229,11 +229,11 @@ let endTouch = null;
 document.addEventListener("touchstart", (e) => {
     startTouch = e;
     console.log(e.targetTouches.length);
-    if (e.targetTouches.length > 1) direction(32);
+    if (e.targetTouches.length > 1) gamePause();
 })
 
 document.addEventListener("touchmove", (e) => {
-    e.preventDefault();
+    if (!pause) e.preventDefault();
     endTouch = e;
 }, { passive: false });
 
