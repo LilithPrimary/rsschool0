@@ -8,9 +8,18 @@ const muteBtn = document.querySelector(".mute");
 const input = document.querySelector("input");
 wrapper.append(canvas);
 const ctx = canvas.getContext("2d");
-canvas.width = 480;
-canvas.height = 480;
 const box = 24;
+if (window.screen.width > 480) {
+    canvas.width = 480;
+} else {
+    canvas.width = Math.floor(window.screen.width / box)*box;
+}
+if (window.screen.height > 480) {
+    canvas.height = 480;
+} else {
+    canvas.height = Math.floor(window.screen.height / box)*box;
+}
+document.querySelector(".score__wrapper").style.width = `${canvas.width}px`;
 let countX = canvas.width / box;
 let countY = canvas.height / box;
 let dir, interval, snake, snakeHead, food, privDir, end;
@@ -26,7 +35,7 @@ let img = imgGenerator();
 let playerName = "Player";
 let scoreTable = [];
 
-document.addEventListener("keydown", direction);
+document.addEventListener("keydown", (e) => direction(e.keyCode));
 playBtn.addEventListener("click", playPause);
 muteBtn.addEventListener("click", setVolume);
 
@@ -214,14 +223,40 @@ function newGame() {
     drawGame();
 }
 
+document.addEventListener("touchstart", (e) => {
+    let startX = e.touches[0].clientX;
+    let startY = e.touches[0].clientY;
+    console.log("start:", startX, startY);
+    document.addEventListener("touchend", (e) => {
+        defineDirection(e, startX, startY);
+    });
+})
+
+function defineDirection(event, startX, startY) {
+    let endX = event.changedTouches[event.changedTouches.length-1].pageX;
+    let endY = event.changedTouches[event.changedTouches.length-1].pageY;
+    let dir;
+    let diffX = startX - endX;
+    let diffY = startY - endY;
+    // console.log(e.touches);
+
+    console.log("end:", endX, endY);
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        dir = diffX > 0 ? 37 : 39;
+    } else {
+        dir = diffY > 0 ? 38 : 40;
+    }
+    direction(dir);
+}
+
 function direction(e) {
     privDir = dir;
     switch (true) {
-        case e.keyCode == 37 && dir != "right": dir = "left"; break;
-        case e.keyCode == 38 && dir != "down": dir = "up"; break;
-        case e.keyCode == 39 && dir != "left": dir = "right"; break;
-        case e.keyCode == 40 && dir != "up": dir = "down"; break;
-        case e.keyCode == 32: gamePause(); break;
+        case e == 37 && dir != "right": dir = "left"; break;
+        case e == 38 && dir != "down": dir = "up"; break;
+        case e == 39 && dir != "left": dir = "right"; break;
+        case e == 40 && dir != "up": dir = "down"; break;
+        case e == 32: gamePause(); break;
     }
 }
 
