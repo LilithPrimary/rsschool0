@@ -228,16 +228,17 @@ let endTouch = null;
 
 document.addEventListener("touchstart", (e) => {
     startTouch = e;
-    console.log(e.targetTouches.length);
     if (e.targetTouches.length > 1) gamePause();
 })
 
 document.addEventListener("touchmove", (e) => {
-    if (!pause) e.preventDefault();
+    if (pause) return;
+    e.preventDefault();
     endTouch = e;
 }, { passive: false });
 
 document.addEventListener("touchend", () => {
+    if (pause) return;
     let diffX = endTouch.touches[0].pageX - startTouch.touches[0].pageX;
     let diffY = endTouch.touches[0].pageY - startTouch.touches[0].pageY;
     let dir;
