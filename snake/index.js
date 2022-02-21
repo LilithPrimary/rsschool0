@@ -50,7 +50,7 @@ function showScoreTable() {
     if (wrapper.lastElementChild.classList.contains("flag")) return;
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("message-wrapper", "flag");
-    tableWrapper.style.flexDirection = "row";
+    tableWrapper.style.flexDirection = window.screen.width > 600 ? "row" : "column";
     tableWrapper.style.transform = "scale(0)";
     const scoreCopy = [...scoreTable];
     scoreCopy.sort((a, b) => a[1] - b[1]);
@@ -225,6 +225,7 @@ function newGame() {
 
 let startTouch = null;
 let endTouch = null;
+let isMove = false;
 
 document.addEventListener("touchstart", (e) => {
     startTouch = e;
@@ -233,12 +234,13 @@ document.addEventListener("touchstart", (e) => {
 
 document.addEventListener("touchmove", (e) => {
     if (pause) return;
+    isMove = true;
     e.preventDefault();
     endTouch = e;
 }, { passive: false });
 
 document.addEventListener("touchend", () => {
-    if (pause) return;
+    if (pause || !isMove) return;
     let diffX = endTouch.touches[0].pageX - startTouch.touches[0].pageX;
     let diffY = endTouch.touches[0].pageY - startTouch.touches[0].pageY;
     let dir;
@@ -248,6 +250,7 @@ document.addEventListener("touchend", () => {
         dir = diffY < 0 ? 38 : 40;
     }
     direction(dir);
+    isMove = false;
 })
 
 function direction(e) {
@@ -348,5 +351,5 @@ function getLocalStorage() {
 function setLocalStorage() {
     localStorage.setItem('scoreTable', JSON.stringify(scoreTable));
 }
-window.addEventListener('load', () =>getLocalStorage) 
+window.addEventListener('load', getLocalStorage);
 window.addEventListener('beforeunload', setLocalStorage);
