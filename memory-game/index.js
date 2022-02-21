@@ -61,7 +61,8 @@ function showScoreTable() {
     if (gameField.parentNode.lastElementChild.classList.contains("flag")) return;
     const tableWrapper = document.createElement("div");
     tableWrapper.classList.add("flag", "info-table", "hidden");
-    tableWrapper.style.flexDirection = "row";
+    tableWrapper.style.flexDirection = window.screen.width > 600 ? "row" : "column";
+    if (window.screen.width < 600) tableWrapper.style.justifyContent = "start";
     console.log(result);
     const resCopy = [...result];
     console.log(resCopy);
