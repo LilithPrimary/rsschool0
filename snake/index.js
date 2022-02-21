@@ -223,31 +223,56 @@ function newGame() {
     drawGame();
 }
 
+let startTouch = null;
+let endTouch = null;
+
 document.addEventListener("touchstart", (e) => {
-    let startX = e.touches[0].clientX;
-    let startY = e.touches[0].clientY;
-    console.log("start:", startX, startY);
-    document.addEventListener("touchend", (e) => {
-        defineDirection(e, startX, startY);
-    });
+    startTouch = e;
+    // let startX = e.touches[0].clientX;
+    // let startY = e.touches[0].clientY;
+    // console.log("start:", startX, startY);
+    // document.addEventListener("touchend", (e) => {
+    //     defineDirection(e, startX, startY);
+    // });
 })
 
-function defineDirection(event, startX, startY) {
-    let endX = event.changedTouches[event.changedTouches.length-1].pageX;
-    let endY = event.changedTouches[event.changedTouches.length-1].pageY;
-    let dir;
-    let diffX = startX - endX;
-    let diffY = startY - endY;
-    // console.log(e.touches);
+document.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    // if (event) {
+    //     console.log("Move deltaX: " + (e.touches[0].pageX - event.touches[0].pageX));
+    //     console.log("Move deltaY: " + (e.touches[0].pageY - event.touches[0].pageY));
+    // }
+    endTouch = e;
+}, { passive: false });
 
-    console.log("end:", endX, endY);
+document.addEventListener("touchend", () => {
+    let diffX = endTouch.touches[0].pageX - startTouch.touches[0].pageX;
+    let diffY = endTouch.touches[0].pageY - startTouch.touches[0].pageY;
+    let dir;
     if (Math.abs(diffX) > Math.abs(diffY)) {
-        dir = diffX > 0 ? 37 : 39;
+        dir = diffX < 0 ? 37 : 39;
     } else {
-        dir = diffY > 0 ? 38 : 40;
+        dir = diffY < 0 ? 38 : 40;
     }
     direction(dir);
-}
+})
+
+// function defineDirection(event, startX, startY) {
+//     let endX = event.changedTouches[event.changedTouches.length-1].pageX;
+//     let endY = event.changedTouches[event.changedTouches.length-1].pageY;
+//     let dir;
+//     let diffX = startX - endX;
+//     let diffY = startY - endY;
+//     // console.log(e.touches);
+
+//     console.log("end:", endX, endY);
+//     if (Math.abs(diffX) > Math.abs(diffY)) {
+//         dir = diffX > 0 ? 37 : 39;
+//     } else {
+//         dir = diffY > 0 ? 38 : 40;
+//     }
+//     direction(dir);
+// }
 
 function direction(e) {
     privDir = dir;
