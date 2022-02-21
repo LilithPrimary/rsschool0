@@ -232,7 +232,6 @@ document.addEventListener("touchstart", (e) => {
 })
 
 document.addEventListener("touchmove", (e) => {
-    setTimeout(() => window.scrollTo(0,1), 1000);
     if (pause) return;
     e.preventDefault();
     endTouch = e;
