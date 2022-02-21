@@ -227,9 +227,7 @@ let startTouch = null;
 let endTouch = null;
 
 document.addEventListener("touchstart", (e) => {
-    if (pause) return;
     startTouch = e;
-    console.log(e.targetTouches.length);
     if (e.targetTouches.length > 1) gamePause();
 })
 
