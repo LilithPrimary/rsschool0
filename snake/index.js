@@ -348,5 +348,6 @@ function getLocalStorage() {
 function setLocalStorage() {
     localStorage.setItem('scoreTable', JSON.stringify(scoreTable));
 }
-window.addEventListener('load', getLocalStorage)  
+window.addEventListener('load', () =>getLocalStorage) 
 window.addEventListener('beforeunload', setLocalStorage);
+window.scrollTo(0,1);
