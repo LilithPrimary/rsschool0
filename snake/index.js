@@ -228,8 +228,8 @@ let endTouch = null;
 
 document.addEventListener("touchstart", (e) => {
     startTouch = e;
-    console.log(TouchList.length);
-    if (TouchList.length > 1) direction(32);
+    console.log(e.targetTouches.length);
+    if (e.targetTouches.length > 1) direction(32);
 })
 
 document.addEventListener("touchmove", (e) => {
@@ -248,23 +248,6 @@ document.addEventListener("touchend", () => {
     }
     direction(dir);
 })
-
-// function defineDirection(event, startX, startY) {
-//     let endX = event.changedTouches[event.changedTouches.length-1].pageX;
-//     let endY = event.changedTouches[event.changedTouches.length-1].pageY;
-//     let dir;
-//     let diffX = startX - endX;
-//     let diffY = startY - endY;
-//     // console.log(e.touches);
-
-//     console.log("end:", endX, endY);
-//     if (Math.abs(diffX) > Math.abs(diffY)) {
-//         dir = diffX > 0 ? 37 : 39;
-//     } else {
-//         dir = diffY > 0 ? 38 : 40;
-//     }
-//     direction(dir);
-// }
 
 function direction(e) {
     privDir = dir;
