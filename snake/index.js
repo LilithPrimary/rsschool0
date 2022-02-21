@@ -228,20 +228,12 @@ let endTouch = null;
 
 document.addEventListener("touchstart", (e) => {
     startTouch = e;
-    // let startX = e.touches[0].clientX;
-    // let startY = e.touches[0].clientY;
-    // console.log("start:", startX, startY);
-    // document.addEventListener("touchend", (e) => {
-    //     defineDirection(e, startX, startY);
-    // });
+    console.log(TouchList.length);
+    if (TouchList.length > 1) direction(32);
 })
 
 document.addEventListener("touchmove", (e) => {
     e.preventDefault();
-    // if (event) {
-    //     console.log("Move deltaX: " + (e.touches[0].pageX - event.touches[0].pageX));
-    //     console.log("Move deltaY: " + (e.touches[0].pageY - event.touches[0].pageY));
-    // }
     endTouch = e;
 }, { passive: false });
 
@@ -281,7 +273,7 @@ function direction(e) {
         case e == 38 && dir != "down": dir = "up"; break;
         case e == 39 && dir != "left": dir = "right"; break;
         case e == 40 && dir != "up": dir = "down"; break;
-        case e == 32: gamePause(); break;
+        case e == 32: gamePause();
     }
 }
 
