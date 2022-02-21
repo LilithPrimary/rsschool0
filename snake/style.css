@@ -88,9 +88,11 @@ html{
     color: var(--color-white);
     padding-left: 10px;
     height: 20px;
+    width: 69.81px;
     font-family: inherit;
     outline: none;
     transition: .3s;
+    text-align: right;
 }
 .name-input.hidden {
     display: none;
