@@ -13,6 +13,7 @@
   box-sizing: border-box;
   user-select: none;
   outline: none;
+  text-align: center;
 }
 a {
   text-decoration: none;
