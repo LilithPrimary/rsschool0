@@ -47,17 +47,17 @@ function imgGenerator() {
 
 document.querySelector(".score-button").addEventListener("click", showScoreTable);
 function showScoreTable() {
-    if (wrapper.lastElementChild.classList.contains("flag")) return;
-    const tableWrapper = document.createElement("div");
-    tableWrapper.classList.add("message-wrapper", "flag");
-    tableWrapper.style.flexDirection = window.screen.width > 600 ? "row" : "column";
-    if (window.screen.width < 600) tableWrapper.style.justifyContent = "start";
-    tableWrapper.style.transform = "scale(0)";
-    const scoreCopy = [...scoreTable];
-    scoreCopy.sort((a, b) => a[1] - b[1]);
-    let arr = scoreCopy;
-    loop:
-    for (let i = 0; i < 2; i++) {
+    if (wrapper.lastElementChild.classList.contains("flag")) return;// если есть уже скортэйбл, то не создавать
+    const tableWrapper = document.createElement("div");// создаю див
+    tableWrapper.classList.add("message-wrapper", "flag");// добавляю ему такой же класс, как той штуке, которая у меня вылазиет в конце игры
+    tableWrapper.style.flexDirection = window.screen.width > 600 ? "row" : "column";// это кусочек css в js =)
+    if (window.screen.width < 600) tableWrapper.style.justifyContent = "start";// это тоже
+    tableWrapper.style.transform = "scale(0)";// это для того, чтоб всё плавно появлялось
+    const scoreCopy = [...scoreTable];// это я копирую массив, чтоб потом сделать сортировку по очкам и не мутировать начальный массив
+    scoreCopy.sort((a, b) => a[1] - b[1]); // сортировка
+    let arr = scoreCopy; // это чтоб одним циклом два списка создать
+    loop: // для выхода из цикла, если ещё нет вообще никаких результатов
+    for (let i = 0; i < 2; i++) { // это цикл, где я создаю и заполняю два списка ol-li
         const ol = document.createElement("ol");
         ol.textContent = i == 0 ? "Best:" : "Last:";
         switch (true) {
@@ -91,15 +91,15 @@ function showScoreTable() {
                     ol.append(li);
                 };
         }
-        tableWrapper.append(ol);
+        tableWrapper.append(ol); // запихиваю список во внутрь созданного дива
         arr = scoreTable;
     }    
-    setTimeout (() => tableWrapper.style.transform = "scale(1)", 300);
-    wrapper.append(tableWrapper);
-    wrapper.parentNode.addEventListener("click", () => {
+    setTimeout (() => tableWrapper.style.transform = "scale(1)", 300); // это опять для плавного появления этого дива
+    wrapper.append(tableWrapper); //запихиваю созданный див в контейнер, в котором у меня игра находится, получается он у меня поверх карточек находится
+    wrapper.parentNode.addEventListener("click", () => { // а это уже закрытие скортейбла. Он у меня просто удаляется из хтмла и при нажатии на кнопку всё время создаётся новый
         if (wrapper.lastElementChild.classList.contains("flag")) {
             tableWrapper.style.transform = "scale(0)";
-            setTimeout(() => wrapper.removeChild(tableWrapper), 500)
+            setTimeout(() => wrapper.removeChild(tableWrapper), 500) // на самом деле довольно кривой способ, лучше просто display = "none" ему ставить, но меня пугает, что они будут не удаляться, а просто всё время заново создаваться
         }
     })
 }
