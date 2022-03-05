@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-sounds</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap&subset=cyrillic-ext" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/svg/favicon.svg" />
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <svg class="header__logo">
+                <use xlink:href="assets/svg/sprite.svg#logo" class="svg is_active" data-bird="forest"></use>
+            </svg>
+            <nav class="nav">
+                <ul class="header__menu">
+                    <li class="link menu__link" data-bird="nightingale">Nightingale</li>
+                    <li class="link menu__link" data-bird="blackbird">Blackbird</li>
+                    <li class="link menu__link" data-bird="robin">Robin</li>
+                    <li class="link menu__link" data-bird="lark">Lark</li>
+                    <li class="link menu__link" data-bird="warbler">Warbler</li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container main__container">
+            <img src="assets/img/forest.jpg" alt="image" class="image main__image">
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__left">
+                <span class="footer__span copy">©</span>
+                <span class="footer__span year">2022</span>
+                <a href="https://github.com/lilithprimary" class="link">lilithprimary</a>
+            </div>
+            <div class="footer__center">
+                <a target="_blank" href="https://rs.school/js-stage0/" class="link">Rolling Scopes School</a>
+            </div>
+            <div class="footer__right">
+                <audio target="_blank" src="assets/audio/forest.mp3" class="audio"></audio>
+                <div class="footer__buttons">
+                    <svg class="svg button button__play">
+                        <use xlink:href="assets/svg/sprite.svg#play"></use>
+                    </svg>
+                    <a href="assets/audio/forest.mp3" class="download" download>
+                        <svg class="svg button button__download">
+                            <use xlink:href="assets/svg/sprite.svg#download"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="index.js"></script>     
+</body>
+</html>

@@ -1,0 +1,224 @@
+:root {
+    --color-hover: rgb(254, 204, 0);
+    --color-white: #fff;
+    --center-burger: 12.3px;
+  }  
+
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  user-select: none;
+  outline: none;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  scroll-behavior: smooth;
+  background-color: transparent;
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: normal;
+  color: rgb(255,255,255);
+  font-family: 'Rubik';
+  font-weight: 400;
+  font-style: normal;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+html{
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+.container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1920px;
+}
+.header__container {
+    position: relative;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.score__wrapper {
+    position: absolute;
+    width: 480px;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 10;
+    column-gap: 20px;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+.score-button {
+    background: transparent;
+    font-family: inherit;
+}
+.name-input {
+    background: transparent;
+    color: var(--color-white);
+    padding-left: 10px;
+    height: 20px;
+    width: 69.81px;
+    font-family: inherit;
+    outline: none;
+    transition: .3s;
+    text-align: right;
+}
+.name-input.hidden {
+    display: none;
+}
+.name-input:focus {
+    border: solid 2px #6c0ba9;
+    border-radius: 5px;
+}
+.name-input::placeholder {
+    color: var(--color-white);
+}
+.player-name.hidden {
+    display: none;
+}
+.player-name {
+    color: yellow;
+    font-weight: 700;
+}
+.main__container {
+    height: 100vh;
+    padding: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.game__wrapper {
+    position: relative;
+}
+canvas {
+    border: solid 5px #0F2027;
+}
+.message-wrapper {
+    position: absolute;
+    overflow: auto;
+    height: 100%;
+    min-width: 100%;
+    padding: 20px;
+    background-color: #0F2027;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 30px;
+    column-gap: 30px;
+    transition: 0.3s;
+}
+.button-omt {
+    cursor: pointer;
+    background: #2C5364;
+    padding: 10px 50px;
+    color: white;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 16px;
+}
+.button-omt:active {
+    font-size: 15px;
+    margin-top: 2px;
+    box-shadow: inset 0 0 10px #0F2027;
+}
+.footer__container {
+    position: relative;
+}
+.footer__wrapper {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    column-gap: 20px;
+}
+.footer__button {
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.footer__button svg {
+    height: 100%;
+    width: 100%;
+}
+.link {
+    fill: white;
+    color: inherit;
+    cursor: pointer;
+    transition: .3s;
+}
+.link:hover {
+    fill: #6c0ba9;
+    color: #6c0ba9;
+}
+.rslogo {
+    width: 30px;
+    height: 30px;
+}
+ol {
+    counter-reset: li; 
+    font-family: inherit
+}
+ol li {
+    position: relative;
+    width: 200px;
+    margin: 0 0 6px 32px;
+    padding: 5px 8px;
+    background:#f6f6f6;
+    color: #0F2027;
+    font-family: inherit;
+    display: flex;
+    justify-content: space-between;
+}
+ol li:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 32px;
+    padding: 4px 0;
+    border-top: 2px solid #666;
+    color: #fff;
+    background: #666;
+    font-weight: bold;
+    font-family: inherit;
+    text-align: center;
+}
+@media(max-width: 768px) {
+
+}

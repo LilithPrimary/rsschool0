@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap&subset=cyrillic-ext" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Inter:regular,600,700&display=swap&subset=cyrillic-ext" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/svg/favicon.svg" />
+    <script>
+        if(localStorage.getItem('theme')) {
+        const theme = localStorage.getItem('theme');
+        document.firstElementChild.classList.add(theme);
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+<!-- HEADER  -->
+        <header class="header-container">
+            <div class="container, header">
+                <div class="logo"></div>
+                <div class="headerRightEl">
+                    <div class="shadow"></div>
+                    <nav class="nav">
+                        <ul class="menu">
+                        <li><a href="#skills" class="menu-link" data-i18n = "skills"></a></li>
+                        <li><a href="#portfolio" class="menu-link" data-i18n = "portfolio"></a></li>
+                        <li><a href="#video" class="menu-link" data-i18n = "video"></a></li>
+                        <li><a href="#price" class="menu-link" data-i18n = "price"></a></li>
+                        <li><a href="#contacts" class="menu-link" data-i18n = "contacts"></a></li>
+                        </ul>
+                    </nav>
+                    <div class="langSwitch">
+                        <div>
+                            <input type="radio" class="langRadio" name="langChoice" id="en" checked>
+                            <label for="en">en</label>
+                        </div>
+                        <span class="langSep">/</span>
+                        <div>
+                            <input type="radio" class="langRadio" name="langChoice" id="ru">
+                            <label for="ru">ru</label>
+                        </div>
+                    </div>
+                    <svg class="sun-moon">
+                        <use xlink:href="./assets/svg/sprite.svg#moon"></use>
+                    </svg>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>   
+                </div>      
+            </div>
+        </header>
+<!-- MAIN -->
+        <main class="main">
+<!-- HERO  -->
+            <section class="hero-container">
+                <div class="heroPic">
+                    <div class="name">
+                        <h1 class="h1class" data-i18n = "hero-title"></h1>
+                        <p class="textUnderName" data-i18n = "hero-text"></p>
+                        <button class="button hero" data-i18n = "hire"></button>
+                    </div>
+                </div>
+            </section>
+<!-- SKILLS  -->
+            <div class="container">
+                <section class="section">
+                    <div class="sectionTop">
+                        <div class="line"></div>
+                        <h2 class="section-title" id="skills" data-i18n = "skills"></h2>
+                    </div>
+                    <div class="sectionBott">
+                        <div class="skillBoxSec">
+                            <div class="skillBox">
+                                <svg class="skillsIcon">
+                                    <use xlink:href="./assets/svg/sprite.svg#camera"></use>
+                                </svg>
+                                <p class="skillsH" data-i18n = "skill-title-1"></p>
+                                <p class="skillsDisc" data-i18n = "skill-text-1"></p>
+                            </div>
+                            <div class="skillBox">
+                                <svg class="skillsIcon">
+                                    <use xlink:href="./assets/svg/sprite.svg#videoico"></use>
+                                </svg>
+                                <p class="skillsH" data-i18n = "skill-title-2"></p>
+                                <p class="skillsDisc" data-i18n = "skill-text-2"></p>
+                            </div>
+                        </div>
+                        <div class="skillBoxSec">
+                            <div class="skillBox">
+                                <svg class="skillsIcon">
+                                    <use xlink:href="./assets/svg/sprite.svg#picture"></use>
+                                </svg>
+                                <p class="skillsH" data-i18n = "skill-title-3"></p>
+                                <p class="skillsDisc" data-i18n = "skill-text-3"></p>
+                            </div>
+                            <div class="skillBox">
+                                <svg class="skillsIcon">
+                                    <use xlink:href="./assets/svg/sprite.svg#microphone"></use>
+                                </svg>
+                                <p class="skillsH" data-i18n = "skill-title-4"></p>
+                                <p class="skillsDisc" data-i18n = "skill-text-4"></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+<!-- PORTFOLIO  -->
+                <section class="section">
+                    <div class="sectionTop">
+                        <div class="line"></div>
+                        <h2 class="section-title" id="portfolio" data-i18n = "portfolio"></h2>
+                    </div>
+                    <div class="pButtons">
+                        <div class="pButtonsSec">
+                            <button class="button" data-season="winter" data-i18n = "winter"></button>
+                            <button class="button" data-season="spring" data-i18n = "spring"></button>
+                        </div>
+                        <div class="pButtonsSec">
+                            <button class="button" data-season="summer" data-i18n = "summer"></button>
+                            <button class="button active" data-season="autumn" data-i18n = "autumn"></button>
+                        </div>
+                    </div>
+                    <div class="photoCont autumn">
+                        <img src="assets/img/autumn/0.jpg" alt="photo1" class="pPhoto">
+                        <img src="assets/img/autumn/1.jpg" alt="photo2" class="pPhoto">
+                        <img src="assets/img/autumn/2.jpg" alt="photo3" class="pPhoto">
+                        <img src="assets/img/autumn/3.jpg" alt="photo4" class="pPhoto">
+                        <img src="assets/img/autumn/4.jpg" alt="photo5" class="pPhoto">
+                        <img src="assets/img/autumn/5.jpg" alt="photo6" class="pPhoto">
+                    </div>
+                </section>
+<!-- VIDEO  -->
+                <section class="section vSection">
+                    <div class="sectionTop">
+                        <div class="line"></div>
+                        <h2 class="section-title" id="video" data-i18n = "video"></h2>
+                    </div>
+                    <div class="video-player">
+                        <div></div>
+                        <button class="videoBtn"><img class="vBtnImg" src="assets/svg/play_hover.svg" alt="Play"></button>
+                    </div>
+                    <video class = "real-video hide" src="https://custom-video.netlify.app/assets/video/video.mp4" controls>
+                        <p>Ваш браузер не поддерживает HTML5 видео. Используйте <a href="https://custom-video.netlify.app/">ссылку на видео</a> для доступа.</p>
+                    </video>
+                </section>
+<!-- PRICE  -->
+                <section class="section">
+                    <div class="sectionTop">
+                        <div class="line"></div>
+                        <h2 class="section-title" id="price" data-i18n = "price"></h2>
+                    </div>
+                    <div class="priceBlcs">
+                        <div>
+                            <span class="prcHead">Standard</span>
+                            <span class="price">500 $</span>
+                            <span class="prcDisc" data-i18n = "price-description-1-span-1"></span>
+                            <span class="prcDisc" data-i18n = "price-description-1-span-2"></span>
+                            <span class="prcDisc" data-i18n = "price-description-1-span-3"></span>
+                            <span class="prcDisc" data-i18n = "price-description-1-span-4"></span>
+                            <span class="prcDisc end" data-i18n = "price-description-1-span-5"></span>
+                            <button class="button hero" data-i18n = "order"></button>
+                        </div>
+                        <div>
+                            <span class="prcHead">Premium</span>
+                            <span class="price">700 $</span>
+                            <span class="prcDisc" data-i18n = "price-description-2-span-1"></span>
+                            <span class="prcDisc" data-i18n = "price-description-2-span-2"></span>
+                            <span class="prcDisc" data-i18n = "price-description-2-span-3"></span>
+                            <span class="prcDisc" data-i18n = "price-description-2-span-4"></span>
+                            <span class="prcDisc end" data-i18n = "price-description-2-span-5"></span>
+                            <button class="button hero" data-i18n = "order"></button>
+                        </div>
+                        <div>
+                            <span class="prcHead">Gold</span>
+                            <span class="price">1000 $</span>
+                            <span class="prcDisc" data-i18n = "price-description-3-span-1"></span>
+                            <span class="prcDisc" data-i18n = "price-description-3-span-2"></span>
+                            <span class="prcDisc" data-i18n = "price-description-3-span-3"></span>
+                            <span class="prcDisc" data-i18n = "price-description-3-span-4"></span>
+                            <span class="prcDisc end" data-i18n = "price-description-3-span-5"></span>
+                            <button class="button hero" data-i18n = "order"></button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+<!-- CONTACTS  -->
+            <section class="contacts-container">
+                <div class="contBlock">
+                    <h2 class="ctcs-title" id="contacts" data-i18n = "contact-me"></h2>
+                    <input type="email" name="contacts" id="mail" placeholder="E-mail" >
+                    <input type="tel" name="contacts" id="phone" placeholder="" data-i18n = "phone">
+                    <textarea name="contacts" id="message" cols="30" rows="10" placeholder="" data-i18n = "message"></textarea>
+                    <button class="button hero" data-i18n = "send-message"></button>
+                </div>
+            </section>
+        </main>
+<!-- FOOTER  -->
+        <footer class="footer">
+            <div class="footer-container">
+                <p class="date">
+                    <span>©</span>   
+                    <span class="dateSpan">2022</span> 
+                    <a target="_blank" href="https://github.com/LilithPrimary"><span class="spanHref">LilithPrimary</span></a>
+                </p>        
+                <a target="_blank" href="https://rs.school/js-stage0/"><span class="spanHref rs">Rolling Scopes School</span></a>
+                <ul class="snCont">
+                    <li>
+                        <a target="_blank" href="">
+                            <svg class="snIcons">
+                                <use xlink:href="./assets/svg/sprite.svg#inst"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="">
+                            <svg class="snIcons">
+                                <use xlink:href="./assets/svg/sprite.svg#fb"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="">
+                            <svg class="snIcons">
+                                <use xlink:href="./assets/svg/sprite.svg#tw"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="">
+                            <svg class="snIcons">
+                                <use xlink:href="./assets/svg/sprite.svg#pinterest"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="index.js"></script>    
+</body>
+</html>
