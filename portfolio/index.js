@@ -63,8 +63,8 @@ function setTheme(thm) {
 
 const textForTransl = document.querySelectorAll("[data-i18n]");
 console.log(textForTransl[44]);
+let lang;
 const langs = document.querySelectorAll(".langRadio");
-let lang = "en";
 langs.forEach(el => el.addEventListener("click", (e) => {
   if (e.target.id !== lang) {
     setLang(e.target.id);
@@ -99,10 +99,11 @@ function getLocalStorage() {
     const theme = localStorage.getItem('theme');
     setTheme(theme);
   }
+  let lang;
   if(localStorage.getItem('lang')) {
-    const lang = localStorage.getItem('lang');
-    setLang(lang);
-  }
+    lang = localStorage.getItem('lang');
+  } else lang = "en";
+  setLang(lang);
 }
 
 window.addEventListener('load', getLocalStorage)
